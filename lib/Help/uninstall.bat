@@ -1,0 +1,2 @@
+echo off
+MsiExec.exe /x{CE2343FB-0BA5-42B2-9457-9ECE85753D1C}
