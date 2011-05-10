@@ -24,6 +24,8 @@
 *.lib
 *.sbr
 *.sdf
+*.userprefs
+*.pidb
 ipch/
 obj/
 [Bb]in

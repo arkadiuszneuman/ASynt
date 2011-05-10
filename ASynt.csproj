@@ -52,6 +52,8 @@
     <Compile Include="main-window.Designer.cs">
       <DependentUpon>main-window.cs</DependentUpon>
     </Compile>
+    <Compile Include="Player\SoundPlayer.cs" />
+    <Compile Include="Player\Sound.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="main-window.resx">
