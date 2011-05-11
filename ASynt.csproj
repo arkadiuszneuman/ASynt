@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Keyboard\Key.cs" />
+    <Compile Include="Keyboard\Keyboard.cs" />
     <Compile Include="main-window.cs">
       <SubType>Form</SubType>
     </Compile>
