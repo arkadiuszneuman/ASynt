@@ -29,7 +29,8 @@ namespace ASynt.Keyboard
             }
             mainForm.MouseDown += new MouseEventHandler(OnMouseDown);
             mainForm.MouseUp += new MouseEventHandler(OnMouseUp);
-            mainForm.MouseMove += new MouseEventHandler(OnMouseMove);
+            mainForm.MouseMove += new MouseEventHandler(OnMouseDown);
+            //mainForm.MouseClick += new MouseEventHandler(OnMouseDown);
             mainForm.Paint += new PaintEventHandler(Draw);
         }
 
@@ -66,11 +67,6 @@ namespace ASynt.Keyboard
                     key.setIsPushed();
                 }
             }
-        }
-
-        public void OnMouseMove(object sender, MouseEventArgs e)
-        {
-            OnMouseDown(sender, e);
         }
 
         /// <summary>

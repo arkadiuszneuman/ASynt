@@ -35,7 +35,31 @@ namespace ASynt.Player
                 if (sound.Stream != 0)
                 {
                     //odtwarza wybrany kanał
-                    Bass.BASS_ChannelPlay(sound.Stream, false);
+                    Bass.BASS_ChannelPlay(sound.Stream, true);
+                }
+                else
+                {
+                    throw new ArgumentException("Stream pliku sound jest pusty - czy ścieżka do pliku jest prawidłowa?");
+                }
+            }
+            else
+            {
+                throw new NullReferenceException("Dźwięk jest pusty");
+            }
+        }
+
+        /// <summary>
+        /// Zatrzymuje odtwarzanie danego dźwięku
+        /// </summary>
+        /// <param name="sound">Dźwięk, który ma być zatrzymany</param>
+        public void Stop(Sound sound)
+        {
+            if (sound != null)
+            {
+                if (sound.Stream != 0)
+                {
+                    //odtwarza wybrany kanał
+                    Bass.BASS_ChannelStop(sound.Stream);
                 }
                 else
                 {
