@@ -10,7 +10,7 @@ namespace ASynt.Keyboard
 {
     public class Keyboard
     {
-        private Key[] keys = new Key[25];
+        private Key[] keys = new Key[7];
         private Key[] smallKeys = new Key[5];
         private Point position;
         private SoundPlayer player = new SoundPlayer();
@@ -29,15 +29,15 @@ namespace ASynt.Keyboard
                 keys[i] = new Key(mainForm, new Point(20 * i + position.X, position.Y), i*1000 - 10000);
             }
 
-            for (int i = 0; i < smallKeys.Length; ++i)
-            {
-                smallKeys[i] = new Key(mainForm, new Point(20 * i + position.X, position.Y), i * 1000 - 1000, true);
-            }
+            smallKeys[0] = new Key(mainForm, new Point(20 * 1 + position.X, position.Y), 1000 - 1000, true);
+            smallKeys[1] = new Key(mainForm, new Point(20 * 3 + position.X, position.Y), 1000 - 1000, true);
+            smallKeys[2] = new Key(mainForm, new Point(20 * 4 + position.X, position.Y), 1000 - 1000, true);
+            smallKeys[3] = new Key(mainForm, new Point(20 * 6 + position.X, position.Y), 1000 - 1000, true);
+            smallKeys[4] = new Key(mainForm, new Point(20 * 7 + position.X, position.Y), 1000 - 1000, true);
 
             mainForm.MouseDown += new MouseEventHandler(OnMouseDown);
             mainForm.MouseUp += new MouseEventHandler(OnMouseUp);
             mainForm.MouseMove += new MouseEventHandler(OnMouseDown);
-            //mainForm.MouseClick += new MouseEventHandler(OnMouseDown);
             mainForm.Paint += new PaintEventHandler(Draw);
         }
 

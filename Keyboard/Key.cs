@@ -8,10 +8,9 @@ namespace ASynt.Keyboard
     {
         private Point position; //pozycja przycisku
         private Size size = new Size(20, 100); //wysokość i szerokość przycisku
+        private Color color, colorClicked; //kolor przycisku
         public bool isPushed;
         private MainForm mainForm;
-        private Key smallKey;
-        private bool left;
         private bool isSmall;
         public Sound Sound {get; private set;}
         public Point Position { get { return position; } }
@@ -25,33 +24,56 @@ namespace ASynt.Keyboard
             this.mainForm = mainForm;
             Sound = new Sound("piano");
             Sound.ChangeFrequency(44100 + frequency);
-            
+            color = Color.White;
+            colorClicked = Color.FromArgb(200, 200, 200);
         }
 
-        public Key(MainForm mainForm, Point position, int frequency, bool isSmall)
+        public Key(MainForm mainForm, Point position, Sound sound)
         {
             this.position = position;
             isPushed = false;
             this.mainForm = mainForm;
-            Sound = new Sound("piano");
-            Sound.ChangeFrequency(44100 + frequency);
+            this.Sound = sound;
+            color = Color.White;
+            colorClicked = Color.FromArgb(200, 200, 200);
+        }
 
+        public Key(MainForm mainForm, Point position, int frequency, bool isSmall) 
+            : this(mainForm, position, frequency)
+        {
             this.isSmall = isSmall;
             if (isSmall)
             {
                 size = new Size(10, 50);
                 this.position.X -= 5;
+                color = Color.Black;
+                colorClicked = Color.FromArgb(50, 50, 50);
+            }
+        }
+
+        public Key(MainForm mainForm, Point position, Sound sound, bool isSmall)
+            : this(mainForm, position, sound)
+        {
+            this.isSmall = isSmall;
+            if (isSmall)
+            {
+                size = new Size(10, 50);
+                this.position.X -= 5;
+                color = Color.Black;
+                colorClicked = Color.FromArgb(50, 50, 50);
             }
         }
 
         public void Draw()
         {
             Graphics g = mainForm.CreateGraphics();
-            LinearGradientBrush brush;
+            SolidBrush brush;
             if (!isPushed)
-                brush = new LinearGradientBrush(position, position + size, Color.FromArgb(255, 255, 255), Color.FromArgb(100, 100, 100));
+                brush = new SolidBrush(color);
+                //brush = new LinearGradientBrush(position, position + size, Color.FromArgb(255, 255, 255), Color.FromArgb(100, 100, 100));
             else
-                brush = new LinearGradientBrush(position, position + size, Color.FromArgb(255, 255, 255), Color.FromArgb(50, 50, 50));
+                brush = new SolidBrush(colorClicked);
+                //brush = new LinearGradientBrush(position, position + size, Color.FromArgb(255, 255, 255), Color.FromArgb(50, 50, 50));
             g.FillRectangle(brush, new Rectangle(position, size));
             brush.Dispose();
 
