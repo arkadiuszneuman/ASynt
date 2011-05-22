@@ -11,6 +11,7 @@ namespace ASynt.Keyboard
     public class Keyboard
     {
         private Key[] keys = new Key[25];
+        private Key[] smallKeys = new Key[5];
         private Point position;
         private SoundPlayer player = new SoundPlayer();
 
@@ -25,8 +26,14 @@ namespace ASynt.Keyboard
 
             for (int i = 0; i < keys.Length; ++i)
             {
-                keys[i] = new Key(mainForm, new Point(Key.Size.Width * i + position.X, position.Y), i*1000 - 10000);
+                keys[i] = new Key(mainForm, new Point(20 * i + position.X, position.Y), i*1000 - 10000);
             }
+
+            for (int i = 0; i < smallKeys.Length; ++i)
+            {
+                smallKeys[i] = new Key(mainForm, new Point(20 * i + position.X, position.Y), i * 1000 - 1000, true);
+            }
+
             mainForm.MouseDown += new MouseEventHandler(OnMouseDown);
             mainForm.MouseUp += new MouseEventHandler(OnMouseUp);
             mainForm.MouseMove += new MouseEventHandler(OnMouseDown);
@@ -42,12 +49,47 @@ namespace ASynt.Keyboard
         {
             if (e.Button == MouseButtons.Left)
             {
-                foreach (Key key in keys)
+                foreach (Key key in smallKeys)
                 {
-                    key.checkIsPushed(e.Location);
-                    if (key.isPushed)
+                    bool check = key.isPushed; //zapamietanie czy key był wciśniety wcześniej (key.checkIsPushed zmienia key.isPushed na true
+                    if (key.checkIsPushed(e.Location))
                     {
-                        player.Play(key.Sound);
+                        if (!check)
+                            player.Play(key.Sound); //jeśli przed sprawdzeniem czy key jest wciśniety key był wciśnięty to nie można odtworzyć dźwięku
+
+                        for (int i = 0; i < keys.Length; ++i) //odmalowanie wszystkich knefli na wypadek szorowania myszką po klawiaturze
+                        {
+                            if (keys[i].isPushed)
+                            {
+                                keys[i].isPushed = false;
+                                keys[i].Draw();
+                            }
+
+                            foreach (Key other in smallKeys)
+                            {
+                                other.Draw();
+                            }
+                        }
+
+                        return;
+                    }
+                }
+
+                for (int i = 0; i < keys.Length; ++i)
+                {
+                    if (!keys[i].isPushed && keys[i].checkIsPushed(e.Location))
+                    {
+                        for (int y = 0; y < keys.Length; ++y)
+                        {
+                            keys[y].checkIsPushed(e.Location);
+                        }
+
+                        foreach (Key key in smallKeys)
+                        {
+                            key.Draw();
+                        }
+                        
+                        player.Play(keys[i].Sound);
                     }
                 }
             }
@@ -62,9 +104,15 @@ namespace ASynt.Keyboard
         {
             if (e.Button == MouseButtons.Left)
             {
-                foreach (Key key in keys)
+                for (int i = 0; i < keys.Length; ++i)
                 {
-                    key.setIsPushed();
+                    keys[i].setIsPushed();
+
+                    foreach (Key key in smallKeys)
+                    {
+                        key.Draw();
+                        key.setIsPushed();
+                    }
                 }
             }
         }
@@ -76,7 +124,13 @@ namespace ASynt.Keyboard
         /// <param name="p"></param>
         public void Draw(object sender, PaintEventArgs p)
         {
+            
             foreach (Key key in keys)
+            {
+                key.Draw();
+            }
+
+            foreach (Key key in smallKeys)
             {
                 key.Draw();
             }
