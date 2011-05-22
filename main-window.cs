@@ -14,12 +14,14 @@ namespace ASynt
     {
         //SoundPlayer player = new SoundPlayer();
         Keyboard.Keyboard keyboard;
+        SampleSounds sampleSounds;
 
         public MainForm()
         {
             InitializeComponent();
             //key = new Key(new System.Drawing.Point(0, 0), 1000);
             keyboard = new Keyboard.Keyboard(this, new Point(50, 150));
+            sampleSounds = new SampleSounds();
         }
 
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
@@ -45,62 +47,93 @@ namespace ASynt
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Random random = new Random();
-
-            // create the sample
-            int sample = Bass.BASS_SampleCreate(44100, 44100, 2, 1, BASSFlag.BASS_SAMPLE_LOOP | BASSFlag.BASS_SAMPLE_OVER_POS);
-            // the data buffer (5000 byte = 128 Int16)
-            short[] data = new short[22050];
-            // create the sine wave
-            for (int a = 0; a < 22050; a++)
-                data[a] = (short)((0.25 * short.MaxValue) * Math.Sin(Math.Sin((2 * Math.PI * a * 440) / 44100)) + (0.25 * short.MaxValue) * Math.Abs(Math.Tan(2*Math.PI*a*440/44100))); //32767
-            // set the sample's data 
-            Bass.BASS_SampleSetData(sample, data);
-            // get a sample channel
-            int channel = Bass.BASS_SampleGetChannel(sample, false);
-            // play it
-           Bass.BASS_ChannelPlay(channel, false);
-           Bass.BASS_ChannelSlideAttribute(channel, BASSAttribute.BASS_ATTRIB_VOL, 0, 1000);
+            int channel = sampleSounds.GetChannelHandle(0);
+            Bass.BASS_ChannelPlay(channel, false);
+            Bass.BASS_ChannelSlideAttribute(channel, BASSAttribute.BASS_ATTRIB_VOL, 0, 10000);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Random random = new Random();
-
-            // create the sample
-            int sample = Bass.BASS_SampleCreate(44100, 44100, 2, 1, BASSFlag.BASS_SAMPLE_LOOP | BASSFlag.BASS_SAMPLE_OVER_POS);
-            // the data buffer (5000 byte = 128 Int16)
-            short[] data = new short[22050];
-            // create the sine wave
-            for (int a = 0; a < 22050; a++)
-                data[a] = (short)((0.25 * short.MaxValue) * Math.Sin(Math.Sin((2 * Math.PI * a * 880) / 44100)) + (0.25 * short.MaxValue) * Math.Abs(Math.Tan(2 * Math.PI * a * 880 / 44100))); //32767
-            // set the sample's data 
-            Bass.BASS_SampleSetData(sample, data);
-            // get a sample channel
-            int channel = Bass.BASS_SampleGetChannel(sample, false);
-            // play it
+            int channel = sampleSounds.GetChannelHandle(1);
             Bass.BASS_ChannelPlay(channel, false);
-            Bass.BASS_ChannelSlideAttribute(channel, BASSAttribute.BASS_ATTRIB_VOL, 0, 1000);
+            Bass.BASS_ChannelSlideAttribute(channel, BASSAttribute.BASS_ATTRIB_VOL, 0, 10000);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Random random = new Random();
-
-            // create the sample
-            int sample = Bass.BASS_SampleCreate(44100, 44100, 2, 1, BASSFlag.BASS_SAMPLE_LOOP | BASSFlag.BASS_SAMPLE_OVER_POS);
-            // the data buffer (5000 byte = 128 Int16)
-            short[] data = new short[22050];
-            // create the sine wave
-            for (int a = 0; a < 22050; a++)
-                data[a] = (short)((0.25 * short.MaxValue) * Math.Sin(Math.Sin((2 * Math.PI * a * 1300) / 44100)) * (0.25 * short.MaxValue) * Math.Abs(Math.Tan(2 * Math.PI * a * 1300 / 44100))); //32767
-            // set the sample's data 
-            Bass.BASS_SampleSetData(sample, data);
-            // get a sample channel
-            int channel = Bass.BASS_SampleGetChannel(sample, false);
-            // play it
+            int channel = sampleSounds.GetChannelHandle(2);
             Bass.BASS_ChannelPlay(channel, false);
             Bass.BASS_ChannelSlideAttribute(channel, BASSAttribute.BASS_ATTRIB_VOL, 0, 1000);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            int channel = sampleSounds.GetChannelHandle(3);
+            Bass.BASS_ChannelPlay(channel, false);
+            Bass.BASS_ChannelSlideAttribute(channel, BASSAttribute.BASS_ATTRIB_VOL, 0, 1000);
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            int channel = sampleSounds.GetChannelHandle(4);
+            Bass.BASS_ChannelPlay(channel, false);
+            Bass.BASS_ChannelSlideAttribute(channel, BASSAttribute.BASS_ATTRIB_VOL, 0, 1000);
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            int channel = sampleSounds.GetChannelHandle(5);
+            Bass.BASS_ChannelPlay(channel, false);
+            Bass.BASS_ChannelSlideAttribute(channel, BASSAttribute.BASS_ATTRIB_VOL, 0, 1000);
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            int channel = sampleSounds.GetChannelHandle(6);
+            Bass.BASS_ChannelPlay(channel, false);
+            Bass.BASS_ChannelSlideAttribute(channel, BASSAttribute.BASS_ATTRIB_VOL, 0, 1000);
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            int channel = sampleSounds.GetChannelHandle(7);
+            Bass.BASS_ChannelPlay(channel, false);
+            Bass.BASS_ChannelSlideAttribute(channel, BASSAttribute.BASS_ATTRIB_VOL, 0, 1000);
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            int channel = sampleSounds.GetChannelHandle(8);
+            Bass.BASS_ChannelPlay(channel, false);
+            Bass.BASS_ChannelSlideAttribute(channel, BASSAttribute.BASS_ATTRIB_VOL, 0, 1000);
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            int channel = sampleSounds.GetChannelHandle(9);
+            Bass.BASS_ChannelPlay(channel, false);
+            Bass.BASS_ChannelSlideAttribute(channel, BASSAttribute.BASS_ATTRIB_VOL, 0, 1000);
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            int channel = sampleSounds.GetChannelHandle(10);
+            Bass.BASS_ChannelPlay(channel, false);
+            Bass.BASS_ChannelSlideAttribute(channel, BASSAttribute.BASS_ATTRIB_VOL, 0, 1000);
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            int channel = sampleSounds.GetChannelHandle(11);
+            Bass.BASS_ChannelPlay(channel, false);
+            Bass.BASS_ChannelSlideAttribute(channel, BASSAttribute.BASS_ATTRIB_VOL, 0, 1000);
+        }
+
+        private void soundGenerator(object sender, EventArgs e)
+        {
+            SoundGenerato2r sg = new SoundGenerato2r();
+            sg.ShowDialog();
+
         }
     }
 }
