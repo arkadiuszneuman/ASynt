@@ -19,7 +19,13 @@ namespace ASynt.Player
                 name = name.Substring(0, name.Length - 4);
             }
 
-            Stream = Bass.BASS_StreamCreateFile(Environment.CurrentDirectory + @"\samples\" + name + ".wav", 0, 0, BASSFlag.BASS_DEFAULT);
+            String plik = Environment.CurrentDirectory + @"\samples\" + name + ".wav";
+            Stream = Bass.BASS_StreamCreateFile(plik, 0, 0, BASSFlag.BASS_DEFAULT);
+
+            if (Stream == 0)
+            {
+                throw new Exception("Nie można znaleźć pliku: " + plik);
+            }
         }
 
         /// <summary>

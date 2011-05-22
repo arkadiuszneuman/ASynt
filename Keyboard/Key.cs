@@ -9,21 +9,30 @@ namespace ASynt.Keyboard
         private Point position; //pozycja przycisku
         private Size size = new Size(20, 100); //wysokość i szerokość przycisku
         private Color color, colorClicked; //kolor przycisku
-        public bool isPushed;
+        
         private MainForm mainForm;
         private bool isSmall;
-        public Sound Sound {get; private set;}
+        public Sound KeySound {get; private set;}
         public Point Position { get { return position; } }
 
         public Size Size { get {return size; } }
+        public bool IsPushed { get; set; }
 
-        public Key(MainForm mainForm, Point position, int frequency)
+        public int SetFrequency
+        {
+            set
+            {
+                KeySound.ChangeFrequency(value);
+            }
+        }
+
+        #region Konstruktory
+        public Key(MainForm mainForm, Point position, string file)
         {
             this.position = position;
-            isPushed = false;
+            IsPushed = false;
             this.mainForm = mainForm;
-            Sound = new Sound("piano");
-            Sound.ChangeFrequency(44100 + frequency);
+            KeySound = new Sound(file);
             color = Color.White;
             colorClicked = Color.FromArgb(200, 200, 200);
         }
@@ -31,15 +40,15 @@ namespace ASynt.Keyboard
         public Key(MainForm mainForm, Point position, Sound sound)
         {
             this.position = position;
-            isPushed = false;
+            IsPushed = false;
             this.mainForm = mainForm;
-            this.Sound = sound;
+            KeySound = sound;
             color = Color.White;
             colorClicked = Color.FromArgb(200, 200, 200);
         }
 
-        public Key(MainForm mainForm, Point position, int frequency, bool isSmall) 
-            : this(mainForm, position, frequency)
+        public Key(MainForm mainForm, Point position, string file, bool isSmall) 
+            : this(mainForm, position, file)
         {
             this.isSmall = isSmall;
             if (isSmall)
@@ -63,12 +72,13 @@ namespace ASynt.Keyboard
                 colorClicked = Color.FromArgb(50, 50, 50);
             }
         }
+        #endregion
 
         public void Draw()
         {
             Graphics g = mainForm.CreateGraphics();
             SolidBrush brush;
-            if (!isPushed)
+            if (!IsPushed)
                 brush = new SolidBrush(color);
                 //brush = new LinearGradientBrush(position, position + size, Color.FromArgb(255, 255, 255), Color.FromArgb(100, 100, 100));
             else
@@ -84,13 +94,13 @@ namespace ASynt.Keyboard
         {
             if (mouse.X > position.X && mouse.Y > position.Y && mouse.X < position.X + size.Width && mouse.Y < position.Y + size.Height)
             {
-                isPushed = true;
+                IsPushed = true;
                 Draw();
                 return true;
             }
-            else if (isPushed) //odklikniecie keya w razie trzymania myszki i ruszania nia po klawiaturze
+            else if (IsPushed) //odklikniecie keya w razie trzymania myszki i ruszania nia po klawiaturze
             {
-                isPushed = false;
+                IsPushed = false;
                 Draw();
                 return false;
             }
@@ -100,9 +110,9 @@ namespace ASynt.Keyboard
 
         public void setIsPushed()
         {
-            if (isPushed)
+            if (IsPushed)
             {
-                isPushed = false;
+                IsPushed = false;
                 Draw();
             }
         }

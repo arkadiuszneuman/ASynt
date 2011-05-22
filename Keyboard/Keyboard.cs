@@ -26,14 +26,14 @@ namespace ASynt.Keyboard
 
             for (int i = 0; i < keys.Length; ++i)
             {
-                keys[i] = new Key(mainForm, new Point(20 * i + position.X, position.Y), i*1000 - 10000);
+                keys[i] = new Key(mainForm, new Point(20 * i + position.X, position.Y), @"piano1\" + (char)('a'+i));
             }
 
-            smallKeys[0] = new Key(mainForm, new Point(20 * 1 + position.X, position.Y), 1000 - 1000, true);
-            smallKeys[1] = new Key(mainForm, new Point(20 * 3 + position.X, position.Y), 1000 - 1000, true);
-            smallKeys[2] = new Key(mainForm, new Point(20 * 4 + position.X, position.Y), 1000 - 1000, true);
-            smallKeys[3] = new Key(mainForm, new Point(20 * 6 + position.X, position.Y), 1000 - 1000, true);
-            smallKeys[4] = new Key(mainForm, new Point(20 * 7 + position.X, position.Y), 1000 - 1000, true);
+            smallKeys[0] = new Key(mainForm, new Point(20 * 1 + position.X, position.Y), @"piano1\a#", true);
+            smallKeys[1] = new Key(mainForm, new Point(20 * 3 + position.X, position.Y), @"piano1\c#", true);
+            smallKeys[2] = new Key(mainForm, new Point(20 * 4 + position.X, position.Y), @"piano1\d#", true);
+            smallKeys[3] = new Key(mainForm, new Point(20 * 6 + position.X, position.Y), @"piano1\f#", true);
+            smallKeys[4] = new Key(mainForm, new Point(20 * 6 + position.X, position.Y), @"piano1\g#", true);
 
             mainForm.MouseDown += new MouseEventHandler(OnMouseDown);
             mainForm.MouseUp += new MouseEventHandler(OnMouseUp);
@@ -51,17 +51,17 @@ namespace ASynt.Keyboard
             {
                 foreach (Key key in smallKeys)
                 {
-                    bool check = key.isPushed; //zapamietanie czy key był wciśniety wcześniej (key.checkIsPushed zmienia key.isPushed na true
+                    bool check = key.IsPushed; //zapamietanie czy key był wciśniety wcześniej (key.checkIsPushed zmienia key.isPushed na true
                     if (key.checkIsPushed(e.Location))
                     {
                         if (!check)
-                            player.Play(key.Sound); //jeśli przed sprawdzeniem czy key jest wciśniety key był wciśnięty to nie można odtworzyć dźwięku
+                            player.Play(key.KeySound); //jeśli przed sprawdzeniem czy key jest wciśniety key był wciśnięty to nie można odtworzyć dźwięku
 
                         for (int i = 0; i < keys.Length; ++i) //odmalowanie wszystkich knefli na wypadek szorowania myszką po klawiaturze
                         {
-                            if (keys[i].isPushed)
+                            if (keys[i].IsPushed)
                             {
-                                keys[i].isPushed = false;
+                                keys[i].IsPushed = false;
                                 keys[i].Draw();
                             }
 
@@ -77,7 +77,7 @@ namespace ASynt.Keyboard
 
                 for (int i = 0; i < keys.Length; ++i)
                 {
-                    if (!keys[i].isPushed && keys[i].checkIsPushed(e.Location))
+                    if (!keys[i].IsPushed && keys[i].checkIsPushed(e.Location))
                     {
                         for (int y = 0; y < keys.Length; ++y)
                         {
@@ -89,7 +89,7 @@ namespace ASynt.Keyboard
                             key.Draw();
                         }
                         
-                        player.Play(keys[i].Sound);
+                        player.Play(keys[i].KeySound);
                     }
                 }
             }
