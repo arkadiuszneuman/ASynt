@@ -131,9 +131,8 @@ namespace ASynt
 
         private void soundGenerator(object sender, EventArgs e)
         {
-            SoundGenerato2r sg = new SoundGenerato2r();
+            SoundGenerator sg = new SoundGenerator(sampleSounds);
             sg.ShowDialog();
-
         }
     }
 }
