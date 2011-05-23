@@ -24,27 +24,6 @@ namespace ASynt
             sampleSounds = new SampleSounds();
         }
 
-        private void MainForm_KeyDown(object sender, KeyEventArgs e)
-        {
-            Sound sound = new Sound("piano");
-
-            if (e.KeyCode == Keys.A)
-            {
-                sound.ChangeFrequency(440);
-                //player.Play(sound);
-            }
-            else if (e.KeyCode == Keys.S)
-            {
-                sound.ChangeFrequency(440);
-                //player.Play(sound);
-            }
-            else if (e.KeyCode == Keys.D)
-            {
-                sound.ChangeFrequency(440);
-                //player.Play(sound);
-            }
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             int channel = sampleSounds.GetChannelHandle(0);

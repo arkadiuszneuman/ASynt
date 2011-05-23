@@ -23,22 +23,26 @@ namespace ASynt.Keyboard
         public Keyboard(MainForm mainForm, Point position)
         {
             this.position = position;
+            char[] keyLettersBig = { 'A', 'S', 'D', 'F', 'G', 'H', 'J' }; //literki, pod którymi będą grały klawisze białe
+            char[] keyLettersSmall = { 'W', 'R', 'T', 'U', 'I' }; //literki, pod jakimi będą grały klawisze czarne
 
             for (int i = 0; i < keys.Length; ++i)
             {
-                keys[i] = new Key(mainForm, new Point(20 * i + position.X, position.Y), @"piano1\" + (char)('a'+i));
+                keys[i] = new Key(mainForm, new Point(20 * i + position.X, position.Y), (Keys)keyLettersBig[i] ,@"piano1\" + (char)('a'+i));
             }
 
-            smallKeys[0] = new Key(mainForm, new Point(20 * 1 + position.X, position.Y), @"piano1\a#", true);
-            smallKeys[1] = new Key(mainForm, new Point(20 * 3 + position.X, position.Y), @"piano1\c#", true);
-            smallKeys[2] = new Key(mainForm, new Point(20 * 4 + position.X, position.Y), @"piano1\d#", true);
-            smallKeys[3] = new Key(mainForm, new Point(20 * 6 + position.X, position.Y), @"piano1\f#", true);
-            smallKeys[4] = new Key(mainForm, new Point(20 * 6 + position.X, position.Y), @"piano1\g#", true);
+            smallKeys[0] = new Key(mainForm, new Point(20 * 1 + position.X, position.Y), (Keys)keyLettersSmall[0], @"piano1\a#", true);
+            smallKeys[1] = new Key(mainForm, new Point(20 * 3 + position.X, position.Y), (Keys)keyLettersSmall[1], @"piano1\c#", true);
+            smallKeys[2] = new Key(mainForm, new Point(20 * 4 + position.X, position.Y), (Keys)keyLettersSmall[2], @"piano1\d#", true);
+            smallKeys[3] = new Key(mainForm, new Point(20 * 6 + position.X, position.Y), (Keys)keyLettersSmall[3], @"piano1\f#", true);
+            smallKeys[4] = new Key(mainForm, new Point(20 * 7 + position.X, position.Y), (Keys)keyLettersSmall[4], @"piano1\g#", true);
 
             mainForm.MouseDown += new MouseEventHandler(OnMouseDown);
             mainForm.MouseUp += new MouseEventHandler(OnMouseUp);
             mainForm.MouseMove += new MouseEventHandler(OnMouseDown);
             mainForm.Paint += new PaintEventHandler(Draw);
+            mainForm.KeyDown += new KeyEventHandler(KeyDown);
+            mainForm.KeyUp += new KeyEventHandler(KeyUp);
         }
 
         /// <summary>
@@ -124,7 +128,6 @@ namespace ASynt.Keyboard
         /// <param name="p"></param>
         public void Draw(object sender, PaintEventArgs p)
         {
-            
             foreach (Key key in keys)
             {
                 key.Draw();
@@ -133,6 +136,54 @@ namespace ASynt.Keyboard
             foreach (Key key in smallKeys)
             {
                 key.Draw();
+            }
+        }
+
+        public void KeyDown(object sender, KeyEventArgs keyEvent)
+        {
+            foreach (Key key in keys)
+            {
+                if (keyEvent.KeyCode == key.KeyboardKey && !key.IsPushed)
+                {
+                    key.IsPushed = true;
+                    key.Draw();
+
+                    player.Play(key.KeySound);
+                }
+            }
+
+            foreach (Key key in smallKeys)
+            {
+                if (keyEvent.KeyCode == key.KeyboardKey && !key.IsPushed)
+                {
+                    key.IsPushed = true;
+
+                    player.Play(key.KeySound);
+                }
+
+                key.Draw(); //odmalowywanie czarnych klawiszy, zeby biale klawisze nie zasonily czarnego podczas zmiany swojego stanu (nacisniecia)
+            }
+        }
+
+        public void KeyUp(object sender, KeyEventArgs keyEvent)
+        {
+            foreach (Key key in keys)
+            {
+                if (keyEvent.KeyCode == key.KeyboardKey)
+                {
+                    key.IsPushed = false;
+                    key.Draw();
+                }
+            }
+
+            foreach (Key key in smallKeys)
+            {
+                if (keyEvent.KeyCode == key.KeyboardKey)
+                {
+                    key.IsPushed = false;
+                }
+
+                key.Draw(); //odmalowywanie czarnych klawiszy, zeby biale klawisze nie zasonily czarnego podczas zmiany swojego stanu (puszczenia)
             }
         }
     }

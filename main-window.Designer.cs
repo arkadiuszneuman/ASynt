@@ -237,9 +237,9 @@
             this.Controls.Add(this.soundTypeGB);
             this.Controls.Add(this.effectsGB);
             this.Controls.Add(this.button1);
+            this.KeyPreview = true;
             this.Name = "MainForm";
             this.Text = "ASynt - Awesome Syntezator";
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.soundTypeGB.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.globalVolumeSlider)).EndInit();
             this.ResumeLayout(false);

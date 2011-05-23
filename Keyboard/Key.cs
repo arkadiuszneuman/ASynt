@@ -1,6 +1,7 @@
 ﻿using System.Drawing;
 using System.Drawing.Drawing2D;
 using ASynt.Player;
+using System.Windows.Forms;
 
 namespace ASynt.Keyboard
 {
@@ -12,6 +13,7 @@ namespace ASynt.Keyboard
         
         private MainForm mainForm;
         private bool isSmall;
+        public Keys KeyboardKey { get; private set; }
         public Sound KeySound {get; private set;}
         public Point Position { get { return position; } }
 
@@ -27,7 +29,7 @@ namespace ASynt.Keyboard
         }
 
         #region Konstruktory
-        public Key(MainForm mainForm, Point position, string file)
+        public Key(MainForm mainForm, Point position, Keys keyboardKey, string file)
         {
             this.position = position;
             IsPushed = false;
@@ -35,9 +37,10 @@ namespace ASynt.Keyboard
             KeySound = new Sound(file);
             color = Color.White;
             colorClicked = Color.FromArgb(200, 200, 200);
+            this.KeyboardKey = keyboardKey;
         }
 
-        public Key(MainForm mainForm, Point position, Sound sound)
+        public Key(MainForm mainForm, Point position, Keys keyboardKey, Sound sound)
         {
             this.position = position;
             IsPushed = false;
@@ -45,10 +48,11 @@ namespace ASynt.Keyboard
             KeySound = sound;
             color = Color.White;
             colorClicked = Color.FromArgb(200, 200, 200);
+            this.KeyboardKey = keyboardKey;
         }
 
-        public Key(MainForm mainForm, Point position, string file, bool isSmall) 
-            : this(mainForm, position, file)
+        public Key(MainForm mainForm, Point position, Keys key, string file, bool isSmall) 
+            : this(mainForm, position, key, file)
         {
             this.isSmall = isSmall;
             if (isSmall)
@@ -60,8 +64,8 @@ namespace ASynt.Keyboard
             }
         }
 
-        public Key(MainForm mainForm, Point position, Sound sound, bool isSmall)
-            : this(mainForm, position, sound)
+        public Key(MainForm mainForm, Point position, Keys key, Sound sound, bool isSmall)
+            : this(mainForm, position, key, sound)
         {
             this.isSmall = isSmall;
             if (isSmall)

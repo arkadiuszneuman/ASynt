@@ -39,15 +39,15 @@
             this.amplUD = new System.Windows.Forms.NumericUpDown();
             this.cosWave = new System.Windows.Forms.RadioButton();
             this.signalsGB = new System.Windows.Forms.GroupBox();
+            this.toL = new System.Windows.Forms.Label();
+            this.fromL = new System.Windows.Forms.Label();
+            this.toTB = new System.Windows.Forms.TextBox();
+            this.fromTB = new System.Windows.Forms.TextBox();
             this.absSinWave = new System.Windows.Forms.RadioButton();
             this.sinWave = new System.Windows.Forms.RadioButton();
             this.addB = new System.Windows.Forms.Button();
             this.previewB = new System.Windows.Forms.Button();
             this.createSoundB = new System.Windows.Forms.Button();
-            this.fromTB = new System.Windows.Forms.TextBox();
-            this.toTB = new System.Windows.Forms.TextBox();
-            this.fromL = new System.Windows.Forms.Label();
-            this.toL = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.amplUD)).BeginInit();
             this.signalsGB.SuspendLayout();
             this.SuspendLayout();
@@ -192,6 +192,40 @@
             this.signalsGB.TabStop = false;
             this.signalsGB.Text = "Sygnały";
             // 
+            // toL
+            // 
+            this.toL.AutoSize = true;
+            this.toL.Location = new System.Drawing.Point(380, 48);
+            this.toL.Name = "toL";
+            this.toL.Size = new System.Drawing.Size(46, 13);
+            this.toL.TabIndex = 12;
+            this.toL.Text = "Do (ms):";
+            // 
+            // fromL
+            // 
+            this.fromL.AutoSize = true;
+            this.fromL.Location = new System.Drawing.Point(380, 23);
+            this.fromL.Name = "fromL";
+            this.fromL.Size = new System.Drawing.Size(46, 13);
+            this.fromL.TabIndex = 11;
+            this.fromL.Text = "Od (ms):";
+            // 
+            // toTB
+            // 
+            this.toTB.Location = new System.Drawing.Point(432, 45);
+            this.toTB.Name = "toTB";
+            this.toTB.Size = new System.Drawing.Size(73, 20);
+            this.toTB.TabIndex = 10;
+            this.toTB.Text = "2000";
+            // 
+            // fromTB
+            // 
+            this.fromTB.Location = new System.Drawing.Point(432, 19);
+            this.fromTB.Name = "fromTB";
+            this.fromTB.Size = new System.Drawing.Size(73, 20);
+            this.fromTB.TabIndex = 9;
+            this.fromTB.Text = "0";
+            // 
             // absSinWave
             // 
             this.absSinWave.AutoSize = true;
@@ -247,40 +281,6 @@
             this.createSoundB.Text = "Generuj!";
             this.createSoundB.UseVisualStyleBackColor = true;
             this.createSoundB.Click += new System.EventHandler(this.createSound);
-            // 
-            // fromTB
-            // 
-            this.fromTB.Location = new System.Drawing.Point(432, 19);
-            this.fromTB.Name = "fromTB";
-            this.fromTB.Size = new System.Drawing.Size(73, 20);
-            this.fromTB.TabIndex = 9;
-            this.fromTB.Text = "0";
-            // 
-            // toTB
-            // 
-            this.toTB.Location = new System.Drawing.Point(432, 45);
-            this.toTB.Name = "toTB";
-            this.toTB.Size = new System.Drawing.Size(73, 20);
-            this.toTB.TabIndex = 10;
-            this.toTB.Text = "2000";
-            // 
-            // fromL
-            // 
-            this.fromL.AutoSize = true;
-            this.fromL.Location = new System.Drawing.Point(380, 23);
-            this.fromL.Name = "fromL";
-            this.fromL.Size = new System.Drawing.Size(46, 13);
-            this.fromL.TabIndex = 11;
-            this.fromL.Text = "Od (ms):";
-            // 
-            // toL
-            // 
-            this.toL.AutoSize = true;
-            this.toL.Location = new System.Drawing.Point(380, 48);
-            this.toL.Name = "toL";
-            this.toL.Size = new System.Drawing.Size(46, 13);
-            this.toL.TabIndex = 12;
-            this.toL.Text = "Do (ms):";
             // 
             // SoundGenerator
             // 
