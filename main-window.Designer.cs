@@ -45,6 +45,8 @@
             this.button10 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
+            this.buttonEcho = new System.Windows.Forms.Button();
+            this.effectsGB.SuspendLayout();
             this.soundTypeGB.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.globalVolumeSlider)).BeginInit();
             this.SuspendLayout();
@@ -61,9 +63,10 @@
             // 
             // effectsGB
             // 
+            this.effectsGB.Controls.Add(this.buttonEcho);
             this.effectsGB.Location = new System.Drawing.Point(12, 12);
             this.effectsGB.Name = "effectsGB";
-            this.effectsGB.Size = new System.Drawing.Size(200, 100);
+            this.effectsGB.Size = new System.Drawing.Size(198, 114);
             this.effectsGB.TabIndex = 1;
             this.effectsGB.TabStop = false;
             this.effectsGB.Text = "Efekty";
@@ -215,6 +218,16 @@
             this.button12.UseVisualStyleBackColor = true;
             this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
+            // buttonEcho
+            // 
+            this.buttonEcho.Location = new System.Drawing.Point(6, 22);
+            this.buttonEcho.Name = "buttonEcho";
+            this.buttonEcho.Size = new System.Drawing.Size(102, 23);
+            this.buttonEcho.TabIndex = 0;
+            this.buttonEcho.Text = "Dodaj/Usuń echa";
+            this.buttonEcho.UseVisualStyleBackColor = true;
+            this.buttonEcho.Click += new System.EventHandler(this.buttonEcho_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -240,6 +253,7 @@
             this.KeyPreview = true;
             this.Name = "MainForm";
             this.Text = "ASynt - Awesome Syntezator";
+            this.effectsGB.ResumeLayout(false);
             this.soundTypeGB.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.globalVolumeSlider)).EndInit();
             this.ResumeLayout(false);
@@ -266,6 +280,7 @@
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.Button buttonEcho;
     }
 }
 

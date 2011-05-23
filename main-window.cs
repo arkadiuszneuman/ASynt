@@ -113,5 +113,10 @@ namespace ASynt
             SoundGenerator sg = new SoundGenerator(sampleSounds);
             sg.ShowDialog();
         }
+
+        private void buttonEcho_Click(object sender, EventArgs e)
+        {
+            new EchoDialog(keyboard).Show();
+        }
     }
 }

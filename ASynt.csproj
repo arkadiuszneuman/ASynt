@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EchoDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EchoDialog.Designer.cs">
+      <DependentUpon>EchoDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="SampleSounds.cs" />
     <Compile Include="Keyboard\Key.cs" />
     <Compile Include="Keyboard\Keyboard.cs" />
@@ -69,6 +75,9 @@
     </Compile>
     <Compile Include="SyntMath.cs" />
     <Compile Include="SyntWave.cs" />
+    <EmbeddedResource Include="EchoDialog.resx">
+      <DependentUpon>EchoDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="main-window.resx">
       <DependentUpon>main-window.cs</DependentUpon>
     </EmbeddedResource>

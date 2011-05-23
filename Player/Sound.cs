@@ -1,12 +1,14 @@
 ﻿using System;
 using Un4seen.Bass;
 using System.Windows.Forms;
+using System.Collections.Generic;
 
 namespace ASynt.Player
 {
     public class Sound
     {
         public int Stream {get; private set;}
+        
 
         /// <summary>
         /// Konstruktor dźwięku

@@ -5,6 +5,7 @@ using System.Text;
 using System.Drawing;
 using System.Windows.Forms;
 using ASynt.Player;
+using Un4seen.Bass;
 
 namespace ASynt.Keyboard
 {
@@ -12,8 +13,24 @@ namespace ASynt.Keyboard
     {
         private Key[] keys = new Key[7];
         private Key[] smallKeys = new Key[5];
+        private Key[] allKeys
+        {
+            get
+            {
+                Key[] k = new Key[keys.Length + smallKeys.Length];
+                keys.CopyTo(k, 0);
+                smallKeys.CopyTo(k, 7);
+
+                return k;
+            }
+        }
+
         private Point position;
         private SoundPlayer player = new SoundPlayer();
+
+        private List<BASS_DX8_ECHO> echo = new List<BASS_DX8_ECHO>();
+        private List<int> echoHandles = new List<int>();
+        public List<BASS_DX8_ECHO> Echo { get { return echo; } }
 
         /// <summary>
         /// Tworzy nowy keyboard
@@ -44,6 +61,8 @@ namespace ASynt.Keyboard
             mainForm.KeyDown += new KeyEventHandler(KeyDown);
             mainForm.KeyUp += new KeyEventHandler(KeyUp);
         }
+
+        #region Eventy myszy
 
         /// <summary>
         /// Reakcja na kliknięcie myszką na formie
@@ -121,23 +140,9 @@ namespace ASynt.Keyboard
             }
         }
 
-        /// <summary>
-        /// Metoda wymagana do pierwszego malowania klawiatury oraz malowania jej, podczas zmiany rozmiaru okna, minimalizacji itp.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="p"></param>
-        public void Draw(object sender, PaintEventArgs p)
-        {
-            foreach (Key key in keys)
-            {
-                key.Draw();
-            }
+        #endregion
 
-            foreach (Key key in smallKeys)
-            {
-                key.Draw();
-            }
-        }
+        #region Eventy Klawiatury
 
         public void KeyDown(object sender, KeyEventArgs keyEvent)
         {
@@ -185,6 +190,83 @@ namespace ASynt.Keyboard
 
                 key.Draw(); //odmalowywanie czarnych klawiszy, zeby biale klawisze nie zasonily czarnego podczas zmiany swojego stanu (puszczenia)
             }
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Metoda wymagana do pierwszego malowania klawiatury oraz malowania jej, podczas zmiany rozmiaru okna, minimalizacji itp.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="p"></param>
+        public void Draw(object sender, PaintEventArgs p)
+        {
+            foreach (Key key in keys)
+            {
+                key.Draw();
+            }
+
+            foreach (Key key in smallKeys)
+            {
+                key.Draw();
+            }
+        }
+
+        /// <summary>
+        /// Dodaje echo do streama
+        /// </summary>
+        /// <param name="wetDryMix"></param>
+        /// <param name="feedback"></param>
+        /// <param name="leftDelay"></param>
+        /// <param name="rightDelay"></param>
+        /// <param name="panDelay"></param>
+        public void AddEcho(float wetDryMix, float feedback, float leftDelay, float rightDelay, bool panDelay)
+        {
+            echo.Add(new BASS_DX8_ECHO(wetDryMix, feedback, leftDelay, rightDelay, panDelay));
+            foreach (Key key in keys)
+            {
+                echoHandles.Add(Bass.BASS_ChannelSetFX(key.KeySound.Stream, BASSFXType.BASS_FX_DX8_ECHO, 1));
+                if (echoHandles.Last() == 0)
+                {
+                    throw new Exception("Błąd ustawienia echa: " + Bass.BASS_ErrorGetCode());
+                }
+
+                Bass.BASS_FXSetParameters(echoHandles.Last(), echo.Last());
+            }
+
+            foreach (Key key in smallKeys)
+            {
+                echoHandles.Add(Bass.BASS_ChannelSetFX(key.KeySound.Stream, BASSFXType.BASS_FX_DX8_ECHO, 1));
+                if (echoHandles.Last() == 0)
+                {
+                    throw new Exception("Błąd ustawienia echa: " + Bass.BASS_ErrorGetCode());
+                }
+
+                Bass.BASS_FXSetParameters(echoHandles.Last(), echo.Last());
+            }
+        }
+
+        public void EditEcho(int which, float wetDryMix, float feedback, float leftDelay, float rightDelay, bool panDelay)
+        {
+            echo[which].fWetDryMix = wetDryMix;
+            echo[which].fFeedback = feedback;
+            echo[which].fLeftDelay = leftDelay;
+            echo[which].fRightDelay = rightDelay;
+            echo[which].lPanDelay = panDelay;
+
+            for (int i = which * 12; i < which * 12 + 11; ++i)
+                Bass.BASS_FXSetParameters(echoHandles[i], echo[which]);
+        }
+
+        public void DeleteEcho(int which)
+        {
+            for (int i = 0; i < allKeys.Length; ++i)
+            {
+                Bass.BASS_ChannelRemoveFX(allKeys[i].KeySound.Stream, echoHandles[i + which * 12]);
+            }
+
+            echo.RemoveAt(which);
+            echoHandles.RemoveRange(which * 12, 11);
         }
     }
 }
