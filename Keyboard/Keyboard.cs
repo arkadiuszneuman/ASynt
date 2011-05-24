@@ -42,17 +42,18 @@ namespace ASynt.Keyboard
             this.position = position;
             char[] keyLettersBig = { 'A', 'S', 'D', 'F', 'G', 'H', 'J' }; //literki, pod którymi będą grały klawisze białe
             char[] keyLettersSmall = { 'W', 'R', 'T', 'U', 'I' }; //literki, pod jakimi będą grały klawisze czarne
+            int keyWidth = 40;
 
             for (int i = 0; i < keys.Length; ++i)
             {
-                keys[i] = new Key(mainForm, new Point(20 * i + position.X, position.Y), (Keys)keyLettersBig[i] ,@"piano1\" + (char)('a'+i));
+                keys[i] = new Key(mainForm, new Point(keyWidth * i + position.X, position.Y), (Keys)keyLettersBig[i], @"piano1\" + (char)('a' + i));
             }
 
-            smallKeys[0] = new Key(mainForm, new Point(20 * 1 + position.X, position.Y), (Keys)keyLettersSmall[0], @"piano1\a#", true);
-            smallKeys[1] = new Key(mainForm, new Point(20 * 3 + position.X, position.Y), (Keys)keyLettersSmall[1], @"piano1\c#", true);
-            smallKeys[2] = new Key(mainForm, new Point(20 * 4 + position.X, position.Y), (Keys)keyLettersSmall[2], @"piano1\d#", true);
-            smallKeys[3] = new Key(mainForm, new Point(20 * 6 + position.X, position.Y), (Keys)keyLettersSmall[3], @"piano1\f#", true);
-            smallKeys[4] = new Key(mainForm, new Point(20 * 7 + position.X, position.Y), (Keys)keyLettersSmall[4], @"piano1\g#", true);
+            smallKeys[0] = new Key(mainForm, new Point(keyWidth * 1 + position.X, position.Y), (Keys)keyLettersSmall[0], @"piano1\a#", true);
+            smallKeys[1] = new Key(mainForm, new Point(keyWidth * 2 + position.X, position.Y), (Keys)keyLettersSmall[1], @"piano1\c#", true);
+            smallKeys[2] = new Key(mainForm, new Point(keyWidth * 4 + position.X, position.Y), (Keys)keyLettersSmall[2], @"piano1\d#", true);
+            smallKeys[3] = new Key(mainForm, new Point(keyWidth * 5 + position.X, position.Y), (Keys)keyLettersSmall[3], @"piano1\f#", true);
+            smallKeys[4] = new Key(mainForm, new Point(keyWidth * 6 + position.X, position.Y), (Keys)keyLettersSmall[4], @"piano1\g#", true);
 
             mainForm.MouseDown += new MouseEventHandler(OnMouseDown);
             mainForm.MouseUp += new MouseEventHandler(OnMouseUp);
@@ -129,12 +130,12 @@ namespace ASynt.Keyboard
             {
                 for (int i = 0; i < keys.Length; ++i)
                 {
-                    keys[i].setIsPushed();
+                    keys[i].IsPushed = true;
 
                     foreach (Key key in smallKeys)
                     {
                         key.Draw();
-                        key.setIsPushed();
+                        key.IsPushed = true;
                     }
                 }
             }
@@ -254,7 +255,7 @@ namespace ASynt.Keyboard
             echo[which].fRightDelay = rightDelay;
             echo[which].lPanDelay = panDelay;
 
-            for (int i = which * 12; i < which * 12 + 11; ++i)
+            for (int i = which * 12; i < which * 12 + 12; ++i)
                 Bass.BASS_FXSetParameters(echoHandles[i], echo[which]);
         }
 

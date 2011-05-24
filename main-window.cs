@@ -20,7 +20,7 @@ namespace ASynt
         {
             InitializeComponent();
             //key = new Key(new System.Drawing.Point(0, 0), 1000);
-            keyboard = new Keyboard.Keyboard(this, new Point(50, 150));
+            keyboard = new Keyboard.Keyboard(this, new Point(20, 20));
             sampleSounds = new SampleSounds();
         }
 
