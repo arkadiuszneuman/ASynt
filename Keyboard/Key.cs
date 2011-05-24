@@ -8,7 +8,7 @@ namespace ASynt.Keyboard
     public class Key
     {
         private Point position; //pozycja przycisku
-        private Size size = new Size(20, 100); //wysokość i szerokość przycisku
+        private Size size = new Size(40, 200); //wysokość i szerokość przycisku
         private Color color, colorClicked; //kolor przycisku
         
         private MainForm mainForm;
@@ -57,8 +57,8 @@ namespace ASynt.Keyboard
             this.isSmall = isSmall;
             if (isSmall)
             {
-                size = new Size(10, 50);
-                this.position.X -= 5;
+                size = new Size(size.Width / 2, size.Height / 2);
+                this.position.X -= size.Width / 2;
                 color = Color.Black;
                 colorClicked = Color.FromArgb(50, 50, 50);
             }
@@ -70,8 +70,8 @@ namespace ASynt.Keyboard
             this.isSmall = isSmall;
             if (isSmall)
             {
-                size = new Size(10, 50);
-                this.position.X -= 5;
+                size = new Size(size.Width / 2, size.Height / 2);
+                this.position.X -= size.Width/2;
                 color = Color.Black;
                 colorClicked = Color.FromArgb(50, 50, 50);
             }
@@ -84,11 +84,12 @@ namespace ASynt.Keyboard
             SolidBrush brush;
             if (!IsPushed)
                 brush = new SolidBrush(color);
-                //brush = new LinearGradientBrush(position, position + size, Color.FromArgb(255, 255, 255), Color.FromArgb(100, 100, 100));
             else
                 brush = new SolidBrush(colorClicked);
-                //brush = new LinearGradientBrush(position, position + size, Color.FromArgb(255, 255, 255), Color.FromArgb(50, 50, 50));
             g.FillRectangle(brush, new Rectangle(position, size));
+            Pen p = new Pen(Color.Black);
+            g.DrawRectangle(p, new Rectangle(position, size));
+            p.Dispose();
             brush.Dispose();
 
             g.Dispose();

@@ -64,7 +64,7 @@
             // effectsGB
             // 
             this.effectsGB.Controls.Add(this.buttonEcho);
-            this.effectsGB.Location = new System.Drawing.Point(12, 12);
+            this.effectsGB.Location = new System.Drawing.Point(369, 12);
             this.effectsGB.Name = "effectsGB";
             this.effectsGB.Size = new System.Drawing.Size(198, 114);
             this.effectsGB.TabIndex = 1;
@@ -84,7 +84,7 @@
             // soundTypeGB
             // 
             this.soundTypeGB.Controls.Add(this.soundGeneratorB);
-            this.soundTypeGB.Location = new System.Drawing.Point(649, 12);
+            this.soundTypeGB.Location = new System.Drawing.Point(369, 132);
             this.soundTypeGB.Name = "soundTypeGB";
             this.soundTypeGB.Size = new System.Drawing.Size(200, 100);
             this.soundTypeGB.TabIndex = 2;
@@ -104,7 +104,7 @@
             // globalMuteCB
             // 
             this.globalMuteCB.AutoSize = true;
-            this.globalMuteCB.Location = new System.Drawing.Point(374, 65);
+            this.globalMuteCB.Location = new System.Drawing.Point(442, 267);
             this.globalMuteCB.Name = "globalMuteCB";
             this.globalMuteCB.Size = new System.Drawing.Size(60, 17);
             this.globalMuteCB.TabIndex = 3;
@@ -113,9 +113,9 @@
             // 
             // globalVolumeSlider
             // 
-            this.globalVolumeSlider.Location = new System.Drawing.Point(275, 12);
+            this.globalVolumeSlider.Location = new System.Drawing.Point(369, 239);
             this.globalVolumeSlider.Name = "globalVolumeSlider";
-            this.globalVolumeSlider.Size = new System.Drawing.Size(283, 45);
+            this.globalVolumeSlider.Size = new System.Drawing.Size(198, 45);
             this.globalVolumeSlider.TabIndex = 4;
             // 
             // button2
@@ -233,7 +233,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(861, 359);
+            this.ClientSize = new System.Drawing.Size(734, 359);
             this.Controls.Add(this.button12);
             this.Controls.Add(this.button11);
             this.Controls.Add(this.button10);
