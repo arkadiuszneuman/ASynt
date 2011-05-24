@@ -50,10 +50,10 @@ namespace ASynt.Keyboard
             }
 
             smallKeys[0] = new Key(mainForm, new Point(keyWidth * 1 + position.X, position.Y), (Keys)keyLettersSmall[0], @"piano1\a#", true);
-            smallKeys[1] = new Key(mainForm, new Point(keyWidth * 3 + position.X, position.Y), (Keys)keyLettersSmall[1], @"piano1\c#", true);
+            smallKeys[1] = new Key(mainForm, new Point(keyWidth * 2 + position.X, position.Y), (Keys)keyLettersSmall[1], @"piano1\c#", true);
             smallKeys[2] = new Key(mainForm, new Point(keyWidth * 4 + position.X, position.Y), (Keys)keyLettersSmall[2], @"piano1\d#", true);
-            smallKeys[3] = new Key(mainForm, new Point(keyWidth * 6 + position.X, position.Y), (Keys)keyLettersSmall[3], @"piano1\f#", true);
-            smallKeys[4] = new Key(mainForm, new Point(keyWidth * 7 + position.X, position.Y), (Keys)keyLettersSmall[4], @"piano1\g#", true);
+            smallKeys[3] = new Key(mainForm, new Point(keyWidth * 5 + position.X, position.Y), (Keys)keyLettersSmall[3], @"piano1\f#", true);
+            smallKeys[4] = new Key(mainForm, new Point(keyWidth * 6 + position.X, position.Y), (Keys)keyLettersSmall[4], @"piano1\g#", true);
 
             mainForm.MouseDown += new MouseEventHandler(OnMouseDown);
             mainForm.MouseUp += new MouseEventHandler(OnMouseUp);

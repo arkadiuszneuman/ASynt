@@ -9,8 +9,7 @@ namespace ASynt.Keyboard
     {
         private Point position; //pozycja przycisku
         private Size size = new Size(40, 200); //wysokość i szerokość przycisku
-        private Color color, colorClicked; //kolor przycisku
-        
+        private Color color, colorClicked; //kolor przycisku, kolor przycisku po kliknięci
         private MainForm mainForm;
         private bool isSmall;
         public Keys KeyboardKey { get; private set; }
@@ -32,6 +31,9 @@ namespace ASynt.Keyboard
             }
         }
 
+        /// <summary>
+        /// Ustawienie częstotliwości odtwarzanego dźwięku
+        /// </summary>
         public int SetFrequency
         {
             set
@@ -41,6 +43,13 @@ namespace ASynt.Keyboard
         }
 
         #region Konstruktory
+        /// <summary>
+        /// Tworzy nowy key
+        /// </summary>
+        /// <param name="mainForm">Forma, na której będzie malowany przycisk</param>
+        /// <param name="position">Pozycja przycisku</param>
+        /// <param name="keyboardKey">Przycisk klawiatury, na jaki będzie reagował key</param>
+        /// <param name="file">Scieżka do dźwięku, jaki ma być odtwarzany przy naciśnięciu keya</param>
         public Key(MainForm mainForm, Point position, Keys keyboardKey, string file)
         {
             this.position = position;
@@ -52,6 +61,13 @@ namespace ASynt.Keyboard
             this.KeyboardKey = keyboardKey;
         }
 
+        /// <summary>
+        /// Tworzy nowy key
+        /// </summary>
+        /// <param name="mainForm">Forma, na której będzie malowany przycisk</param>
+        /// <param name="position">Pozycja przycisku</param>
+        /// <param name="keyboardKey">Przycisk klawiatury, na jaki będzie reagował key</param>
+        /// <param name="sound">Dzwięk, jaki będzie odtwarzany po naciśnięciu keya</param>
         public Key(MainForm mainForm, Point position, Keys keyboardKey, Sound sound)
         {
             this.position = position;
@@ -63,6 +79,14 @@ namespace ASynt.Keyboard
             this.KeyboardKey = keyboardKey;
         }
 
+        /// <summary>
+        /// Tworzy nowy key
+        /// </summary>
+        /// <param name="mainForm">Forma, na której będzie malowany przycisk</param>
+        /// <param name="position">Pozycja przycisku</param>
+        /// <param name="keyboardKey">Przycisk klawiatury, na jaki będzie reagował key</param>
+        /// <param name="file">Scieżka do dźwięku, jaki ma być odtwarzany przy naciśnięciu keya</param>
+        /// <param name="isSmall">Czy tworzony przycisk ma być mały (czyli czarny)</param>
         public Key(MainForm mainForm, Point position, Keys key, string file, bool isSmall) 
             : this(mainForm, position, key, file)
         {
@@ -76,6 +100,14 @@ namespace ASynt.Keyboard
             }
         }
 
+        /// <summary>
+        /// Tworzy nowy key
+        /// </summary>
+        /// <param name="mainForm">Forma, na której będzie malowany przycisk</param>
+        /// <param name="position">Pozycja przycisku</param>
+        /// <param name="keyboardKey">Przycisk klawiatury, na jaki będzie reagował key</param>
+        /// <param name="sound">Dzwięk, jaki będzie odtwarzany po naciśnięciu keya</param>
+        /// <param name="isSmall">Czy tworzony przycisk ma być mały (czyli czarny)</param>
         public Key(MainForm mainForm, Point position, Keys key, Sound sound, bool isSmall)
             : this(mainForm, position, key, sound)
         {
@@ -128,7 +160,7 @@ namespace ASynt.Keyboard
                 Draw();
                 return false;
             }
-
+            
             return false;
         }
     }
