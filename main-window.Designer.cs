@@ -30,6 +30,7 @@
         {
             this.button1 = new System.Windows.Forms.Button();
             this.effectsGB = new System.Windows.Forms.GroupBox();
+            this.buttonEcho = new System.Windows.Forms.Button();
             this.soundTypeGB = new System.Windows.Forms.GroupBox();
             this.soundGeneratorB = new System.Windows.Forms.Button();
             this.globalMuteCB = new System.Windows.Forms.CheckBox();
@@ -45,7 +46,6 @@
             this.button10 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
-            this.buttonEcho = new System.Windows.Forms.Button();
             this.effectsGB.SuspendLayout();
             this.soundTypeGB.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.globalVolumeSlider)).BeginInit();
@@ -70,6 +70,16 @@
             this.effectsGB.TabIndex = 1;
             this.effectsGB.TabStop = false;
             this.effectsGB.Text = "Efekty";
+            // 
+            // buttonEcho
+            // 
+            this.buttonEcho.Location = new System.Drawing.Point(6, 22);
+            this.buttonEcho.Name = "buttonEcho";
+            this.buttonEcho.Size = new System.Drawing.Size(102, 23);
+            this.buttonEcho.TabIndex = 0;
+            this.buttonEcho.Text = "Edytuj echo";
+            this.buttonEcho.UseVisualStyleBackColor = true;
+            this.buttonEcho.Click += new System.EventHandler(this.buttonEcho_Click);
             // 
             // soundTypeGB
             // 
@@ -217,16 +227,6 @@
             this.button12.Text = "12";
             this.button12.UseVisualStyleBackColor = true;
             this.button12.Click += new System.EventHandler(this.button12_Click);
-            // 
-            // buttonEcho
-            // 
-            this.buttonEcho.Location = new System.Drawing.Point(6, 22);
-            this.buttonEcho.Name = "buttonEcho";
-            this.buttonEcho.Size = new System.Drawing.Size(102, 23);
-            this.buttonEcho.TabIndex = 0;
-            this.buttonEcho.Text = "Dodaj/Usuń echa";
-            this.buttonEcho.UseVisualStyleBackColor = true;
-            this.buttonEcho.Click += new System.EventHandler(this.buttonEcho_Click);
             // 
             // MainForm
             // 

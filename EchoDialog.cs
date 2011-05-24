@@ -146,12 +146,20 @@ namespace ASynt
                 buttonPrevious_Click(null, null);
             else
             {
-                --page;
-                panelNoEcho.Visible = true;
-                buttonNext.Enabled = false;
-                buttonDeleteEcho.Enabled = false;
+                if (keyboard.Echo.Count == 0)
+                {
+                    --page;
+                    panelNoEcho.Visible = true;
+                    buttonNext.Enabled = false;
+                    buttonDeleteEcho.Enabled = false;
 
-                groupBoxEchoProporties.Text = "Właściwości echa " + page + "/" + keyboard.Echo.Count;
+                    groupBoxEchoProporties.Text = "Właściwości echa " + page + "/" + keyboard.Echo.Count;
+                }
+                else
+                {
+                    groupBoxEchoProporties.Text = "Właściwości echa " + page + "/" + keyboard.Echo.Count;
+                    UpdateControls();
+                }
             }
         } 
     }
