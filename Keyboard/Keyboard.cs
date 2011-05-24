@@ -130,12 +130,12 @@ namespace ASynt.Keyboard
             {
                 for (int i = 0; i < keys.Length; ++i)
                 {
-                    keys[i].setIsPushed();
+                    keys[i].IsPushed = true;
 
                     foreach (Key key in smallKeys)
                     {
                         key.Draw();
-                        key.setIsPushed();
+                        key.IsPushed = true;
                     }
                 }
             }
@@ -255,7 +255,7 @@ namespace ASynt.Keyboard
             echo[which].fRightDelay = rightDelay;
             echo[which].lPanDelay = panDelay;
 
-            for (int i = which * 12; i < which * 12 + 11; ++i)
+            for (int i = which * 12; i < which * 12 + 12; ++i)
                 Bass.BASS_FXSetParameters(echoHandles[i], echo[which]);
         }
 

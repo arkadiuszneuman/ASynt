@@ -18,7 +18,19 @@ namespace ASynt.Keyboard
         public Point Position { get { return position; } }
 
         public Size Size { get {return size; } }
-        public bool IsPushed { get; set; }
+        private bool isPushed;
+        public bool IsPushed
+        {
+            get { return isPushed; }
+            set
+            {
+                if (value && isPushed)
+                {
+                    isPushed = false;
+                    Draw();
+                }
+            }
+        }
 
         public int SetFrequency
         {
@@ -78,6 +90,9 @@ namespace ASynt.Keyboard
         }
         #endregion
 
+        /// <summary>
+        /// Rysuje Keya na formie głównej
+        /// </summary>
         public void Draw()
         {
             Graphics g = mainForm.CreateGraphics();
@@ -91,35 +106,30 @@ namespace ASynt.Keyboard
             g.DrawRectangle(p, new Rectangle(position, size));
             p.Dispose();
             brush.Dispose();
-
             g.Dispose();
         }
 
+        /// <summary>
+        /// Sprawdza, czy key jest aktualnie wciśnięty
+        /// </summary>
+        /// <param name="mouse">Punkt, w którym znajduje się mysz</param>
+        /// <returns>True, jeśli key wciśnięty, false w przeciwnym wypadku</returns>
         public bool checkIsPushed(Point mouse)
         {
             if (mouse.X > position.X && mouse.Y > position.Y && mouse.X < position.X + size.Width && mouse.Y < position.Y + size.Height)
             {
-                IsPushed = true;
+                isPushed = true;
                 Draw();
                 return true;
             }
             else if (IsPushed) //odklikniecie keya w razie trzymania myszki i ruszania nia po klawiaturze
             {
-                IsPushed = false;
+                isPushed = false;
                 Draw();
                 return false;
             }
 
             return false;
-        }
-
-        public void setIsPushed()
-        {
-            if (IsPushed)
-            {
-                IsPushed = false;
-                Draw();
-            }
         }
     }
 }
