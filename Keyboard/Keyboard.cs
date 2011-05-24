@@ -46,14 +46,17 @@ namespace ASynt.Keyboard
 
             for (int i = 0; i < keys.Length; ++i)
             {
-                keys[i] = new Key(mainForm, new Point(keyWidth * i + position.X, position.Y), (Keys)keyLettersBig[i], @"piano1\" + (char)('a' + i));
+                int l = i; //dodawanie do literki
+                if ('c' + l > 'g')
+                    l -= 7;
+                keys[i] = new Key(mainForm, new Point(keyWidth * i + position.X, position.Y), (Keys)keyLettersBig[i], @"piano3\" + (char)('c' + l));
             }
 
-            smallKeys[0] = new Key(mainForm, new Point(keyWidth * 1 + position.X, position.Y), (Keys)keyLettersSmall[0], @"piano1\a#", true);
-            smallKeys[1] = new Key(mainForm, new Point(keyWidth * 2 + position.X, position.Y), (Keys)keyLettersSmall[1], @"piano1\c#", true);
-            smallKeys[2] = new Key(mainForm, new Point(keyWidth * 4 + position.X, position.Y), (Keys)keyLettersSmall[2], @"piano1\d#", true);
-            smallKeys[3] = new Key(mainForm, new Point(keyWidth * 5 + position.X, position.Y), (Keys)keyLettersSmall[3], @"piano1\f#", true);
-            smallKeys[4] = new Key(mainForm, new Point(keyWidth * 6 + position.X, position.Y), (Keys)keyLettersSmall[4], @"piano1\g#", true);
+            smallKeys[0] = new Key(mainForm, new Point(keyWidth * 1 + position.X, position.Y), (Keys)keyLettersSmall[0], @"piano3\c#", true);
+            smallKeys[1] = new Key(mainForm, new Point(keyWidth * 2 + position.X, position.Y), (Keys)keyLettersSmall[1], @"piano3\d#", true);
+            smallKeys[2] = new Key(mainForm, new Point(keyWidth * 4 + position.X, position.Y), (Keys)keyLettersSmall[2], @"piano3\f#", true);
+            smallKeys[3] = new Key(mainForm, new Point(keyWidth * 5 + position.X, position.Y), (Keys)keyLettersSmall[3], @"piano3\g#", true);
+            smallKeys[4] = new Key(mainForm, new Point(keyWidth * 6 + position.X, position.Y), (Keys)keyLettersSmall[4], @"piano3\a#", true);
 
             mainForm.MouseDown += new MouseEventHandler(OnMouseDown);
             mainForm.MouseUp += new MouseEventHandler(OnMouseUp);
