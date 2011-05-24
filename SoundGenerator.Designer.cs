@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SoundGenerator));
             this.whiteNoiseWave = new System.Windows.Forms.RadioButton();
             this.gainL = new System.Windows.Forms.Label();
             this.infoL = new System.Windows.Forms.Label();
@@ -80,6 +81,7 @@
             this.infoL.Name = "infoL";
             this.infoL.Size = new System.Drawing.Size(569, 40);
             this.infoL.TabIndex = 13;
+            this.infoL.Text = resources.GetString("infoL.Text");
             // 
             // squareWave
             // 
