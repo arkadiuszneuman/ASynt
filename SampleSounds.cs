@@ -8,7 +8,7 @@ namespace ASynt
 {
     public class SampleSounds
     {
-        private Sample[] samples;
+        public Sample[] samples;
         public List<SyntWave> signalsList { get; set; }
         public int ampl { get; set; }
 
