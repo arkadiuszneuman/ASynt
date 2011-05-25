@@ -13,7 +13,7 @@ namespace ASynt.Keyboard
         private MainForm mainForm;
         private bool isSmall;
         public Keys KeyboardKey { get; private set; }
-        public Sound KeySound {get; private set;}
+        public Sound KeySound {get; set;}
         public Point Position { get { return position; } }
 
         public Size Size { get {return size; } }

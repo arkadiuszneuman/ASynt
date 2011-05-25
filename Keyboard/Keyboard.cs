@@ -13,7 +13,7 @@ namespace ASynt.Keyboard
     {
         private Key[] keys = new Key[7];
         private Key[] smallKeys = new Key[5];
-        private Key[] allKeys
+        public Key[] allKeys
         {
             get
             {
