@@ -13,27 +13,43 @@ namespace ASynt
     public partial class SoundGenerator : Form
     {
         private SampleSounds sampleSounds;
+        private ASynt.Keyboard.Keyboard keyboard;
         private Sample bufferSample;
         private List<SyntWave> signalsList;
         private int checkedSignal;
         private int ampl;
+        private int currentSignalInfo = 0;
 
-        public SoundGenerator(SampleSounds _sampleSounds)
+        /// <summary>
+        /// Konstruktor klasy SoundGenerator.
+        /// </summary>
+        /// <param name="_sampleSounds">Kontener na 12 wygenerowanych dźwięków.</param>
+        public SoundGenerator(SampleSounds _sampleSounds, ASynt.Keyboard.Keyboard _keyboard)
         {
             InitializeComponent();
             this.sampleSounds = _sampleSounds;
+            this.keyboard = _keyboard;
+
             checkedSignal = -1;
             signalsList = new List<SyntWave>();
             bufferSample = new Sample(25, 440);
             ampl = 25;
+            UpdateControls();
         }
 
+        /// <summary>
+        /// Reakcja na wybranie sygnału poprzez RadioButtony.
+        /// </summary>
         private void SignalChanged(object sender, EventArgs e)
         {
             checkedSignal = int.Parse(((RadioButton)sender).Tag.ToString());
+            addB.Enabled = true;
         }
 
-        private void addSignal(object sender, EventArgs e)
+        /// <summary>
+        /// Dodanie sygnału do listy oraz sampla buforowego.
+        /// </summary>
+        private void AddSignal(object sender, EventArgs e)
         {
             if (checkedSignal != -1)
             {
@@ -54,33 +70,195 @@ namespace ASynt
                 from *= 22;
                 signalsList.Add(new SyntWave(checkedSignal, from, to));
                 bufferSample.AddWave(checkedSignal, from, to);
+                ShowSignalInfo(signalsList.Count - 1);
             }
         }
 
-        private void applyGain(object sender, EventArgs e)
+        /// <summary>
+        /// Zatwierdza zmianę wzmocnienia.
+        /// </summary>
+        private void ApplyGain(object sender, EventArgs e)
         {
+            int oldAmpl = ampl;
             ampl = int.Parse(amplUD.Value.ToString());
             applyAmplB.Enabled = false;
+            bufferSample.ChangeAmpl(oldAmpl, ampl);
         }
 
-        private void amplValueChanged(object sender, EventArgs e)
+        /// <summary>
+        /// Umożliwia zatwierdzenie zmiany wzmocnienia.
+        /// </summary>
+        private void AmplValueChanged(object sender, EventArgs e)
         {
             applyAmplB.Enabled = true;
         }
 
-        private void createSound(object sender, EventArgs e)
+        /// <summary>
+        /// Przesyła listę sygnałów gotową do generacji dźwięków do sampleSound i niszczy okno.
+        /// </summary>
+        private void CreateSound(object sender, EventArgs e)
         {
             sampleSounds.ampl = ampl;
             sampleSounds.signalsList = signalsList;
             sampleSounds.CreateSamples();
+
+            for (int i = 0; i < keyboard.allKeys.Count(); ++i)
+            {
+                keyboard.allKeys[i].KeySound = new ASynt.Player.Sound(ampl, (i + 1) * 100, signalsList);
+            }
+
             this.Dispose();
         }
 
-        private void testSound(object sender, EventArgs e)
+        /// <summary>
+        /// Odtawrza stworzony dźwięk.
+        /// </summary>
+        private void TestSound(object sender, EventArgs e)
         {
             bufferSample.SetData();
             int channel = Bass.BASS_SampleGetChannel(bufferSample.sampleHandle, false);
             Bass.BASS_ChannelPlay(channel, false);
+        }
+
+        /// <summary>
+        /// Uaktualnia stan kontrolek.
+        /// </summary>
+        private void UpdateControls()
+        {
+            if (signalsList.Count > 1)
+            {
+                if (currentSignalInfo > 0 && currentSignalInfo < signalsList.Count - 1)
+                {
+                    firstPageB.Enabled = true;
+                    prevPageB.Enabled = true;
+                    nextPageB.Enabled = true;
+                    lastPageB.Enabled = true;
+                }
+
+                if (currentSignalInfo == 0)
+                {
+                    firstPageB.Enabled = false;
+                    prevPageB.Enabled = false;
+                    nextPageB.Enabled = true;
+                    lastPageB.Enabled = true;
+                }
+
+                if (currentSignalInfo == signalsList.Count - 1)
+                {
+                    firstPageB.Enabled = true;
+                    prevPageB.Enabled = true;
+                    nextPageB.Enabled = false;
+                    lastPageB.Enabled = false;
+                }
+            }
+            else
+            {
+                if (signalsList.Count == 0)
+                {
+                    firstPageB.Enabled = false;
+                    prevPageB.Enabled = false;
+                    nextPageB.Enabled = false;
+                    lastPageB.Enabled = false;
+                    deleteAllSignalsB.Enabled = false;
+                    signalPreviewB.Enabled = false;
+                    signalDeleteB.Enabled = false;
+                }
+
+                firstPageB.Enabled = false;
+                prevPageB.Enabled = false;
+                nextPageB.Enabled = false;
+                lastPageB.Enabled = false;
+            }
+
+            if (signalsList.Count != 0)
+            {
+                deleteAllSignalsB.Enabled = true;
+                signalPreviewB.Enabled = true;
+                signalDeleteB.Enabled = true;
+            }
+        }
+
+        /// <summary>
+        /// Pokazuje dane o wybranym sygnale z listy.
+        /// </summary>
+        private void ShowSignalInfo(int signalNumber)
+        {
+            infoAL1.Text = ((Signals)(signalsList[signalNumber].signal)).ToString();
+            infoAL2.Text = (signalsList[signalNumber].from/22).ToString();                                
+            infoAL3.Text = (signalsList[signalNumber].to/22).ToString();
+            currentSignalInfo = signalNumber;
+            UpdateControls();
+        }
+
+        /// <summary>
+        /// Pokazuje pierwszy sygnał na liście.
+        /// </summary>
+        private void FirstPage(object sender, EventArgs e)
+        {
+            ShowSignalInfo(0);
+        }
+
+        /// <summary>
+        /// Pokazuje ostatni sygnał na liście.
+        /// </summary>
+        private void LastPage(object sender, EventArgs e)
+        {
+            ShowSignalInfo(signalsList.Count - 1);
+        }
+
+        /// <summary>
+        /// Pokazuje poprzedni sygnał z listy.
+        /// </summary>
+        private void PrevPage(object sender, EventArgs e)
+        {
+            ShowSignalInfo(currentSignalInfo - 1);
+        }
+
+        /// <summary>
+        /// Pokazuje następny sygnał na liście.
+        /// </summary>
+        private void NextPage(object sender, EventArgs e)
+        {
+            ShowSignalInfo(currentSignalInfo + 1);
+        }
+
+        /// <summary>
+        /// Usuwa wszystkie sygnały z listy.
+        /// </summary>
+        private void DeleteAllSignals(object sender, EventArgs e)
+        {
+            signalsList.Clear();
+            infoAL1.Text = "-";
+            infoAL2.Text = "-";
+            infoAL3.Text = "-";
+            UpdateControls();
+            bufferSample = new Sample(ampl, 440);
+        }
+
+        /// <summary>
+        /// Usuwa wybrany sygnał z listy.
+        /// </summary>
+        private void DeleteSignalFromList(object sender, EventArgs e)
+        {
+            signalsList.RemoveAt(currentSignalInfo);
+            if (signalsList.Count == 0)
+            {
+                infoAL1.Text = "-";
+                infoAL2.Text = "-";
+                infoAL3.Text = "-";
+            }
+            else
+            {
+                if (currentSignalInfo == 0)
+                {
+                    ShowSignalInfo(0);
+                }
+                else
+                {
+                    ShowSignalInfo(--currentSignalInfo);
+                }
+            }
+            UpdateControls();
         }
     }
 }

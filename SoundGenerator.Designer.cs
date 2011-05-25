@@ -49,8 +49,24 @@
             this.addB = new System.Windows.Forms.Button();
             this.previewB = new System.Windows.Forms.Button();
             this.createSoundB = new System.Windows.Forms.Button();
+            this.signalPrevGB = new System.Windows.Forms.GroupBox();
+            this.signalDeleteB = new System.Windows.Forms.Button();
+            this.signalPreviewB = new System.Windows.Forms.Button();
+            this.infoAL3 = new System.Windows.Forms.Label();
+            this.infoL3 = new System.Windows.Forms.Label();
+            this.infoAL2 = new System.Windows.Forms.Label();
+            this.infoL2 = new System.Windows.Forms.Label();
+            this.infoAL1 = new System.Windows.Forms.Label();
+            this.infoL1 = new System.Windows.Forms.Label();
+            this.deleteAllSignalsB = new System.Windows.Forms.Button();
+            this.nextPageB = new System.Windows.Forms.Button();
+            this.prevPageB = new System.Windows.Forms.Button();
+            this.lastPageB = new System.Windows.Forms.Button();
+            this.firstPageB = new System.Windows.Forms.Button();
+            this.soundGraphB = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.amplUD)).BeginInit();
             this.signalsGB.SuspendLayout();
+            this.signalPrevGB.SuspendLayout();
             this.SuspendLayout();
             // 
             // whiteNoiseWave
@@ -58,11 +74,11 @@
             this.whiteNoiseWave.AutoSize = true;
             this.whiteNoiseWave.Location = new System.Drawing.Point(280, 43);
             this.whiteNoiseWave.Name = "whiteNoiseWave";
-            this.whiteNoiseWave.Size = new System.Drawing.Size(81, 17);
+            this.whiteNoiseWave.Size = new System.Drawing.Size(76, 17);
             this.whiteNoiseWave.TabIndex = 8;
             this.whiteNoiseWave.TabStop = true;
             this.whiteNoiseWave.Tag = "7";
-            this.whiteNoiseWave.Text = "White noise";
+            this.whiteNoiseWave.Text = "Biały szum";
             this.whiteNoiseWave.UseVisualStyleBackColor = true;
             this.whiteNoiseWave.CheckedChanged += new System.EventHandler(this.SignalChanged);
             // 
@@ -118,7 +134,7 @@
             this.applyAmplB.TabIndex = 17;
             this.applyAmplB.Text = "Zmień";
             this.applyAmplB.UseVisualStyleBackColor = true;
-            this.applyAmplB.Click += new System.EventHandler(this.applyGain);
+            this.applyAmplB.Click += new System.EventHandler(this.ApplyGain);
             // 
             // tanWave
             // 
@@ -157,7 +173,7 @@
             0,
             0,
             0});
-            this.amplUD.ValueChanged += new System.EventHandler(this.amplValueChanged);
+            this.amplUD.ValueChanged += new System.EventHandler(this.AmplValueChanged);
             // 
             // cosWave
             // 
@@ -256,39 +272,197 @@
             // 
             // addB
             // 
+            this.addB.Enabled = false;
             this.addB.Location = new System.Drawing.Point(511, 10);
             this.addB.Name = "addB";
             this.addB.Size = new System.Drawing.Size(49, 60);
             this.addB.TabIndex = 0;
             this.addB.Text = "Dodaj";
             this.addB.UseVisualStyleBackColor = true;
-            this.addB.Click += new System.EventHandler(this.addSignal);
+            this.addB.Click += new System.EventHandler(this.AddSignal);
             // 
             // previewB
             // 
-            this.previewB.Location = new System.Drawing.Point(506, 134);
+            this.previewB.Location = new System.Drawing.Point(506, 131);
             this.previewB.Name = "previewB";
-            this.previewB.Size = new System.Drawing.Size(75, 20);
+            this.previewB.Size = new System.Drawing.Size(75, 23);
             this.previewB.TabIndex = 18;
             this.previewB.Text = "Testuj!";
             this.previewB.UseVisualStyleBackColor = true;
-            this.previewB.Click += new System.EventHandler(this.testSound);
+            this.previewB.Click += new System.EventHandler(this.TestSound);
             // 
             // createSoundB
             // 
-            this.createSoundB.Location = new System.Drawing.Point(509, 376);
+            this.createSoundB.Location = new System.Drawing.Point(509, 315);
             this.createSoundB.Name = "createSoundB";
             this.createSoundB.Size = new System.Drawing.Size(75, 23);
             this.createSoundB.TabIndex = 19;
             this.createSoundB.Text = "Generuj!";
             this.createSoundB.UseVisualStyleBackColor = true;
-            this.createSoundB.Click += new System.EventHandler(this.createSound);
+            this.createSoundB.Click += new System.EventHandler(this.CreateSound);
+            // 
+            // signalPrevGB
+            // 
+            this.signalPrevGB.Controls.Add(this.signalDeleteB);
+            this.signalPrevGB.Controls.Add(this.signalPreviewB);
+            this.signalPrevGB.Controls.Add(this.infoAL3);
+            this.signalPrevGB.Controls.Add(this.infoL3);
+            this.signalPrevGB.Controls.Add(this.infoAL2);
+            this.signalPrevGB.Controls.Add(this.infoL2);
+            this.signalPrevGB.Controls.Add(this.infoAL1);
+            this.signalPrevGB.Controls.Add(this.infoL1);
+            this.signalPrevGB.Location = new System.Drawing.Point(15, 190);
+            this.signalPrevGB.Name = "signalPrevGB";
+            this.signalPrevGB.Size = new System.Drawing.Size(569, 71);
+            this.signalPrevGB.TabIndex = 21;
+            this.signalPrevGB.TabStop = false;
+            this.signalPrevGB.Text = "Poszczególne sygnały";
+            // 
+            // signalDeleteB
+            // 
+            this.signalDeleteB.Location = new System.Drawing.Point(293, 42);
+            this.signalDeleteB.Name = "signalDeleteB";
+            this.signalDeleteB.Size = new System.Drawing.Size(75, 23);
+            this.signalDeleteB.TabIndex = 7;
+            this.signalDeleteB.Text = "Usuń";
+            this.signalDeleteB.UseVisualStyleBackColor = true;
+            this.signalDeleteB.Click += new System.EventHandler(this.DeleteSignalFromList);
+            // 
+            // signalPreviewB
+            // 
+            this.signalPreviewB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.signalPreviewB.Location = new System.Drawing.Point(212, 42);
+            this.signalPreviewB.Name = "signalPreviewB";
+            this.signalPreviewB.Size = new System.Drawing.Size(75, 23);
+            this.signalPreviewB.TabIndex = 6;
+            this.signalPreviewB.Text = "Podgląd";
+            this.signalPreviewB.UseVisualStyleBackColor = true;
+            // 
+            // infoAL3
+            // 
+            this.infoAL3.AutoSize = true;
+            this.infoAL3.Location = new System.Drawing.Point(488, 16);
+            this.infoAL3.Name = "infoAL3";
+            this.infoAL3.Size = new System.Drawing.Size(0, 13);
+            this.infoAL3.TabIndex = 5;
+            // 
+            // infoL3
+            // 
+            this.infoL3.AutoSize = true;
+            this.infoL3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.infoL3.Location = new System.Drawing.Point(405, 16);
+            this.infoL3.Name = "infoL3";
+            this.infoL3.Size = new System.Drawing.Size(77, 13);
+            this.infoL3.TabIndex = 4;
+            this.infoL3.Text = "Koniec (ms):";
+            // 
+            // infoAL2
+            // 
+            this.infoAL2.AutoSize = true;
+            this.infoAL2.Location = new System.Drawing.Point(300, 16);
+            this.infoAL2.Name = "infoAL2";
+            this.infoAL2.Size = new System.Drawing.Size(0, 13);
+            this.infoAL2.TabIndex = 3;
+            // 
+            // infoL2
+            // 
+            this.infoL2.AutoSize = true;
+            this.infoL2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.infoL2.Location = new System.Drawing.Point(209, 16);
+            this.infoL2.Name = "infoL2";
+            this.infoL2.Size = new System.Drawing.Size(91, 13);
+            this.infoL2.TabIndex = 2;
+            this.infoL2.Text = "Początek (ms):";
+            // 
+            // infoAL1
+            // 
+            this.infoAL1.AutoSize = true;
+            this.infoAL1.Location = new System.Drawing.Point(88, 16);
+            this.infoAL1.Name = "infoAL1";
+            this.infoAL1.Size = new System.Drawing.Size(0, 13);
+            this.infoAL1.TabIndex = 1;
+            // 
+            // infoL1
+            // 
+            this.infoL1.AutoSize = true;
+            this.infoL1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.infoL1.Location = new System.Drawing.Point(6, 16);
+            this.infoL1.Name = "infoL1";
+            this.infoL1.Size = new System.Drawing.Size(85, 13);
+            this.infoL1.TabIndex = 0;
+            this.infoL1.Text = "Typ sygnału: ";
+            // 
+            // deleteAllSignalsB
+            // 
+            this.deleteAllSignalsB.Location = new System.Drawing.Point(204, 267);
+            this.deleteAllSignalsB.Name = "deleteAllSignalsB";
+            this.deleteAllSignalsB.Size = new System.Drawing.Size(192, 23);
+            this.deleteAllSignalsB.TabIndex = 22;
+            this.deleteAllSignalsB.Text = "Wyczyść wygenerowane sygnały";
+            this.deleteAllSignalsB.UseVisualStyleBackColor = true;
+            this.deleteAllSignalsB.Click += new System.EventHandler(this.DeleteAllSignals);
+            // 
+            // nextPageB
+            // 
+            this.nextPageB.Location = new System.Drawing.Point(308, 161);
+            this.nextPageB.Name = "nextPageB";
+            this.nextPageB.Size = new System.Drawing.Size(33, 23);
+            this.nextPageB.TabIndex = 23;
+            this.nextPageB.Text = ">";
+            this.nextPageB.UseVisualStyleBackColor = true;
+            this.nextPageB.Click += new System.EventHandler(this.NextPage);
+            // 
+            // prevPageB
+            // 
+            this.prevPageB.Location = new System.Drawing.Point(266, 161);
+            this.prevPageB.Name = "prevPageB";
+            this.prevPageB.Size = new System.Drawing.Size(33, 23);
+            this.prevPageB.TabIndex = 25;
+            this.prevPageB.Text = "<";
+            this.prevPageB.UseVisualStyleBackColor = true;
+            this.prevPageB.Click += new System.EventHandler(this.PrevPage);
+            // 
+            // lastPageB
+            // 
+            this.lastPageB.Location = new System.Drawing.Point(347, 161);
+            this.lastPageB.Name = "lastPageB";
+            this.lastPageB.Size = new System.Drawing.Size(33, 23);
+            this.lastPageB.TabIndex = 26;
+            this.lastPageB.Text = ">>";
+            this.lastPageB.UseVisualStyleBackColor = true;
+            this.lastPageB.Click += new System.EventHandler(this.LastPage);
+            // 
+            // firstPageB
+            // 
+            this.firstPageB.Location = new System.Drawing.Point(227, 161);
+            this.firstPageB.Name = "firstPageB";
+            this.firstPageB.Size = new System.Drawing.Size(33, 23);
+            this.firstPageB.TabIndex = 27;
+            this.firstPageB.Text = "<<";
+            this.firstPageB.UseVisualStyleBackColor = true;
+            this.firstPageB.Click += new System.EventHandler(this.FirstPage);
+            // 
+            // soundGraphB
+            // 
+            this.soundGraphB.Location = new System.Drawing.Point(12, 315);
+            this.soundGraphB.Name = "soundGraphB";
+            this.soundGraphB.Size = new System.Drawing.Size(107, 23);
+            this.soundGraphB.TabIndex = 28;
+            this.soundGraphB.Text = "Podgląd dźwięku";
+            this.soundGraphB.UseVisualStyleBackColor = true;
             // 
             // SoundGenerator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(596, 411);
+            this.ClientSize = new System.Drawing.Size(590, 343);
+            this.Controls.Add(this.soundGraphB);
+            this.Controls.Add(this.firstPageB);
+            this.Controls.Add(this.lastPageB);
+            this.Controls.Add(this.prevPageB);
+            this.Controls.Add(this.nextPageB);
+            this.Controls.Add(this.deleteAllSignalsB);
+            this.Controls.Add(this.signalPrevGB);
             this.Controls.Add(this.createSoundB);
             this.Controls.Add(this.gainL);
             this.Controls.Add(this.infoL);
@@ -301,6 +475,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.amplUD)).EndInit();
             this.signalsGB.ResumeLayout(false);
             this.signalsGB.PerformLayout();
+            this.signalPrevGB.ResumeLayout(false);
+            this.signalPrevGB.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -327,5 +503,20 @@
         private System.Windows.Forms.Label fromL;
         private System.Windows.Forms.TextBox toTB;
         private System.Windows.Forms.TextBox fromTB;
+        private System.Windows.Forms.GroupBox signalPrevGB;
+        private System.Windows.Forms.Button deleteAllSignalsB;
+        private System.Windows.Forms.Button nextPageB;
+        private System.Windows.Forms.Button prevPageB;
+        private System.Windows.Forms.Button lastPageB;
+        private System.Windows.Forms.Button firstPageB;
+        private System.Windows.Forms.Button signalDeleteB;
+        private System.Windows.Forms.Button signalPreviewB;
+        private System.Windows.Forms.Label infoAL3;
+        private System.Windows.Forms.Label infoL3;
+        private System.Windows.Forms.Label infoAL2;
+        private System.Windows.Forms.Label infoL2;
+        private System.Windows.Forms.Label infoAL1;
+        private System.Windows.Forms.Label infoL1;
+        private System.Windows.Forms.Button soundGraphB;
     }
 }
