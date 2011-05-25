@@ -23,9 +23,10 @@ namespace ASynt.Keyboard
             get { return isPushed; }
             set
             {
-                if (value && isPushed)
+                //if (value && isPushed)
                 {
-                    isPushed = false;
+                    isPushed = value;
+                    //isPushed = false;
                     Draw();
                 }
             }
@@ -53,7 +54,6 @@ namespace ASynt.Keyboard
         public Key(MainForm mainForm, Point position, Keys keyboardKey, string file)
         {
             this.position = position;
-            IsPushed = false;
             this.mainForm = mainForm;
             KeySound = new Sound(file);
             color = Color.White;
@@ -71,7 +71,6 @@ namespace ASynt.Keyboard
         public Key(MainForm mainForm, Point position, Keys keyboardKey, Sound sound)
         {
             this.position = position;
-            IsPushed = false;
             this.mainForm = mainForm;
             KeySound = sound;
             color = Color.White;
@@ -154,7 +153,7 @@ namespace ASynt.Keyboard
                 Draw();
                 return true;
             }
-            else if (IsPushed) //odklikniecie keya w razie trzymania myszki i ruszania nia po klawiaturze
+            else if (isPushed) //odklikniecie keya w razie trzymania myszki i ruszania nia po klawiaturze
             {
                 isPushed = false;
                 Draw();

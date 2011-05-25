@@ -41,7 +41,7 @@ namespace ASynt.Keyboard
         {
             this.position = position;
             char[] keyLettersBig = { 'A', 'S', 'D', 'F', 'G', 'H', 'J' }; //literki, pod którymi będą grały klawisze białe
-            char[] keyLettersSmall = { 'W', 'R', 'T', 'U', 'I' }; //literki, pod jakimi będą grały klawisze czarne
+            char[] keyLettersSmall = { 'W', 'E', 'T', 'Y', 'U' }; //literki, pod jakimi będą grały klawisze czarne
             int keyWidth = 40;
 
             for (int i = 0; i < keys.Length; ++i)
@@ -89,7 +89,7 @@ namespace ASynt.Keyboard
                             if (keys[i].IsPushed)
                             {
                                 keys[i].IsPushed = false;
-                                keys[i].Draw();
+                                //keys[i].Draw();
                             }
 
                             foreach (Key other in smallKeys)
@@ -133,12 +133,12 @@ namespace ASynt.Keyboard
             {
                 for (int i = 0; i < keys.Length; ++i)
                 {
-                    keys[i].IsPushed = true;
+                    keys[i].IsPushed = false;
 
                     foreach (Key key in smallKeys)
                     {
                         key.Draw();
-                        key.IsPushed = true;
+                        key.IsPushed = false;
                     }
                 }
             }
