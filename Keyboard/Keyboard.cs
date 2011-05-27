@@ -13,7 +13,7 @@ namespace ASynt.Keyboard
     {
         private Key[] keys = new Key[7];
         private Key[] smallKeys = new Key[5];
-        private Key[] allKeys
+        public Key[] AllKeys
         {
             get
             {
@@ -72,7 +72,7 @@ namespace ASynt.Keyboard
         /// Reakcja na kliknięcie myszką na formie
         /// </summary>
         /// <param name="e"></param>
-        public void OnMouseDown(object sender, MouseEventArgs e)
+        private void OnMouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -127,7 +127,7 @@ namespace ASynt.Keyboard
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void OnMouseUp(object sender, MouseEventArgs e)
+        private void OnMouseUp(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -148,7 +148,7 @@ namespace ASynt.Keyboard
 
         #region Eventy Klawiatury
 
-        public void KeyDown(object sender, KeyEventArgs keyEvent)
+        private void KeyDown(object sender, KeyEventArgs keyEvent)
         {
             foreach (Key key in keys)
             {
@@ -174,7 +174,7 @@ namespace ASynt.Keyboard
             }
         }
 
-        public void KeyUp(object sender, KeyEventArgs keyEvent)
+        private void KeyUp(object sender, KeyEventArgs keyEvent)
         {
             foreach (Key key in keys)
             {
@@ -203,7 +203,7 @@ namespace ASynt.Keyboard
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="p"></param>
-        public void Draw(object sender, PaintEventArgs p)
+        private void Draw(object sender, PaintEventArgs p)
         {
             foreach (Key key in keys)
             {
@@ -264,9 +264,9 @@ namespace ASynt.Keyboard
 
         public void DeleteEcho(int which)
         {
-            for (int i = 0; i < allKeys.Length; ++i)
+            for (int i = 0; i < AllKeys.Length; ++i)
             {
-                Bass.BASS_ChannelRemoveFX(allKeys[i].KeySound.Stream, echoHandles[i + which * 12]);
+                Bass.BASS_ChannelRemoveFX(AllKeys[i].KeySound.Stream, echoHandles[i + which * 12]);
             }
 
             echo.RemoveAt(which);

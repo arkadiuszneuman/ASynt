@@ -47,12 +47,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EchoDialog.cs">
+    <Compile Include="Effects\AbstractDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EchoDialog.Designer.cs">
-      <DependentUpon>EchoDialog.cs</DependentUpon>
+    <Compile Include="Effects\AbstractDialog.Designer.cs">
+      <DependentUpon>AbstractDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Effects\EchoDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Effects\Effect\Echo.cs" />
+    <Compile Include="Effects\Effect\Effect.cs" />
     <Compile Include="SampleSounds.cs" />
     <Compile Include="Keyboard\Key.cs" />
     <Compile Include="Keyboard\Keyboard.cs" />
@@ -75,7 +80,10 @@
     </Compile>
     <Compile Include="SyntMath.cs" />
     <Compile Include="SyntWave.cs" />
-    <EmbeddedResource Include="EchoDialog.resx">
+    <EmbeddedResource Include="Effects\AbstractDialog.resx">
+      <DependentUpon>AbstractDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Effects\EchoDialog.resx">
       <DependentUpon>EchoDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="main-window.resx">

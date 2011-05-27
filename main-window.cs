@@ -7,21 +7,25 @@ using ASynt.Player;
 using System.Drawing;
 using ASynt.Keyboard;
 using Un4seen.Bass;
+using ASynt.Effects;
+using ASynt.Effects.Effect;
 
 namespace ASynt
 {
     public partial class MainForm : Form
     {
-        //SoundPlayer player = new SoundPlayer();
         Keyboard.Keyboard keyboard;
         SampleSounds sampleSounds;
+
+        //efekty muszą być zapamiętane - dlatego są tworzone w mainie, bo bez tego po zamknięciu okienka dialogowego by się wszystkie usunęły.
+        Echo echo;
 
         public MainForm()
         {
             InitializeComponent();
-            //key = new Key(new System.Drawing.Point(0, 0), 1000);
             keyboard = new Keyboard.Keyboard(this, new Point(20, 20));
             sampleSounds = new SampleSounds();
+            echo = new Echo(keyboard);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -114,9 +118,10 @@ namespace ASynt
             sg.ShowDialog();
         }
 
+        
         private void buttonEcho_Click(object sender, EventArgs e)
         {
-            new EchoDialog(keyboard).Show();
+            new EchoDialog(echo).Show();
         }
     }
 }
