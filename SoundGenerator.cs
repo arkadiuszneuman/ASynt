@@ -96,9 +96,9 @@ namespace ASynt
         /// </summary>
         private void CreateSound(object sender, EventArgs e)
         {
-            for (int i = 0; i < keyboard.allKeys.Count(); ++i)
+            for (int i = 0; i < keyboard.AllKeys.Count(); ++i)
             {
-                keyboard.allKeys[i].KeySound = new ASynt.Player.Sound(ampl, (i + 1) * 100, signalsList);
+                keyboard.AllKeys[i].KeySound = new ASynt.Player.Sound(ampl, (i + 1) * 100, signalsList);
             }
 
             this.Dispose();

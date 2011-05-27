@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.effectsGB = new System.Windows.Forms.GroupBox();
+            this.buttonChorus = new System.Windows.Forms.Button();
             this.buttonEcho = new System.Windows.Forms.Button();
             this.soundTypeGB = new System.Windows.Forms.GroupBox();
             this.soundGeneratorB = new System.Windows.Forms.Button();
@@ -41,6 +42,7 @@
             // 
             // effectsGB
             // 
+            this.effectsGB.Controls.Add(this.buttonChorus);
             this.effectsGB.Controls.Add(this.buttonEcho);
             this.effectsGB.Location = new System.Drawing.Point(369, 12);
             this.effectsGB.Name = "effectsGB";
@@ -49,13 +51,23 @@
             this.effectsGB.TabStop = false;
             this.effectsGB.Text = "Efekty";
             // 
+            // buttonChorus
+            // 
+            this.buttonChorus.Location = new System.Drawing.Point(6, 51);
+            this.buttonChorus.Name = "buttonChorus";
+            this.buttonChorus.Size = new System.Drawing.Size(102, 23);
+            this.buttonChorus.TabIndex = 1;
+            this.buttonChorus.Text = "Chór";
+            this.buttonChorus.UseVisualStyleBackColor = true;
+            this.buttonChorus.Click += new System.EventHandler(this.buttonChorus_Click);
+            // 
             // buttonEcho
             // 
             this.buttonEcho.Location = new System.Drawing.Point(6, 22);
             this.buttonEcho.Name = "buttonEcho";
             this.buttonEcho.Size = new System.Drawing.Size(102, 23);
             this.buttonEcho.TabIndex = 0;
-            this.buttonEcho.Text = "Edytuj echo";
+            this.buttonEcho.Text = "Echo";
             this.buttonEcho.UseVisualStyleBackColor = true;
             this.buttonEcho.Click += new System.EventHandler(this.buttonEcho_Click);
             // 
@@ -125,6 +137,7 @@
         private System.Windows.Forms.TrackBar globalVolumeSlider;
         private System.Windows.Forms.Button soundGeneratorB;
         private System.Windows.Forms.Button buttonEcho;
+        private System.Windows.Forms.Button buttonChorus;
     }
 }
 
