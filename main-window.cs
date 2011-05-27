@@ -19,6 +19,7 @@ namespace ASynt
 
         //efekty muszą być zapamiętane - dlatego są tworzone w mainie, bo bez tego po zamknięciu okienka dialogowego by się wszystkie usunęły.
         Echo echo;
+        Chorus chorus;
 
         public MainForm()
         {
@@ -26,6 +27,7 @@ namespace ASynt
             keyboard = new Keyboard.Keyboard(this, new Point(20, 20));
             sampleSounds = new SampleSounds();
             echo = new Echo(keyboard);
+            chorus = new Chorus(keyboard);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -122,6 +124,11 @@ namespace ASynt
         private void buttonEcho_Click(object sender, EventArgs e)
         {
             new EchoDialog(echo).Show();
+        }
+
+        private void buttonChorus_Click(object sender, EventArgs e)
+        {
+            new ChorusDialog(chorus).Show();
         }
     }
 }

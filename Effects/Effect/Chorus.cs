@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Un4seen.Bass;
+using ASynt.Keyboard;
 
 namespace ASynt.Effects.Effect
 {
@@ -10,7 +11,7 @@ namespace ASynt.Effects.Effect
     {
         private List<BASS_DX8_CHORUS> chorus = new List<BASS_DX8_CHORUS>();
         private List<int> echoHandles = new List<int>();
-        public List<BASS_DX8_CHORUS> EchoList { get { return chorus; } }
+        public List<BASS_DX8_CHORUS> List { get { return chorus; } }
 
         public Chorus(Keyboard.Keyboard keyboard)
             : base(keyboard)
@@ -22,21 +23,40 @@ namespace ASynt.Effects.Effect
             get { return chorus.Count; }
         }
 
-        public override void Add(Dictionary<string, float> d)
+        private void EditChorus(BASS_DX8_CHORUS chor, Dictionary<string, float> d)
         {
-            if (!d.ContainsKey("wetDryMix") || !d.ContainsKey("feedback") || !d.ContainsKey("leftDelay")
-                || !d.ContainsKey("rightDelay") || !d.ContainsKey("panDelay"))
+            if (!d.ContainsKey("wetDryMix") || !d.ContainsKey("feedback") || !d.ContainsKey("delay")
+                || !d.ContainsKey("depth") || !d.ContainsKey("frequency") || !d.ContainsKey("phase")
+                || !d.ContainsKey("waveform"))
             {
                 throw new ArgumentException("Brak wymaganych parametrów w dictionary");
             }
 
-            chorus.Add(new BASS_DX8_ECHO(d["wetDryMix"], d["feedback"], d["leftDelay"], d["rightDelay"], Convert.ToBoolean(d["panDelay"])));
+            chor.fWetDryMix = d["wetDryMix"];
+            chor.fFeedback = d["feedback"];
+            chor.fDelay = d["delay"];
+            chor.fDepth = d["depth"];
+            chor.fFrequency = d["frequency"];
+            chor.lPhase = (BASSFXPhase)d["phase"];
+            chor.lWaveform = (int)d["waveform"];
+        }
+
+        public override void Add(Dictionary<string, float> d)
+        {
+            if (!d.ContainsKey("wetDryMix") || !d.ContainsKey("feedback") || !d.ContainsKey("delay")
+                || !d.ContainsKey("depth") || !d.ContainsKey("frequency") || !d.ContainsKey("phase")
+                || !d.ContainsKey("waveform"))
+            {
+                throw new ArgumentException("Brak wymaganych parametrów w dictionary");
+            }
+
+            chorus.Add(new BASS_DX8_CHORUS(d["wetDryMix"], d["depth"], d["feedback"], d["frequency"], (int)d["waveform"], d["delay"], (BASSFXPhase)d["phase"]));
             foreach (Key key in keys)
             {
-                echoHandles.Add(Bass.BASS_ChannelSetFX(key.KeySound.Stream, BASSFXType.BASS_FX_DX8_ECHO, 1));
+                echoHandles.Add(Bass.BASS_ChannelSetFX(key.KeySound.Stream, BASSFXType.BASS_FX_DX8_CHORUS, 1));
                 if (echoHandles.Last() == 0)
                 {
-                    throw new Exception("Błąd ustawienia echa: " + Bass.BASS_ErrorGetCode());
+                    throw new Exception("Błąd ustawienia chóru: " + Bass.BASS_ErrorGetCode());
                 }
 
                 Bass.BASS_FXSetParameters(echoHandles.Last(), chorus.Last());
@@ -45,12 +65,28 @@ namespace ASynt.Effects.Effect
 
         public override void Edit(Dictionary<string, float> d)
         {
-            throw new NotImplementedException();
+            if (!d.ContainsKey("which"))
+            {
+                throw new ArgumentException("Brak wymaganych parametrów w dictionary");
+            }
+
+            int which = (int)d["which"];
+
+            EditChorus(chorus[which], d);
+
+            for (int i = which * 12; i < which * 12 + 12; ++i)
+                Bass.BASS_FXSetParameters(echoHandles[i], chorus[which]);
         }
 
         public override void Delete(int which)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < keys.Length; ++i)
+            {
+                Bass.BASS_ChannelRemoveFX(keys[i].KeySound.Stream, echoHandles[i + which * 12]);
+            }
+
+            chorus.RemoveAt(which);
+            echoHandles.RemoveRange(which * 12, 11);
         }
     }
 }

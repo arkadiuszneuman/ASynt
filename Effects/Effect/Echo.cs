@@ -11,7 +11,7 @@ namespace ASynt.Effects.Effect
     {
         private List<BASS_DX8_ECHO> echo = new List<BASS_DX8_ECHO>();
         private List<int> echoHandles = new List<int>();
-        public List<BASS_DX8_ECHO> EchoList { get { return echo; } }
+        public List<BASS_DX8_ECHO> List { get { return echo; } }
 
         public Echo(Keyboard.Keyboard keyboard)
             : base(keyboard)

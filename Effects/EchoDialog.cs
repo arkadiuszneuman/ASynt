@@ -37,6 +37,8 @@ namespace ASynt.Effects
             this.effect = effect;
             InitializeComponent();
             Init();
+
+            Text = "Echo";
         }
 
         protected override string ProportiesName
@@ -96,6 +98,7 @@ namespace ASynt.Effects
             this.checkBoxPan.TabIndex = 25;
             this.checkBoxPan.Text = "PanDelay";
             this.checkBoxPan.UseVisualStyleBackColor = true;
+            this.checkBoxPan.CheckedChanged += new System.EventHandler(this.checkBoxPan_CheckedChanged);
             // 
             // labelHowDelayR
             // 
@@ -273,7 +276,7 @@ namespace ASynt.Effects
 
         protected override void UpdateControls()
         {
-            List<BASS_DX8_ECHO> echo = ((Echo)effect).EchoList;
+            List<BASS_DX8_ECHO> echo = ((Echo)effect).List;
             int wet = (int)echo[page - 1].fWetDryMix;
             int feed = (int)echo[page - 1].fFeedback;
             int left = (int)echo[page - 1].fLeftDelay;
@@ -298,6 +301,11 @@ namespace ASynt.Effects
         private void trackBar_ValueChanged(object sender, EventArgs e)
         {
             trackBarValueChanged(sender, e);
+        }
+
+        private void checkBoxPan_CheckedChanged(object sender, EventArgs e)
+        {
+            EditEffect();
         }
     }
 }

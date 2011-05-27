@@ -80,10 +80,12 @@ namespace ASynt.Effects
         protected void Init()
         {
             page = effect.EffectsCount;
+            groupBoxProporties.Size = new Size(groupBoxProporties.Size.Width, this.Size.Height - groupBoxProporties.Location.Y - 30);
+      
 
             if (effect.EffectsCount > 0)
             {
-                groupBoxEchoProporties.Text = ProportiesName + " " + page + "/" + effect.EffectsCount;
+                groupBoxProporties.Text = ProportiesName + " " + page + "/" + effect.EffectsCount;
                 if (effect.EffectsCount > 1)
                     buttonPrevious.Enabled = true;
 
@@ -144,7 +146,7 @@ namespace ASynt.Effects
             if (page == 0)
                 page = 1;
 
-            groupBoxEchoProporties.Text = ProportiesName + " " + page + "/" + effect.EffectsCount;
+            groupBoxProporties.Text = ProportiesName + " " + page + "/" + effect.EffectsCount;
         }
 
         /// <summary>
@@ -155,7 +157,7 @@ namespace ASynt.Effects
         private void buttonNext_Click(object sender, EventArgs e)
         {
             ++page;
-            groupBoxEchoProporties.Text = ProportiesName + " " + page + "/" + effect.EffectsCount;
+            groupBoxProporties.Text = ProportiesName + " " + page + "/" + effect.EffectsCount;
 
             if (page > 1)
                 buttonPrevious.Enabled = true;
@@ -190,7 +192,7 @@ namespace ASynt.Effects
             buttonNext.Enabled = true;
             buttonDeleteEcho.Enabled = true;
 
-            groupBoxEchoProporties.Text = ProportiesName + " " + page + "/" + effect.EffectsCount;
+            groupBoxProporties.Text = ProportiesName + " " + page + "/" + effect.EffectsCount;
 
             UpdateControls();
         }
@@ -215,11 +217,11 @@ namespace ASynt.Effects
                     buttonNext.Enabled = false;
                     buttonDeleteEcho.Enabled = false;
 
-                    groupBoxEchoProporties.Text = ProportiesName + " " + page + "/" + effect.EffectsCount;
+                    groupBoxProporties.Text = ProportiesName + " " + page + "/" + effect.EffectsCount;
                 }
                 else
                 {
-                    groupBoxEchoProporties.Text = ProportiesName + " " + page + "/" + effect.EffectsCount;
+                    groupBoxProporties.Text = ProportiesName + " " + page + "/" + effect.EffectsCount;
                     UpdateControls();
                 }
             }

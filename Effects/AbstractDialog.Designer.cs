@@ -30,12 +30,12 @@
         {
             this.buttonNext = new System.Windows.Forms.Button();
             this.buttonPrevious = new System.Windows.Forms.Button();
-            this.groupBoxEchoProporties = new System.Windows.Forms.GroupBox();
+            this.groupBoxProporties = new System.Windows.Forms.GroupBox();
             this.panelProporties = new System.Windows.Forms.Panel();
             this.panelNoEffect = new System.Windows.Forms.Panel();
             this.buttonAddEcho = new System.Windows.Forms.Button();
             this.buttonDeleteEcho = new System.Windows.Forms.Button();
-            this.groupBoxEchoProporties.SuspendLayout();
+            this.groupBoxProporties.SuspendLayout();
             this.panelNoEffect.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,26 +61,23 @@
             this.buttonPrevious.UseVisualStyleBackColor = true;
             this.buttonPrevious.Click += new System.EventHandler(this.buttonPrevious_Click);
             // 
-            // groupBoxEchoProporties
+            // groupBoxProporties
             // 
-            this.groupBoxEchoProporties.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBoxEchoProporties.Controls.Add(this.panelProporties);
-            this.groupBoxEchoProporties.Controls.Add(this.panelNoEffect);
-            this.groupBoxEchoProporties.Location = new System.Drawing.Point(12, 41);
-            this.groupBoxEchoProporties.Name = "groupBoxEchoProporties";
-            this.groupBoxEchoProporties.Size = new System.Drawing.Size(361, 220);
-            this.groupBoxEchoProporties.TabIndex = 2;
-            this.groupBoxEchoProporties.TabStop = false;
-            this.groupBoxEchoProporties.Text = "Właściwości echa 0/0";
+            this.groupBoxProporties.Controls.Add(this.panelNoEffect);
+            this.groupBoxProporties.Controls.Add(this.panelProporties);
+            this.groupBoxProporties.Location = new System.Drawing.Point(12, 41);
+            this.groupBoxProporties.Name = "groupBoxProporties";
+            this.groupBoxProporties.Size = new System.Drawing.Size(361, 389);
+            this.groupBoxProporties.TabIndex = 2;
+            this.groupBoxProporties.TabStop = false;
+            this.groupBoxProporties.Text = "Właściwości echa 0/0";
             // 
             // panelProporties
             // 
             this.panelProporties.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelProporties.Location = new System.Drawing.Point(3, 16);
             this.panelProporties.Name = "panelProporties";
-            this.panelProporties.Size = new System.Drawing.Size(355, 201);
+            this.panelProporties.Size = new System.Drawing.Size(355, 370);
             this.panelProporties.TabIndex = 0;
             // 
             // panelNoEffect
@@ -89,12 +86,13 @@
             this.panelNoEffect.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelNoEffect.Location = new System.Drawing.Point(3, 16);
             this.panelNoEffect.Name = "panelNoEffect";
-            this.panelNoEffect.Size = new System.Drawing.Size(355, 201);
+            this.panelNoEffect.Size = new System.Drawing.Size(355, 370);
             this.panelNoEffect.TabIndex = 13;
             // 
             // buttonAddEcho
             // 
-            this.buttonAddEcho.Location = new System.Drawing.Point(111, 75);
+            this.buttonAddEcho.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.buttonAddEcho.Location = new System.Drawing.Point(111, 160);
             this.buttonAddEcho.Name = "buttonAddEcho";
             this.buttonAddEcho.Size = new System.Drawing.Size(132, 50);
             this.buttonAddEcho.TabIndex = 0;
@@ -105,11 +103,11 @@
             // buttonDeleteEcho
             // 
             this.buttonDeleteEcho.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonDeleteEcho.Location = new System.Drawing.Point(150, 12);
+            this.buttonDeleteEcho.Location = new System.Drawing.Point(147, 12);
             this.buttonDeleteEcho.Name = "buttonDeleteEcho";
-            this.buttonDeleteEcho.Size = new System.Drawing.Size(84, 23);
+            this.buttonDeleteEcho.Size = new System.Drawing.Size(90, 23);
             this.buttonDeleteEcho.TabIndex = 3;
-            this.buttonDeleteEcho.Text = "Usuń to echo";
+            this.buttonDeleteEcho.Text = "Usuń ten efekt";
             this.buttonDeleteEcho.UseVisualStyleBackColor = true;
             this.buttonDeleteEcho.Click += new System.EventHandler(this.buttonDeleteEcho_Click);
             // 
@@ -117,16 +115,17 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(384, 273);
+            this.ClientSize = new System.Drawing.Size(384, 442);
             this.Controls.Add(this.buttonDeleteEcho);
-            this.Controls.Add(this.groupBoxEchoProporties);
+            this.Controls.Add(this.groupBoxProporties);
             this.Controls.Add(this.buttonPrevious);
             this.Controls.Add(this.buttonNext);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "AbstractDialog";
             this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.Text = "Echo";
-            this.groupBoxEchoProporties.ResumeLayout(false);
+            this.groupBoxProporties.ResumeLayout(false);
             this.panelNoEffect.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -136,7 +135,7 @@
 
         private System.Windows.Forms.Button buttonNext;
         private System.Windows.Forms.Button buttonPrevious;
-        private System.Windows.Forms.GroupBox groupBoxEchoProporties;
+        private System.Windows.Forms.GroupBox groupBoxProporties;
         protected System.Windows.Forms.Panel panelProporties;
         private System.Windows.Forms.Button buttonDeleteEcho;
         private System.Windows.Forms.Panel panelNoEffect;
