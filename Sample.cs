@@ -26,7 +26,7 @@ namespace ASynt
     {
         public int sampleHandle { get; private set; }
         public int channelHandle { get; private set; }
-        private short[] data = new short[44000]; // Sample rate = 44100; 44100 bajtów = 22050 INT16
+        private short[] data = new short[176000]; // Sample rate = 44100; 44100 bajtów = 22050 INT16
         private int freq;
         private int ampl;
 
@@ -34,16 +34,16 @@ namespace ASynt
         {
             ampl = Ampl;
             freq = Freq;
-            sampleHandle = Bass.BASS_SampleCreate(88000, 44100, 2, 1, BASSFlag.BASS_SAMPLE_OVER_POS);
-            AddWave((int)Signals.Sinus, 0, 44000);
+            sampleHandle = Bass.BASS_SampleCreate(176000*2, 44000, 2, 1, BASSFlag.BASS_SAMPLE_OVER_POS);
+            AddWave((int)Signals.Sinus, 0, 176000);
         }
 
         public Sample(int Ampl, int Freq, List<SyntWave> signalsList)
         {
             ampl = Ampl;
             freq = Freq;
-            sampleHandle = Bass.BASS_SampleCreate(88000, 44100, 2, 1, BASSFlag.BASS_SAMPLE_OVER_POS);
-            AddWave((int)Signals.Sinus, 0, 44000);
+            sampleHandle = Bass.BASS_SampleCreate(176000*2, 44000, 2, 1, BASSFlag.BASS_SAMPLE_OVER_POS);
+            AddWave((int)Signals.Sinus, 0, 176000);
             CreateSound(signalsList);
         }
 
