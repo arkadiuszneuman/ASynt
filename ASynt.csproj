@@ -53,7 +53,6 @@
     <Compile Include="EchoDialog.Designer.cs">
       <DependentUpon>EchoDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="SampleSounds.cs" />
     <Compile Include="Keyboard\Key.cs" />
     <Compile Include="Keyboard\Keyboard.cs" />
     <Compile Include="main-window.cs">
