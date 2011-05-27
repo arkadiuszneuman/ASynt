@@ -12,7 +12,7 @@ namespace ASynt
             short[] data = new short[samplesCount];
             for (int i = 0; i < samplesCount; ++i)
             {
-                data[i] = (short)((ampl * short.MaxValue) * Math.Sin((2 * Math.PI * i * freq) / 44100));
+                data[i] = (short)((ampl * short.MaxValue) * Math.Sin((2 * Math.PI * i * freq) / 44000));
             }
             return data;
         }
@@ -22,7 +22,7 @@ namespace ASynt
             short[] data = new short[samplesCount];
             for (int i = 0; i < samplesCount; ++i)
             {
-                data[i] = (short)((ampl * short.MaxValue) * Math.Abs(Math.Sin((2 * Math.PI * i * freq) / 44100)));
+                data[i] = (short)((ampl * short.MaxValue) * Math.Abs(Math.Sin((2 * Math.PI * i * freq) / 44000)));
             }
             return data;
         }
@@ -32,7 +32,7 @@ namespace ASynt
             short[] data = new short[samplesCount];
             for (int i = 0; i < samplesCount; ++i)
             {
-                data[i] = (short)((ampl * short.MaxValue) * Math.Cos((2 * Math.PI * i * freq) / 44100));
+                data[i] = (short)((ampl * short.MaxValue) * Math.Cos((2 * Math.PI * i * freq) / 44000));
             }
             return data;
         }
@@ -42,7 +42,7 @@ namespace ASynt
             short[] data = new short[samplesCount];
             for (int i = 0; i < samplesCount; ++i)
             {
-                data[i] = (short)((ampl * short.MaxValue) * Math.Abs(Math.Cos((2 * Math.PI * i * freq) / 44100)));
+                data[i] = (short)((ampl * short.MaxValue) * Math.Abs(Math.Cos((2 * Math.PI * i * freq) / 44000)));
             }
             return data;
         }
@@ -52,7 +52,7 @@ namespace ASynt
             short[] data = new short[samplesCount];
             for (int i = 0; i < samplesCount; ++i)
             {
-                data[i] = (short)((ampl * short.MaxValue) * Math.Tan((2 * Math.PI * i * freq) / 44100));
+                data[i] = (short)((ampl * short.MaxValue) * Math.Tan((2 * Math.PI * i * freq) / 44000));
             }
             return data;
         }
@@ -62,7 +62,7 @@ namespace ASynt
             short[] data = new short[samplesCount];
             for (int i = 0; i < samplesCount; ++i)
             {
-                data[i] = (short)((ampl * short.MaxValue) * Math.Abs(Math.Tan((2 * Math.PI * i * freq) / 44100)));
+                data[i] = (short)((ampl * short.MaxValue) * Math.Abs(Math.Tan((2 * Math.PI * i * freq) / 44000)));
             }
             return data;
         }
@@ -72,7 +72,7 @@ namespace ASynt
             short[] data = new short[samplesCount];
             for (int i = 0; i < samplesCount; ++i)
             {
-                data[i] = (short)((ampl * short.MaxValue) * Math.Sign(Math.Sin((2 * Math.PI * i * freq) / 44100)));
+                data[i] = (short)((ampl * short.MaxValue) * Math.Sign(Math.Sin((2 * Math.PI * i * freq) / 44000)));
             }
             return data;
         }

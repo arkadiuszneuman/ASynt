@@ -12,7 +12,6 @@ namespace ASynt
 {
     public partial class SoundGenerator : Form
     {
-        private SampleSounds sampleSounds;
         private ASynt.Keyboard.Keyboard keyboard;
         private Sample bufferSample;
         private List<SyntWave> signalsList;
@@ -24,10 +23,9 @@ namespace ASynt
         /// Konstruktor klasy SoundGenerator.
         /// </summary>
         /// <param name="_sampleSounds">Kontener na 12 wygenerowanych dźwięków.</param>
-        public SoundGenerator(SampleSounds _sampleSounds, ASynt.Keyboard.Keyboard _keyboard)
+        public SoundGenerator(ASynt.Keyboard.Keyboard _keyboard)
         {
             InitializeComponent();
-            this.sampleSounds = _sampleSounds;
             this.keyboard = _keyboard;
 
             checkedSignal = -1;
@@ -61,13 +59,13 @@ namespace ASynt
                     from = 0;
                 }
 
-                if (to > 2000)
+                if (to > 4000)
                 {
-                    to = 2000;
+                    to = 4000;
                 }
 
-                to *= 22;
-                from *= 22;
+                to *= 44;
+                from *= 44;
                 signalsList.Add(new SyntWave(checkedSignal, from, to));
                 bufferSample.AddWave(checkedSignal, from, to);
                 ShowSignalInfo(signalsList.Count - 1);
@@ -98,10 +96,6 @@ namespace ASynt
         /// </summary>
         private void CreateSound(object sender, EventArgs e)
         {
-            sampleSounds.ampl = ampl;
-            sampleSounds.signalsList = signalsList;
-            sampleSounds.CreateSamples();
-
             for (int i = 0; i < keyboard.allKeys.Count(); ++i)
             {
                 keyboard.allKeys[i].KeySound = new ASynt.Player.Sound(ampl, (i + 1) * 100, signalsList);
@@ -184,8 +178,8 @@ namespace ASynt
         private void ShowSignalInfo(int signalNumber)
         {
             infoAL1.Text = ((Signals)(signalsList[signalNumber].signal)).ToString();
-            infoAL2.Text = (signalsList[signalNumber].from/22).ToString();                                
-            infoAL3.Text = (signalsList[signalNumber].to/22).ToString();
+            infoAL2.Text = (signalsList[signalNumber].from/44).ToString();                                
+            infoAL3.Text = (signalsList[signalNumber].to/44).ToString();
             currentSignalInfo = signalNumber;
             UpdateControls();
         }
