@@ -32,9 +32,10 @@ namespace ASynt
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int channel = sampleSounds.GetChannelHandle(0);
-            Bass.BASS_ChannelPlay(channel, false);
-            Bass.BASS_ChannelSlideAttribute(channel, BASSAttribute.BASS_ATTRIB_VOL, 0, 10000);
+            //int channel = sampleSounds.GetChannelHandle(0);
+           // Bass.BASS_ChannelPlay(channel, false);
+            Bass.BASS_ChannelPlay(sampleSounds.samples[0].channelHandle, true);
+            //Bass.BASS_ChannelSlideAttribute(channel, BASSAttribute.BASS_ATTRIB_VOL, 0, 10000);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -116,7 +117,7 @@ namespace ASynt
 
         private void soundGenerator(object sender, EventArgs e)
         {
-            SoundGenerator sg = new SoundGenerator(sampleSounds);
+            SoundGenerator sg = new SoundGenerator(sampleSounds, keyboard);
             sg.ShowDialog();
         }
 

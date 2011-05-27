@@ -117,4 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="infoL.Text" xml:space="preserve">
+    <value>Witaj w generatorze dźwięków. W tym miejscu możesz stworzyć swoje własne dźwięki złożone z poniższych sygnałów. Wybierz sygnał, określ jak długo ma trwać (2s trwa cały dźwięk) i dodaj go. Dźwięk możesz odsłuchać pod klawiszem "Testuj!". Możesz również zmienić wzmocnienie całego sygnału - standardowe jest ustawione na 25%.</value>
+  </data>
 </root>
