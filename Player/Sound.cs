@@ -2,6 +2,7 @@
 using Un4seen.Bass;
 using System.Windows.Forms;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 namespace ASynt.Player
 {
@@ -21,12 +22,16 @@ namespace ASynt.Player
     {
         public int Stream {get; private set;}
 
-        public int sampleHandle { get; private set; }
-        public int channelHandle { get; private set; }
-        private short[] data = new short[44000]; // Sample rate = 44100; 44100 bajtów = 22050 INT16
+        // Handle for sound array
+        private GCHandle soundHandle;
+        // 88000 bytes for sound data + 44 for WAV header
+        private byte[] soundData = new byte[352044];
+        // Only sound - need to modify amplitude
+        private short[] soundBuffer = new short[176000];
         private int freq;
         private int ampl;
-
+        private List<SyntWave> signalsList;
+        
         /// <summary>
         /// Konstruktor dźwięku
         /// </summary>
@@ -47,13 +52,26 @@ namespace ASynt.Player
             }
         }
 
-        public Sound(int Ampl, int Freq, List<SyntWave> signalsList)
+        /// <summary>
+        /// Konstruktor dźwięku wygenerowanego przez użytkownika
+        /// </summary>
+        /// <param name="Ampl">Wzmocnienie dźwieku</param>
+        /// <param name="Freq">Częstotliwość dźwięku</param>
+        /// <param name="_signalsList">Lista sygnałów do dodania</param>
+        public Sound(int Ampl, int Freq, List<SyntWave> _signalsList)
         {
             ampl = Ampl;
             freq = Freq;
-            sampleHandle = Bass.BASS_SampleCreate(88000, 44100, 2, 1, BASSFlag.BASS_SAMPLE_OVER_POS);
-            AddWave((int)Signals.Sinus, 0, 44000);
-            CreateSound(signalsList);
+            signalsList = _signalsList;
+
+            CreateSound();
+            WavHeader().CopyTo(soundData, 0);
+            for (int i = 0; i < 176000; ++i)
+            {
+                BitConverter.GetBytes(soundBuffer[i]).CopyTo(soundData, 44 + (i * 2));
+            }
+            soundHandle = GCHandle.Alloc(soundData, GCHandleType.Pinned);
+            Stream = Bass.BASS_StreamCreateFile(soundHandle.AddrOfPinnedObject(), 0L, soundData.Length, BASSFlag.BASS_DEFAULT);
         }
 
         /// <summary>
@@ -76,17 +94,17 @@ namespace ASynt.Player
             }
         }
 
-        public void CreateSound(List<SyntWave> signalsList)
+        public void CreateSound()
         {
+            AddWave((int)Signals.Sinus, 0, 176000);
+
             foreach (SyntWave sw in signalsList)
             {
                 AddWave(sw.signal, sw.from, sw.to);
             }
-            Bass.BASS_SampleSetData(sampleHandle, data);
-            Stream = Bass.BASS_SampleGetChannel(sampleHandle, false);
         }
 
-        public void AddWave(int signal, int from, int to)
+       public void AddWave(int signal, int from, int to)
         {
             int samplesCount = to - from;
             short[] buffer = new short[samplesCount];
@@ -134,13 +152,8 @@ namespace ASynt.Player
 
             for (int i = from; i < to; ++i)
             {
-                data[i] += buffer[i - from];
+                soundBuffer[i] += buffer[i - from];
             }
-        }
-
-        public void SetData()
-        {
-            Bass.BASS_SampleSetData(sampleHandle, data);
         }
 
         public void ChangeAmpl(int oldAmpl, int newAmpl)
@@ -150,116 +163,46 @@ namespace ASynt.Player
             double bOldAmpl = oldAmpl / 100.0;
             double bNewAmpl = newAmpl / 100.0;
 
-            for (int i = 0; i < 44000; ++i)
+            for (int i = 0; i < 176000; ++i)
             {
-                data[i] = (short)((bNewAmpl * data[i]) / bOldAmpl);
-            }
-        }
-    }
-
-    public class Sample
-    {
-        public int sampleHandle { get; private set; }
-        public int channelHandle { get; private set; }
-        private short[] data = new short[44000]; // Sample rate = 44100; 44100 bajtów = 22050 INT16
-        private int freq;
-        private int ampl;
-
-        public Sample(int Ampl, int Freq)
-        {
-            ampl = Ampl;
-            freq = Freq;
-            sampleHandle = Bass.BASS_SampleCreate(88000, 44100, 2, 1, BASSFlag.BASS_SAMPLE_OVER_POS);
-            AddWave((int)Signals.Sinus, 0, 44000);
-        }
-
-        public Sample(int Ampl, int Freq, List<SyntWave> signalsList)
-        {
-            ampl = Ampl;
-            freq = Freq;
-            sampleHandle = Bass.BASS_SampleCreate(88000, 44100, 2, 1, BASSFlag.BASS_SAMPLE_OVER_POS);
-            AddWave((int)Signals.Sinus, 0, 44000);
-            CreateSound(signalsList);
-        }
-
-        public void CreateSound(List<SyntWave> signalsList)
-        {
-            foreach (SyntWave sw in signalsList)
-            {
-                AddWave(sw.signal, sw.from, sw.to);
-            }
-            Bass.BASS_SampleSetData(sampleHandle, data);
-            channelHandle = Bass.BASS_SampleGetChannel(sampleHandle, false);
-        }
-
-        public void AddWave(int signal, int from, int to)
-        {
-            int samplesCount = to - from;
-            short[] buffer = new short[samplesCount];
-            double amplitude = ampl / 100.0;
-
-            if (signal == (int)Signals.Sinus)
-            {
-                buffer = SyntMath.Sinus(amplitude, freq, samplesCount);
-            }
-
-            if (signal == (int)Signals.AbsSinus)
-            {
-                buffer = SyntMath.AbsSinus(amplitude, freq, samplesCount);
-            }
-
-            if (signal == (int)Signals.Cosinus)
-            {
-                buffer = SyntMath.Cosinus(amplitude, freq, samplesCount);
-            }
-
-            if (signal == (int)Signals.AbsCosinus)
-            {
-                buffer = SyntMath.AbsCosinus(amplitude, freq, samplesCount);
-            }
-
-            if (signal == (int)Signals.Tangens)
-            {
-                buffer = SyntMath.Tangens(amplitude, freq, samplesCount);
-            }
-
-            if (signal == (int)Signals.AbsTangens)
-            {
-                buffer = SyntMath.AbsTangens(amplitude, freq, samplesCount);
-            }
-
-            if (signal == (int)Signals.Square)
-            {
-                buffer = SyntMath.Square(amplitude, freq, samplesCount);
-            }
-
-            if (signal == (int)Signals.WhiteNoise)
-            {
-                buffer = SyntMath.WhiteNoise(amplitude, freq, samplesCount);
-            }
-
-            for (int i = from; i < to; ++i)
-            {
-                data[i] += buffer[i - from];
+                soundBuffer[i] = (short)((bNewAmpl * soundBuffer[i]) / bOldAmpl);
             }
         }
 
-        public void SetData()
+        private static byte[] WavHeader()
         {
-            Bass.BASS_SampleSetData(sampleHandle, data);
-        }
+            short headerSize = 44;
+            int _chunkID = 0x46464952;
+            int rSize = 352036; // 20;
+            int _format = 0x45564157;
+            int _SubChunkID = 0x20746d66;
+            int _subChunk1Size = 16;
+            short audioFormat = 1;
+            short nOfChannels = 2;
+            int sampleRate = 44000;
+            short bitsPerSample = 16;
+            int ByteRate = (sampleRate * nOfChannels * (bitsPerSample / 8));
+            short blockAlign = (short)(sampleRate * nOfChannels * (bitsPerSample / 8));
+            int _SubChunk2ID = 0x61746164;
+            int _subChunk2Size = 352000;
 
-        public void ChangeAmpl(int oldAmpl, int newAmpl)
-        {
-            ampl = newAmpl;
+            byte[] header = new byte[headerSize];
 
-            double bOldAmpl = oldAmpl / 100.0;
-            double bNewAmpl = newAmpl / 100.0;
+            BitConverter.GetBytes(_chunkID).CopyTo(header, 0);
+            BitConverter.GetBytes(rSize).CopyTo(header, 4);
+            BitConverter.GetBytes(_format).CopyTo(header, 8);
+            BitConverter.GetBytes(_SubChunkID).CopyTo(header, 12);
+            BitConverter.GetBytes(_subChunk1Size).CopyTo(header, 16);
+            BitConverter.GetBytes(audioFormat).CopyTo(header, 20);
+            BitConverter.GetBytes(nOfChannels).CopyTo(header, 22);
+            BitConverter.GetBytes(sampleRate).CopyTo(header, 24);
+            BitConverter.GetBytes(ByteRate).CopyTo(header, 28);
+            BitConverter.GetBytes(blockAlign).CopyTo(header, 32);
+            BitConverter.GetBytes(bitsPerSample).CopyTo(header, 34);
+            BitConverter.GetBytes(_SubChunk2ID).CopyTo(header, 36);
+            BitConverter.GetBytes(_subChunk2Size).CopyTo(header, 40);
 
-            for (int i = 0; i < 44000; ++i)
-            {
-                data[i] = (short)((bNewAmpl * data[i]) / bOldAmpl);
-            }
+            return header;
         }
     }
 }
