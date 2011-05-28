@@ -57,7 +57,7 @@
             this.buttonChorus.Name = "buttonChorus";
             this.buttonChorus.Size = new System.Drawing.Size(102, 23);
             this.buttonChorus.TabIndex = 1;
-            this.buttonChorus.Text = "Chór";
+            this.buttonChorus.Text = "Chorus";
             this.buttonChorus.UseVisualStyleBackColor = true;
             this.buttonChorus.Click += new System.EventHandler(this.buttonChorus_Click);
             // 

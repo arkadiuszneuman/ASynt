@@ -51,6 +51,15 @@ namespace ASynt.Effects
             get { return "echo"; }
         }
 
+        protected override string Description
+        {
+            get
+            {
+                return "Echo – fala akustyczna odbita od przeszkody i powracająca do obserwatora po zaniku wrażenia słuchowego. " +
+                    "Wrażenie echa pojawia się, gdy opóźnienie pomiędzy falą bezpośrednią a falą odbitą jest dłuższe niż 100 ms.";
+            }
+        }
+
         private void InitializeComponent()
         {
             this.checkBoxPan = new System.Windows.Forms.CheckBox();
@@ -162,7 +171,7 @@ namespace ASynt.Effects
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 92);
+            this.label4.Location = new System.Drawing.Point(14, 92);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(137, 13);
             this.label4.TabIndex = 19;
@@ -194,11 +203,11 @@ namespace ASynt.Effects
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(7, 51);
+            this.label6.Location = new System.Drawing.Point(32, 51);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(55, 13);
+            this.label6.Size = new System.Drawing.Size(119, 13);
             this.label6.TabIndex = 16;
-            this.label6.Text = "Feedback";
+            this.label6.Text = "Sprzężenie zwrotne [%]:";
             // 
             // labelHowWetDryFx
             // 
@@ -226,16 +235,16 @@ namespace ASynt.Effects
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(7, 12);
+            this.label8.Location = new System.Drawing.Point(97, 12);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(51, 13);
+            this.label8.Size = new System.Drawing.Size(54, 13);
             this.label8.TabIndex = 13;
-            this.label8.Text = "wetDryFx";
+            this.label8.Text = "wetDryFx:";
             // 
             // EchoDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(384, 273);
+            this.ClientSize = new System.Drawing.Size(384, 316);
             this.Name = "EchoDialog";
             this.panelProporties.ResumeLayout(false);
             this.panelProporties.PerformLayout();
@@ -307,5 +316,7 @@ namespace ASynt.Effects
         {
             EditEffect();
         }
+
+        
     }
 }

@@ -39,6 +39,16 @@ namespace ASynt.Effects
             get { return "chór"; }
         }
 
+        protected override string Description
+        {
+            get 
+            {
+                return "Chorus – efekt gitarowy należący do grupy efektów modulacyjnych. " +
+                  "Jest uzyskiwany poprzez nakładanie lekko zmodulowanego i opóźnionego sygnału na oryginalny sygnał. " +
+                  "Efektem takiej modulacji jest uzyskanie charakterystycznego brzmienia chóralnego";
+            }
+        }
+
         public ChorusDialog(Chorus chorus)
             : base()
         {
@@ -328,11 +338,11 @@ namespace ASynt.Effects
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(83, 55);
+            this.label6.Location = new System.Drawing.Point(22, 55);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(58, 13);
+            this.label6.Size = new System.Drawing.Size(119, 13);
             this.label6.TabIndex = 29;
-            this.label6.Text = "Feedback:";
+            this.label6.Text = "Sprzężenie zwrotne [%]:";
             // 
             // labelHowWetDryFx
             // 
@@ -446,7 +456,7 @@ namespace ASynt.Effects
             // ChorusDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(384, 331);
+            this.ClientSize = new System.Drawing.Size(384, 386);
             this.Name = "ChorusDialog";
             this.panelProporties.ResumeLayout(false);
             this.panelProporties.PerformLayout();

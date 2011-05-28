@@ -33,6 +33,7 @@ namespace ASynt.Effects
 
 #if DEBUG
         protected virtual string ProportiesName { get { throw new NotImplementedException(); } }
+        protected virtual string Description { get { throw new NotImplementedException(); } }
         protected virtual string EffectName { get { throw new NotImplementedException(); } }
         protected virtual void UpdateControls() { throw new NotImplementedException(); }
         protected virtual void EditEffect() { throw new NotImplementedException(); }
@@ -48,6 +49,10 @@ namespace ASynt.Effects
         /// Nazwa efektu np. "echo"
         /// </summary>
         protected abstract string EffectName { get; }
+        /// <summary>
+        /// Opis efektu
+        /// </summary>
+        protected abstract string Description { get; }
         /// <summary>
         /// Uaktualnienie kontrolek po przełączeniu się na następny/poprzedni efekt lub podczas ponownego otwarcia okienka
         /// </summary>
@@ -81,7 +86,7 @@ namespace ASynt.Effects
         {
             page = effect.EffectsCount;
             groupBoxProporties.Size = new Size(groupBoxProporties.Size.Width, this.Size.Height - groupBoxProporties.Location.Y - 30);
-      
+            labelDesc.Text = Description;
 
             if (effect.EffectsCount > 0)
             {
