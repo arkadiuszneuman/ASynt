@@ -101,10 +101,12 @@ namespace ASynt.Effects
             {
                 panelNoEffect.BringToFront();
                 panelNoEffect.Visible = true;
-                buttonAddEcho.Text = "Dodaj " + EffectName;
+                buttonAddEcho.Text = "Dodaj " + EffectName.ToLower();
                 buttonNext.Enabled = false;
                 buttonDeleteEcho.Enabled = false;
             }
+
+            Text = EffectName;
         }
 
 

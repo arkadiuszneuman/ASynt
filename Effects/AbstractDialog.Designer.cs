@@ -31,9 +31,9 @@
             this.buttonNext = new System.Windows.Forms.Button();
             this.buttonPrevious = new System.Windows.Forms.Button();
             this.groupBoxProporties = new System.Windows.Forms.GroupBox();
+            this.panelProporties = new System.Windows.Forms.Panel();
             this.panelNoEffect = new System.Windows.Forms.Panel();
             this.buttonAddEcho = new System.Windows.Forms.Button();
-            this.panelProporties = new System.Windows.Forms.Panel();
             this.buttonDeleteEcho = new System.Windows.Forms.Button();
             this.labelDesc = new System.Windows.Forms.Label();
             this.groupBoxProporties.SuspendLayout();
@@ -71,7 +71,15 @@
             this.groupBoxProporties.Size = new System.Drawing.Size(360, 333);
             this.groupBoxProporties.TabIndex = 2;
             this.groupBoxProporties.TabStop = false;
-            this.groupBoxProporties.Text = "Właściwości echa 0/0";
+            this.groupBoxProporties.Text = "Właściwości 0/0";
+            // 
+            // panelProporties
+            // 
+            this.panelProporties.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelProporties.Location = new System.Drawing.Point(3, 16);
+            this.panelProporties.Name = "panelProporties";
+            this.panelProporties.Size = new System.Drawing.Size(354, 314);
+            this.panelProporties.TabIndex = 0;
             // 
             // panelNoEffect
             // 
@@ -92,14 +100,6 @@
             this.buttonAddEcho.Text = "Dodaj Echo";
             this.buttonAddEcho.UseVisualStyleBackColor = true;
             this.buttonAddEcho.Click += new System.EventHandler(this.buttonAddEffect_Click);
-            // 
-            // panelProporties
-            // 
-            this.panelProporties.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelProporties.Location = new System.Drawing.Point(3, 16);
-            this.panelProporties.Name = "panelProporties";
-            this.panelProporties.Size = new System.Drawing.Size(354, 314);
-            this.panelProporties.TabIndex = 0;
             // 
             // buttonDeleteEcho
             // 

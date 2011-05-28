@@ -10,7 +10,7 @@ namespace ASynt.Effects.Effect
     class Echo : Effect
     {
         private List<BASS_DX8_ECHO> echo = new List<BASS_DX8_ECHO>();
-        private List<int> echoHandles = new List<int>();
+        private List<int> handles = new List<int>();
         public List<BASS_DX8_ECHO> List { get { return echo; } }
 
         public Echo(Keyboard.Keyboard keyboard)
@@ -22,11 +22,11 @@ namespace ASynt.Effects.Effect
         {
             for (int i = 0; i < keys.Length; ++i)
             {
-                Bass.BASS_ChannelRemoveFX(keys[i].KeySound.Stream, echoHandles[i + which * 12]);
+                Bass.BASS_ChannelRemoveFX(keys[i].KeySound.Stream, handles[i + which * 12]);
             }
 
             echo.RemoveAt(which);
-            echoHandles.RemoveRange(which * 12, 11);
+            handles.RemoveRange(which * 12, 11);
         }
 
         public override int EffectsCount
@@ -45,13 +45,13 @@ namespace ASynt.Effects.Effect
             echo.Add(new BASS_DX8_ECHO(d["wetDryMix"], d["feedback"], d["leftDelay"], d["rightDelay"], Convert.ToBoolean(d["panDelay"])));
             foreach (Key key in keys)
             {
-                echoHandles.Add(Bass.BASS_ChannelSetFX(key.KeySound.Stream, BASSFXType.BASS_FX_DX8_ECHO, 1));
-                if (echoHandles.Last() == 0)
+                handles.Add(Bass.BASS_ChannelSetFX(key.KeySound.Stream, BASSFXType.BASS_FX_DX8_ECHO, 1));
+                if (handles.Last() == 0)
                 {
                     throw new Exception("Błąd ustawienia echa: " + Bass.BASS_ErrorGetCode());
                 }
 
-                Bass.BASS_FXSetParameters(echoHandles.Last(), echo.Last());
+                Bass.BASS_FXSetParameters(handles.Last(), echo.Last());
             }
         }
 
@@ -72,7 +72,7 @@ namespace ASynt.Effects.Effect
             echo[which].lPanDelay = Convert.ToBoolean(d["panDelay"]);
 
             for (int i = which * 12; i < which * 12 + 12; ++i)
-                Bass.BASS_FXSetParameters(echoHandles[i], echo[which]);
+                Bass.BASS_FXSetParameters(handles[i], echo[which]);
         }
     }
 }

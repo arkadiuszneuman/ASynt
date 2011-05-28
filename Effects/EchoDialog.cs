@@ -48,7 +48,7 @@ namespace ASynt.Effects
 
         protected override string EffectName
         {
-            get { return "echo"; }
+            get { return "Echo"; }
         }
 
         protected override string Description

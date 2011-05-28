@@ -23,6 +23,7 @@ namespace ASynt
         //efekty muszą być zapamiętane - dlatego są tworzone w mainie, bo bez tego po zamknięciu okienka dialogowego by się wszystkie usunęły.
         Echo echo;
         Chorus chorus;
+        Gargle gargle;
 
         public MainForm()
         {
@@ -30,6 +31,7 @@ namespace ASynt
             keyboard = new Keyboard.Keyboard(this, new Point(20, 20));
             echo = new Echo(keyboard);
             chorus = new Chorus(keyboard);
+            gargle = new Gargle(keyboard);
         }
 
         private void soundGenerator(object sender, EventArgs e)
@@ -47,6 +49,11 @@ namespace ASynt
         private void buttonChorus_Click(object sender, EventArgs e)
         {
             new ChorusDialog(chorus).Show();
+        }
+
+        private void buttonGargle_Click(object sender, EventArgs e)
+        {
+            new GargleDialog(gargle).Show();
         }
     }
 }

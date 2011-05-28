@@ -10,7 +10,7 @@ namespace ASynt.Effects.Effect
     class Chorus : Effect
     {
         private List<BASS_DX8_CHORUS> chorus = new List<BASS_DX8_CHORUS>();
-        private List<int> echoHandles = new List<int>();
+        private List<int> handles = new List<int>();
         public List<BASS_DX8_CHORUS> List { get { return chorus; } }
 
         public Chorus(Keyboard.Keyboard keyboard)
@@ -43,23 +43,18 @@ namespace ASynt.Effects.Effect
 
         public override void Add(Dictionary<string, float> d)
         {
-            if (!d.ContainsKey("wetDryMix") || !d.ContainsKey("feedback") || !d.ContainsKey("delay")
-                || !d.ContainsKey("depth") || !d.ContainsKey("frequency") || !d.ContainsKey("phase")
-                || !d.ContainsKey("waveform"))
-            {
-                throw new ArgumentException("Brak wymaganych parametrów w dictionary");
-            }
+            chorus.Add(new BASS_DX8_CHORUS());
+            EditChorus(chorus.Last(), d);
 
-            chorus.Add(new BASS_DX8_CHORUS(d["wetDryMix"], d["depth"], d["feedback"], d["frequency"], (int)d["waveform"], d["delay"], (BASSFXPhase)d["phase"]));
             foreach (Key key in keys)
             {
-                echoHandles.Add(Bass.BASS_ChannelSetFX(key.KeySound.Stream, BASSFXType.BASS_FX_DX8_CHORUS, 1));
-                if (echoHandles.Last() == 0)
+                handles.Add(Bass.BASS_ChannelSetFX(key.KeySound.Stream, BASSFXType.BASS_FX_DX8_CHORUS, 1));
+                if (handles.Last() == 0)
                 {
                     throw new Exception("Błąd ustawienia chóru: " + Bass.BASS_ErrorGetCode());
                 }
 
-                Bass.BASS_FXSetParameters(echoHandles.Last(), chorus.Last());
+                Bass.BASS_FXSetParameters(handles.Last(), chorus.Last());
             }
         }
 
@@ -75,18 +70,18 @@ namespace ASynt.Effects.Effect
             EditChorus(chorus[which], d);
 
             for (int i = which * 12; i < which * 12 + 12; ++i)
-                Bass.BASS_FXSetParameters(echoHandles[i], chorus[which]);
+                Bass.BASS_FXSetParameters(handles[i], chorus[which]);
         }
 
         public override void Delete(int which)
         {
             for (int i = 0; i < keys.Length; ++i)
             {
-                Bass.BASS_ChannelRemoveFX(keys[i].KeySound.Stream, echoHandles[i + which * 12]);
+                Bass.BASS_ChannelRemoveFX(keys[i].KeySound.Stream, handles[i + which * 12]);
             }
 
             chorus.RemoveAt(which);
-            echoHandles.RemoveRange(which * 12, 11);
+            handles.RemoveRange(which * 12, 11);
         }
     }
 }

@@ -31,12 +31,12 @@ namespace ASynt.Effects
     
         protected override string ProportiesName
         {
-            get { return "Właściwości chóru"; }
+            get { return "Właściwości chorusu"; }
         }
 
         protected override string EffectName
         {
-            get { return "chór"; }
+            get { return "Chorus"; }
         }
 
         protected override string Description
@@ -45,7 +45,7 @@ namespace ASynt.Effects
             {
                 return "Chorus – efekt gitarowy należący do grupy efektów modulacyjnych. " +
                   "Jest uzyskiwany poprzez nakładanie lekko zmodulowanego i opóźnionego sygnału na oryginalny sygnał. " +
-                  "Efektem takiej modulacji jest uzyskanie charakterystycznego brzmienia chóralnego";
+                  "Efektem takiej modulacji jest uzyskanie charakterystycznego brzmienia chóralnego.";
             }
         }
 
@@ -59,8 +59,6 @@ namespace ASynt.Effects
             comboBoxWaveform.SelectedIndex = 0; //domyślnie trójkąt
 
             Init();
-
-            Text = "Chór";
         }
 
         protected override void UpdateControls()
