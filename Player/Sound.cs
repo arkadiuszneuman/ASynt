@@ -24,7 +24,7 @@ namespace ASynt.Player
 
         // Handle for sound array
         private GCHandle soundHandle;
-        // 88000 bytes for sound data + 44 for WAV header
+        // DATA size in bytes for sound data + 44 for WAV header
         private byte[] soundData = new byte[352044];
         // Only sound - need to modify amplitude
         private short[] soundBuffer = new short[176000];
@@ -94,6 +94,9 @@ namespace ASynt.Player
             }
         }
 
+        /// <summary>
+        /// Generuje dźwięk na podstawie listy sygnałów.
+        /// </summary>
         public void CreateSound()
         {
             AddWave((int)Signals.Sinus, 0, 176000);
@@ -104,7 +107,13 @@ namespace ASynt.Player
             }
         }
 
-       public void AddWave(int signal, int from, int to)
+        /// <summary>
+        /// Dodaje do tablicy kolejną falę dźwiękową.
+        /// </summary>
+        /// <param name="signal">Typ fali dźwiękowej.</param>
+        /// <param name="from">Początek (w tablicy z danymi) nowej fali dźwiękowej (jako numer próbki).</param>
+        /// <param name="to">Koniec fali dźwiękowej (jako numer próbki).</param>
+        public void AddWave(int signal, int from, int to)
         {
             int samplesCount = to - from;
             short[] buffer = new short[samplesCount];
@@ -156,6 +165,11 @@ namespace ASynt.Player
             }
         }
 
+        /// <summary>
+        /// Zmienia amplitudę wygenerowanego sygnału.
+        /// </summary>
+        /// <param name="oldAmpl">Stara wartość amplitudy.</param>
+        /// <param name="newAmpl">Nowa wartość amplitudy.</param>
         public void ChangeAmpl(int oldAmpl, int newAmpl)
         {
             ampl = newAmpl;
@@ -169,6 +183,10 @@ namespace ASynt.Player
             }
         }
 
+        /// <summary>
+        /// Tworzy nagłówek pliku WAV - umożliwia to granie wygenerowanego dźwięku jako STREAM.
+        /// </summary>
+        /// <returns>Zwraca tablicę byte[] z nagłowkiem WAV.</returns>
         private static byte[] WavHeader()
         {
             short headerSize = 44;
