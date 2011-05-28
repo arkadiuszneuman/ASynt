@@ -7,8 +7,6 @@ using System.Windows.Forms;
 using ASynt.Player;
 using System.Drawing;
 using ASynt.Keyboard;
-using Un4seen.Bass;
-using System.Runtime.InteropServices;
 using ASynt.Effects;
 using ASynt.Effects.Effect;
 
@@ -17,8 +15,6 @@ namespace ASynt
     public partial class MainForm : Form
     {
         Keyboard.Keyboard keyboard;
-        private GCHandle _hGCFile;
-
 
         //efekty muszą być zapamiętane - dlatego są tworzone w mainie, bo bez tego po zamknięciu okienka dialogowego by się wszystkie usunęły.
         Echo echo;

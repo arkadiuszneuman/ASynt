@@ -22,41 +22,37 @@ namespace ASynt
         WhiteNoise
     };
 
+    /// <summary>
+    /// Klasa tworząca próbkę dźwięku SAMPLE. Użyta jest jedynie w SoundGenerator - reszta jest oparta o STREAMy.
+    /// Powodem użycia jest szybkość tworzenia - nie trzeba tworzyć nagłowka WAV oraz przeliczać tablicy INT16 na BYTE.
+    /// </summary>
     public class Sample
     {
         public int sampleHandle { get; private set; }
         public int channelHandle { get; private set; }
-        private short[] data = new short[176000]; // Sample rate = 44100; 44100 bajtów = 22050 INT16
+        private short[] data = new short[176000]; 
         private int freq;
         private int ampl;
 
+        /// <summary>
+        /// Konstruktor klasy SAMPLE. Tworzy uchwyt do odtwarzania.
+        /// </summary>
+        /// <param name="Ampl">Wzmocnienie tworzonego sygnału.</param>
+        /// <param name="Freq">Częstotliwość sygnału.</param>
         public Sample(int Ampl, int Freq)
         {
             ampl = Ampl;
             freq = Freq;
-            sampleHandle = Bass.BASS_SampleCreate(176000*2, 44000, 2, 1, BASSFlag.BASS_SAMPLE_OVER_POS);
+            sampleHandle = Bass.BASS_SampleCreate(352000, 44000, 2, 1, BASSFlag.BASS_SAMPLE_OVER_POS);
             AddWave((int)Signals.Sinus, 0, 176000);
         }
 
-        public Sample(int Ampl, int Freq, List<SyntWave> signalsList)
-        {
-            ampl = Ampl;
-            freq = Freq;
-            sampleHandle = Bass.BASS_SampleCreate(176000*2, 44000, 2, 1, BASSFlag.BASS_SAMPLE_OVER_POS);
-            AddWave((int)Signals.Sinus, 0, 176000);
-            CreateSound(signalsList);
-        }
-
-        public void CreateSound(List<SyntWave> signalsList)
-        {
-            foreach (SyntWave sw in signalsList)
-            {
-                AddWave(sw.signal, sw.from, sw.to);
-            }
-            Bass.BASS_SampleSetData(sampleHandle, data);
-            channelHandle = Bass.BASS_SampleGetChannel(sampleHandle, false);
-        }
-
+        /// <summary>
+        /// Dodaje do tablicy kolejną falę dźwiękową.
+        /// </summary>
+        /// <param name="signal">Typ fali dźwiękowej.</param>
+        /// <param name="from">Początek (w tablicy z danymi) nowej fali dźwiękowej.</param>
+        /// <param name="to">Koniec fali dźwiękowej.</param>
         public void AddWave(int signal, int from, int to)
         {
             int samplesCount = to - from;
@@ -109,11 +105,19 @@ namespace ASynt
             }
         }
 
+        /// <summary>
+        /// Wpycha dane do uchwytu. ???Niepotrzebne???
+        /// </summary>
         public void SetData()
         {
             Bass.BASS_SampleSetData(sampleHandle, data);
         }
 
+        /// <summary>
+        /// Zmienia amplitudę wygenerowanego sygnału.
+        /// </summary>
+        /// <param name="oldAmpl">Stara wartość amplitudy.</param>
+        /// <param name="newAmpl">Nowa wartość amplitudy.</param>
         public void ChangeAmpl(int oldAmpl, int newAmpl)
         {
             ampl = newAmpl;
@@ -121,7 +125,7 @@ namespace ASynt
             double bOldAmpl = oldAmpl / 100.0;
             double bNewAmpl = newAmpl / 100.0;
 
-            for (int i = 0; i < 44000; ++i)
+            for (int i = 0; i < 176000; ++i)
             {
                 data[i] = (short)((bNewAmpl * data[i]) / bOldAmpl);
             }

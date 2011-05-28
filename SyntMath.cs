@@ -5,6 +5,10 @@ using System.Text;
 
 namespace ASynt
 {
+    /// <summary>
+    /// Klasa statyczna, zwracająca różne typy sygnałów. Każda funkcja przyjmuje wzmocnienie sygnału,
+    /// częstotliwość oraz liczbę próbek do wygenerowania.
+    /// </summary>
     public class SyntMath
     {
         public static short[] Sinus(double ampl, int freq, int samplesCount)

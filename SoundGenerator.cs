@@ -93,7 +93,7 @@ namespace ASynt
 
         /// <summary>
         /// Przesyła listę sygnałów gotową do generacji dźwięków do sampleSound i niszczy okno.
-        /// </summary>
+        /// </summary>        
         private void CreateSound(object sender, EventArgs e)
         {
             for (int i = 0; i < keyboard.AllKeys.Count(); ++i)
