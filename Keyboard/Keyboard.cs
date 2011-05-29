@@ -11,8 +11,8 @@ namespace ASynt.Keyboard
 {
     public class Keyboard
     {
-        private Key[] keys = new Key[7];
-        private Key[] smallKeys = new Key[5];
+        public Key[] keys = new Key[7];
+        public Key[] smallKeys = new Key[5];
         public Key[] AllKeys
         {
             get

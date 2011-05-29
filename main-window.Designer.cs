@@ -36,6 +36,7 @@
             this.soundGeneratorB = new System.Windows.Forms.Button();
             this.globalMuteCB = new System.Windows.Forms.CheckBox();
             this.globalVolumeSlider = new System.Windows.Forms.TrackBar();
+            this.pianoB = new System.Windows.Forms.Button();
             this.effectsGB.SuspendLayout();
             this.soundTypeGB.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.globalVolumeSlider)).BeginInit();
@@ -85,6 +86,7 @@
             // 
             // soundTypeGB
             // 
+            this.soundTypeGB.Controls.Add(this.pianoB);
             this.soundTypeGB.Controls.Add(this.soundGeneratorB);
             this.soundTypeGB.Location = new System.Drawing.Point(369, 132);
             this.soundTypeGB.Name = "soundTypeGB";
@@ -95,9 +97,9 @@
             // 
             // soundGeneratorB
             // 
-            this.soundGeneratorB.Location = new System.Drawing.Point(6, 71);
+            this.soundGeneratorB.Location = new System.Drawing.Point(12, 48);
             this.soundGeneratorB.Name = "soundGeneratorB";
-            this.soundGeneratorB.Size = new System.Drawing.Size(188, 23);
+            this.soundGeneratorB.Size = new System.Drawing.Size(180, 23);
             this.soundGeneratorB.TabIndex = 0;
             this.soundGeneratorB.Text = "Generuj";
             this.soundGeneratorB.UseVisualStyleBackColor = true;
@@ -119,6 +121,16 @@
             this.globalVolumeSlider.Name = "globalVolumeSlider";
             this.globalVolumeSlider.Size = new System.Drawing.Size(198, 45);
             this.globalVolumeSlider.TabIndex = 4;
+            // 
+            // pianoB
+            // 
+            this.pianoB.Location = new System.Drawing.Point(12, 19);
+            this.pianoB.Name = "pianoB";
+            this.pianoB.Size = new System.Drawing.Size(180, 23);
+            this.pianoB.TabIndex = 1;
+            this.pianoB.Text = "Pianino";
+            this.pianoB.UseVisualStyleBackColor = true;
+            this.pianoB.Click += new System.EventHandler(this.pianoSound);
             // 
             // MainForm
             // 
@@ -151,6 +163,7 @@
         private System.Windows.Forms.Button buttonEcho;
         private System.Windows.Forms.Button buttonChorus;
         private System.Windows.Forms.Button buttonGargle;
+        private System.Windows.Forms.Button pianoB;
     }
 }
 

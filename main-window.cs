@@ -51,5 +51,22 @@ namespace ASynt
         {
             new GargleDialog(gargle).Show();
         }
+
+        private void pianoSound(object sender, EventArgs e)
+        {
+            for (int i = 0; i < keyboard.keys.Length; ++i)
+            {
+                int l = i; //dodawanie do literki
+                if ('c' + l > 'g')
+                    l -= 7;
+                keyboard.keys[i].KeySound = new ASynt.Player.Sound(@"piano3\" + (char)('c' + l));
+            }
+
+            keyboard.smallKeys[0].KeySound = new ASynt.Player.Sound(@"piano3\c#");
+            keyboard.smallKeys[1].KeySound = new ASynt.Player.Sound(@"piano3\d#");
+            keyboard.smallKeys[2].KeySound = new ASynt.Player.Sound(@"piano3\f#");
+            keyboard.smallKeys[3].KeySound = new ASynt.Player.Sound(@"piano3\g#");
+            keyboard.smallKeys[4].KeySound = new ASynt.Player.Sound(@"piano3\a#");
+        }
     }
 }
