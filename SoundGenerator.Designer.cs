@@ -40,10 +40,10 @@
             this.amplUD = new System.Windows.Forms.NumericUpDown();
             this.cosWave = new System.Windows.Forms.RadioButton();
             this.signalsGB = new System.Windows.Forms.GroupBox();
+            this.toTB = new System.Windows.Forms.NumericUpDown();
+            this.fromTB = new System.Windows.Forms.NumericUpDown();
             this.toL = new System.Windows.Forms.Label();
             this.fromL = new System.Windows.Forms.Label();
-            this.toTB = new System.Windows.Forms.TextBox();
-            this.fromTB = new System.Windows.Forms.TextBox();
             this.absSinWave = new System.Windows.Forms.RadioButton();
             this.sinWave = new System.Windows.Forms.RadioButton();
             this.addB = new System.Windows.Forms.Button();
@@ -66,6 +66,8 @@
             this.soundGraphB = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.amplUD)).BeginInit();
             this.signalsGB.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.toTB)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fromTB)).BeginInit();
             this.signalPrevGB.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -190,10 +192,10 @@
             // 
             // signalsGB
             // 
-            this.signalsGB.Controls.Add(this.toL);
-            this.signalsGB.Controls.Add(this.fromL);
             this.signalsGB.Controls.Add(this.toTB);
             this.signalsGB.Controls.Add(this.fromTB);
+            this.signalsGB.Controls.Add(this.toL);
+            this.signalsGB.Controls.Add(this.fromL);
             this.signalsGB.Controls.Add(this.whiteNoiseWave);
             this.signalsGB.Controls.Add(this.squareWave);
             this.signalsGB.Controls.Add(this.absTanWave);
@@ -209,6 +211,42 @@
             this.signalsGB.TabIndex = 14;
             this.signalsGB.TabStop = false;
             this.signalsGB.Text = "Sygnały";
+            // 
+            // toTB
+            // 
+            this.toTB.Location = new System.Drawing.Point(432, 46);
+            this.toTB.Maximum = new decimal(new int[] {
+            4000,
+            0,
+            0,
+            0});
+            this.toTB.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.toTB.Name = "toTB";
+            this.toTB.Size = new System.Drawing.Size(73, 20);
+            this.toTB.TabIndex = 30;
+            this.toTB.Value = new decimal(new int[] {
+            4000,
+            0,
+            0,
+            0});
+            this.toTB.ValueChanged += new System.EventHandler(this.toTimeChanged);
+            // 
+            // fromTB
+            // 
+            this.fromTB.Location = new System.Drawing.Point(432, 21);
+            this.fromTB.Maximum = new decimal(new int[] {
+            3999,
+            0,
+            0,
+            0});
+            this.fromTB.Name = "fromTB";
+            this.fromTB.Size = new System.Drawing.Size(73, 20);
+            this.fromTB.TabIndex = 29;
+            this.fromTB.ValueChanged += new System.EventHandler(this.fromTimeChanged);
             // 
             // toL
             // 
@@ -227,22 +265,6 @@
             this.fromL.Size = new System.Drawing.Size(46, 13);
             this.fromL.TabIndex = 11;
             this.fromL.Text = "Od (ms):";
-            // 
-            // toTB
-            // 
-            this.toTB.Location = new System.Drawing.Point(432, 45);
-            this.toTB.Name = "toTB";
-            this.toTB.Size = new System.Drawing.Size(73, 20);
-            this.toTB.TabIndex = 10;
-            this.toTB.Text = "2000";
-            // 
-            // fromTB
-            // 
-            this.fromTB.Location = new System.Drawing.Point(432, 19);
-            this.fromTB.Name = "fromTB";
-            this.fromTB.Size = new System.Drawing.Size(73, 20);
-            this.fromTB.TabIndex = 9;
-            this.fromTB.Text = "0";
             // 
             // absSinWave
             // 
@@ -475,6 +497,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.amplUD)).EndInit();
             this.signalsGB.ResumeLayout(false);
             this.signalsGB.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.toTB)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fromTB)).EndInit();
             this.signalPrevGB.ResumeLayout(false);
             this.signalPrevGB.PerformLayout();
             this.ResumeLayout(false);
@@ -501,8 +525,6 @@
         private System.Windows.Forms.Button createSoundB;
         private System.Windows.Forms.Label toL;
         private System.Windows.Forms.Label fromL;
-        private System.Windows.Forms.TextBox toTB;
-        private System.Windows.Forms.TextBox fromTB;
         private System.Windows.Forms.GroupBox signalPrevGB;
         private System.Windows.Forms.Button deleteAllSignalsB;
         private System.Windows.Forms.Button nextPageB;
@@ -518,5 +540,7 @@
         private System.Windows.Forms.Label infoAL1;
         private System.Windows.Forms.Label infoL1;
         private System.Windows.Forms.Button soundGraphB;
+        private System.Windows.Forms.NumericUpDown toTB;
+        private System.Windows.Forms.NumericUpDown fromTB;
     }
 }

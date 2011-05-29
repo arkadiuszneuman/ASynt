@@ -51,18 +51,8 @@ namespace ASynt
         {
             if (checkedSignal != -1)
             {
-                int to = int.Parse(toTB.Text.ToString());
-                int from = int.Parse(fromTB.Text.ToString());
-                
-                if (from < 0)
-                {
-                    from = 0;
-                }
-
-                if (to > 4000)
-                {
-                    to = 4000;
-                }
+                int to = (int)toTB.Value;
+                int from = (int)fromTB.Value;
 
                 to *= 44;
                 from *= 44;
@@ -253,6 +243,22 @@ namespace ASynt
                 }
             }
             UpdateControls();
+        }
+
+        private void fromTimeChanged(object sender, EventArgs e)
+        {
+            if (fromTB.Value > toTB.Value)
+            {
+                toTB.Value = fromTB.Value + 1;
+            }
+        }
+
+        private void toTimeChanged(object sender, EventArgs e)
+        {
+            if (toTB.Value < fromTB.Value)
+            {
+               fromTB.Value = toTB.Value - 1;
+            }
         }
     }
 }
