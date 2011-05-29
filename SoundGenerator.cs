@@ -30,7 +30,7 @@ namespace ASynt
 
             checkedSignal = -1;
             signalsList = new List<SyntWave>();
-            bufferSample = new Sample(25, 440);
+            bufferSample = new Sample(25, 440); //2500 30
             ampl = 25;
             UpdateControls();
         }
@@ -82,14 +82,23 @@ namespace ASynt
         }
 
         /// <summary>
-        /// Przesyła listę sygnałów gotową do generacji dźwięków do sampleSound i niszczy okno.
+        /// Generuje dźwięki i przypisuje je do odpowiednich klawiszy.
         /// </summary>        
         private void CreateSound(object sender, EventArgs e)
         {
-            for (int i = 0; i < keyboard.AllKeys.Count(); ++i)
-            {
-                keyboard.AllKeys[i].KeySound = new ASynt.Player.Sound(ampl, (i + 1) * 100, signalsList);
-            }
+            keyboard.smallKeys[0].KeySound = new ASynt.Player.Sound(ampl, (int)sKeyFreq1.Value, signalsList);
+            keyboard.smallKeys[1].KeySound = new ASynt.Player.Sound(ampl, (int)sKeyFreq2.Value, signalsList);
+            keyboard.smallKeys[2].KeySound = new ASynt.Player.Sound(ampl, (int)sKeyFreq3.Value, signalsList);
+            keyboard.smallKeys[3].KeySound = new ASynt.Player.Sound(ampl, (int)sKeyFreq4.Value, signalsList);
+            keyboard.smallKeys[4].KeySound = new ASynt.Player.Sound(ampl, (int)sKeyFreq5.Value, signalsList);
+
+            keyboard.keys[0].KeySound = new ASynt.Player.Sound(ampl, (int)bKeyFreq1.Value, signalsList);
+            keyboard.keys[1].KeySound = new ASynt.Player.Sound(ampl, (int)bKeyFreq2.Value, signalsList);
+            keyboard.keys[2].KeySound = new ASynt.Player.Sound(ampl, (int)bKeyFreq3.Value, signalsList);
+            keyboard.keys[3].KeySound = new ASynt.Player.Sound(ampl, (int)bKeyFreq4.Value, signalsList);
+            keyboard.keys[4].KeySound = new ASynt.Player.Sound(ampl, (int)bKeyFreq5.Value, signalsList);
+            keyboard.keys[5].KeySound = new ASynt.Player.Sound(ampl, (int)bKeyFreq6.Value, signalsList);
+            keyboard.keys[6].KeySound = new ASynt.Player.Sound(ampl, (int)bKeyFreq7.Value, signalsList);
 
             this.Dispose();
         }
@@ -245,6 +254,9 @@ namespace ASynt
             UpdateControls();
         }
 
+        /// <summary>
+        /// Rekacja na zmianę czasu początkowego i sprawdzenie czy nie jest większy od końcowego.
+        /// </summary>
         private void fromTimeChanged(object sender, EventArgs e)
         {
             if (fromTB.Value > toTB.Value)
@@ -253,6 +265,9 @@ namespace ASynt
             }
         }
 
+        /// <summary>
+        /// Reakcja na zmianę czasu końcowego i sprawdzenie czy nie jest mniejszy od początkowego.
+        /// </summary>
         private void toTimeChanged(object sender, EventArgs e)
         {
             if (toTB.Value < fromTB.Value)

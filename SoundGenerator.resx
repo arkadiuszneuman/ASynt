@@ -120,4 +120,8 @@
   <data name="infoL.Text" xml:space="preserve">
     <value>Witaj w generatorze dźwięków. W tym miejscu możesz stworzyć swoje własne dźwięki złożone z poniższych sygnałów. Wybierz sygnał, określ jak długo ma trwać (4s trwa cały dźwięk) i dodaj go. Dźwięk możesz odsłuchać pod klawiszem "Testuj!". Możesz również zmienić wzmocnienie całego sygnału - standardowe jest ustawione na 25%.</value>
   </data>
+  <data name="infoFreqL.Text" xml:space="preserve">
+    <value>Poniżej znajduje się 12 pól umożliwiających ustawienie częśtotliwości wygenerowanego sygnału dla konkretnego klawisza. 
+Częstotliwości będą dopasowane do klawiszy od lewej strony. Zakres częstotliwości to 30-2500Hz.</value>
+  </data>
 </root>

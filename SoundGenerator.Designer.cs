@@ -64,11 +64,38 @@
             this.lastPageB = new System.Windows.Forms.Button();
             this.firstPageB = new System.Windows.Forms.Button();
             this.soundGraphB = new System.Windows.Forms.Button();
+            this.infoFreqL = new System.Windows.Forms.Label();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.bKeyFreq1 = new System.Windows.Forms.NumericUpDown();
+            this.sKeyFreq1 = new System.Windows.Forms.NumericUpDown();
+            this.bKeyFreq2 = new System.Windows.Forms.NumericUpDown();
+            this.sKeyFreq2 = new System.Windows.Forms.NumericUpDown();
+            this.bKeyFreq3 = new System.Windows.Forms.NumericUpDown();
+            this.bKeyFreq4 = new System.Windows.Forms.NumericUpDown();
+            this.sKeyFreq3 = new System.Windows.Forms.NumericUpDown();
+            this.bKeyFreq5 = new System.Windows.Forms.NumericUpDown();
+            this.sKeyFreq4 = new System.Windows.Forms.NumericUpDown();
+            this.bKeyFreq6 = new System.Windows.Forms.NumericUpDown();
+            this.sKeyFreq5 = new System.Windows.Forms.NumericUpDown();
+            this.bKeyFreq7 = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.amplUD)).BeginInit();
             this.signalsGB.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.toTB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fromTB)).BeginInit();
             this.signalPrevGB.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bKeyFreq1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sKeyFreq1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bKeyFreq2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sKeyFreq2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bKeyFreq3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bKeyFreq4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sKeyFreq3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bKeyFreq5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sKeyFreq4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bKeyFreq6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sKeyFreq5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bKeyFreq7)).BeginInit();
             this.SuspendLayout();
             // 
             // whiteNoiseWave
@@ -315,7 +342,7 @@
             // 
             // createSoundB
             // 
-            this.createSoundB.Location = new System.Drawing.Point(509, 315);
+            this.createSoundB.Location = new System.Drawing.Point(509, 392);
             this.createSoundB.Name = "createSoundB";
             this.createSoundB.Size = new System.Drawing.Size(75, 23);
             this.createSoundB.TabIndex = 19;
@@ -466,18 +493,312 @@
             // 
             // soundGraphB
             // 
-            this.soundGraphB.Location = new System.Drawing.Point(12, 315);
+            this.soundGraphB.Location = new System.Drawing.Point(12, 392);
             this.soundGraphB.Name = "soundGraphB";
             this.soundGraphB.Size = new System.Drawing.Size(107, 23);
             this.soundGraphB.TabIndex = 28;
             this.soundGraphB.Text = "Podgląd dźwięku";
             this.soundGraphB.UseVisualStyleBackColor = true;
             // 
+            // infoFreqL
+            // 
+            this.infoFreqL.AutoSize = true;
+            this.infoFreqL.Location = new System.Drawing.Point(9, 293);
+            this.infoFreqL.Name = "infoFreqL";
+            this.infoFreqL.Size = new System.Drawing.Size(588, 26);
+            this.infoFreqL.TabIndex = 29;
+            this.infoFreqL.Text = resources.GetString("infoFreqL.Text");
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(0, 0);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDown1.TabIndex = 30;
+            // 
+            // bKeyFreq1
+            // 
+            this.bKeyFreq1.Location = new System.Drawing.Point(121, 357);
+            this.bKeyFreq1.Maximum = new decimal(new int[] {
+            2500,
+            0,
+            0,
+            0});
+            this.bKeyFreq1.Minimum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.bKeyFreq1.Name = "bKeyFreq1";
+            this.bKeyFreq1.Size = new System.Drawing.Size(52, 20);
+            this.bKeyFreq1.TabIndex = 31;
+            this.bKeyFreq1.Value = new decimal(new int[] {
+            261,
+            0,
+            0,
+            0});
+            // 
+            // sKeyFreq1
+            // 
+            this.sKeyFreq1.Location = new System.Drawing.Point(146, 334);
+            this.sKeyFreq1.Maximum = new decimal(new int[] {
+            2500,
+            0,
+            0,
+            0});
+            this.sKeyFreq1.Minimum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.sKeyFreq1.Name = "sKeyFreq1";
+            this.sKeyFreq1.Size = new System.Drawing.Size(52, 20);
+            this.sKeyFreq1.TabIndex = 32;
+            this.sKeyFreq1.Value = new decimal(new int[] {
+            277,
+            0,
+            0,
+            0});
+            // 
+            // bKeyFreq2
+            // 
+            this.bKeyFreq2.Location = new System.Drawing.Point(179, 357);
+            this.bKeyFreq2.Maximum = new decimal(new int[] {
+            2500,
+            0,
+            0,
+            0});
+            this.bKeyFreq2.Minimum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.bKeyFreq2.Name = "bKeyFreq2";
+            this.bKeyFreq2.Size = new System.Drawing.Size(52, 20);
+            this.bKeyFreq2.TabIndex = 33;
+            this.bKeyFreq2.Value = new decimal(new int[] {
+            293,
+            0,
+            0,
+            0});
+            // 
+            // sKeyFreq2
+            // 
+            this.sKeyFreq2.Location = new System.Drawing.Point(204, 334);
+            this.sKeyFreq2.Maximum = new decimal(new int[] {
+            2500,
+            0,
+            0,
+            0});
+            this.sKeyFreq2.Minimum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.sKeyFreq2.Name = "sKeyFreq2";
+            this.sKeyFreq2.Size = new System.Drawing.Size(52, 20);
+            this.sKeyFreq2.TabIndex = 34;
+            this.sKeyFreq2.Value = new decimal(new int[] {
+            311,
+            0,
+            0,
+            0});
+            // 
+            // bKeyFreq3
+            // 
+            this.bKeyFreq3.Location = new System.Drawing.Point(237, 357);
+            this.bKeyFreq3.Maximum = new decimal(new int[] {
+            2500,
+            0,
+            0,
+            0});
+            this.bKeyFreq3.Minimum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.bKeyFreq3.Name = "bKeyFreq3";
+            this.bKeyFreq3.Size = new System.Drawing.Size(52, 20);
+            this.bKeyFreq3.TabIndex = 35;
+            this.bKeyFreq3.Value = new decimal(new int[] {
+            329,
+            0,
+            0,
+            0});
+            // 
+            // bKeyFreq4
+            // 
+            this.bKeyFreq4.Location = new System.Drawing.Point(295, 357);
+            this.bKeyFreq4.Maximum = new decimal(new int[] {
+            2500,
+            0,
+            0,
+            0});
+            this.bKeyFreq4.Minimum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.bKeyFreq4.Name = "bKeyFreq4";
+            this.bKeyFreq4.Size = new System.Drawing.Size(52, 20);
+            this.bKeyFreq4.TabIndex = 36;
+            this.bKeyFreq4.Value = new decimal(new int[] {
+            349,
+            0,
+            0,
+            0});
+            // 
+            // sKeyFreq3
+            // 
+            this.sKeyFreq3.Location = new System.Drawing.Point(313, 334);
+            this.sKeyFreq3.Maximum = new decimal(new int[] {
+            2500,
+            0,
+            0,
+            0});
+            this.sKeyFreq3.Minimum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.sKeyFreq3.Name = "sKeyFreq3";
+            this.sKeyFreq3.Size = new System.Drawing.Size(52, 20);
+            this.sKeyFreq3.TabIndex = 37;
+            this.sKeyFreq3.Value = new decimal(new int[] {
+            369,
+            0,
+            0,
+            0});
+            // 
+            // bKeyFreq5
+            // 
+            this.bKeyFreq5.Location = new System.Drawing.Point(353, 357);
+            this.bKeyFreq5.Maximum = new decimal(new int[] {
+            2500,
+            0,
+            0,
+            0});
+            this.bKeyFreq5.Minimum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.bKeyFreq5.Name = "bKeyFreq5";
+            this.bKeyFreq5.Size = new System.Drawing.Size(52, 20);
+            this.bKeyFreq5.TabIndex = 38;
+            this.bKeyFreq5.Value = new decimal(new int[] {
+            391,
+            0,
+            0,
+            0});
+            // 
+            // sKeyFreq4
+            // 
+            this.sKeyFreq4.Location = new System.Drawing.Point(371, 334);
+            this.sKeyFreq4.Maximum = new decimal(new int[] {
+            2500,
+            0,
+            0,
+            0});
+            this.sKeyFreq4.Minimum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.sKeyFreq4.Name = "sKeyFreq4";
+            this.sKeyFreq4.Size = new System.Drawing.Size(52, 20);
+            this.sKeyFreq4.TabIndex = 39;
+            this.sKeyFreq4.Value = new decimal(new int[] {
+            415,
+            0,
+            0,
+            0});
+            // 
+            // bKeyFreq6
+            // 
+            this.bKeyFreq6.Location = new System.Drawing.Point(404, 357);
+            this.bKeyFreq6.Maximum = new decimal(new int[] {
+            2500,
+            0,
+            0,
+            0});
+            this.bKeyFreq6.Minimum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.bKeyFreq6.Name = "bKeyFreq6";
+            this.bKeyFreq6.Size = new System.Drawing.Size(52, 20);
+            this.bKeyFreq6.TabIndex = 40;
+            this.bKeyFreq6.Value = new decimal(new int[] {
+            440,
+            0,
+            0,
+            0});
+            // 
+            // sKeyFreq5
+            // 
+            this.sKeyFreq5.Location = new System.Drawing.Point(429, 334);
+            this.sKeyFreq5.Maximum = new decimal(new int[] {
+            2500,
+            0,
+            0,
+            0});
+            this.sKeyFreq5.Minimum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.sKeyFreq5.Name = "sKeyFreq5";
+            this.sKeyFreq5.Size = new System.Drawing.Size(52, 20);
+            this.sKeyFreq5.TabIndex = 41;
+            this.sKeyFreq5.Value = new decimal(new int[] {
+            466,
+            0,
+            0,
+            0});
+            // 
+            // bKeyFreq7
+            // 
+            this.bKeyFreq7.Location = new System.Drawing.Point(462, 357);
+            this.bKeyFreq7.Maximum = new decimal(new int[] {
+            2500,
+            0,
+            0,
+            0});
+            this.bKeyFreq7.Minimum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.bKeyFreq7.Name = "bKeyFreq7";
+            this.bKeyFreq7.Size = new System.Drawing.Size(52, 20);
+            this.bKeyFreq7.TabIndex = 42;
+            this.bKeyFreq7.Value = new decimal(new int[] {
+            493,
+            0,
+            0,
+            0});
+            // 
             // SoundGenerator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(590, 343);
+            this.ClientSize = new System.Drawing.Size(593, 427);
+            this.Controls.Add(this.bKeyFreq7);
+            this.Controls.Add(this.sKeyFreq5);
+            this.Controls.Add(this.bKeyFreq6);
+            this.Controls.Add(this.sKeyFreq4);
+            this.Controls.Add(this.bKeyFreq5);
+            this.Controls.Add(this.sKeyFreq3);
+            this.Controls.Add(this.bKeyFreq4);
+            this.Controls.Add(this.bKeyFreq3);
+            this.Controls.Add(this.sKeyFreq2);
+            this.Controls.Add(this.bKeyFreq2);
+            this.Controls.Add(this.sKeyFreq1);
+            this.Controls.Add(this.bKeyFreq1);
+            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.infoFreqL);
             this.Controls.Add(this.soundGraphB);
             this.Controls.Add(this.firstPageB);
             this.Controls.Add(this.lastPageB);
@@ -501,7 +822,21 @@
             ((System.ComponentModel.ISupportInitialize)(this.fromTB)).EndInit();
             this.signalPrevGB.ResumeLayout(false);
             this.signalPrevGB.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bKeyFreq1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sKeyFreq1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bKeyFreq2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sKeyFreq2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bKeyFreq3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bKeyFreq4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sKeyFreq3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bKeyFreq5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sKeyFreq4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bKeyFreq6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sKeyFreq5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bKeyFreq7)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -542,5 +877,19 @@
         private System.Windows.Forms.Button soundGraphB;
         private System.Windows.Forms.NumericUpDown toTB;
         private System.Windows.Forms.NumericUpDown fromTB;
+        private System.Windows.Forms.Label infoFreqL;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown bKeyFreq1;
+        private System.Windows.Forms.NumericUpDown sKeyFreq1;
+        private System.Windows.Forms.NumericUpDown bKeyFreq2;
+        private System.Windows.Forms.NumericUpDown sKeyFreq2;
+        private System.Windows.Forms.NumericUpDown bKeyFreq3;
+        private System.Windows.Forms.NumericUpDown bKeyFreq4;
+        private System.Windows.Forms.NumericUpDown sKeyFreq3;
+        private System.Windows.Forms.NumericUpDown bKeyFreq5;
+        private System.Windows.Forms.NumericUpDown sKeyFreq4;
+        private System.Windows.Forms.NumericUpDown bKeyFreq6;
+        private System.Windows.Forms.NumericUpDown sKeyFreq5;
+        private System.Windows.Forms.NumericUpDown bKeyFreq7;
     }
 }
