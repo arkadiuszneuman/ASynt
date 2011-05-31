@@ -33,10 +33,11 @@
             this.buttonChorus = new System.Windows.Forms.Button();
             this.buttonEcho = new System.Windows.Forms.Button();
             this.soundTypeGB = new System.Windows.Forms.GroupBox();
+            this.pianoB = new System.Windows.Forms.Button();
             this.soundGeneratorB = new System.Windows.Forms.Button();
             this.globalMuteCB = new System.Windows.Forms.CheckBox();
             this.globalVolumeSlider = new System.Windows.Forms.TrackBar();
-            this.pianoB = new System.Windows.Forms.Button();
+            this.buttonReverb = new System.Windows.Forms.Button();
             this.effectsGB.SuspendLayout();
             this.soundTypeGB.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.globalVolumeSlider)).BeginInit();
@@ -44,12 +45,13 @@
             // 
             // effectsGB
             // 
+            this.effectsGB.Controls.Add(this.buttonReverb);
             this.effectsGB.Controls.Add(this.buttonGargle);
             this.effectsGB.Controls.Add(this.buttonChorus);
             this.effectsGB.Controls.Add(this.buttonEcho);
             this.effectsGB.Location = new System.Drawing.Point(369, 12);
             this.effectsGB.Name = "effectsGB";
-            this.effectsGB.Size = new System.Drawing.Size(198, 114);
+            this.effectsGB.Size = new System.Drawing.Size(198, 84);
             this.effectsGB.TabIndex = 1;
             this.effectsGB.TabStop = false;
             this.effectsGB.Text = "Efekty";
@@ -95,6 +97,16 @@
             this.soundTypeGB.TabStop = false;
             this.soundTypeGB.Text = "Rodzaj dźwięku";
             // 
+            // pianoB
+            // 
+            this.pianoB.Location = new System.Drawing.Point(12, 19);
+            this.pianoB.Name = "pianoB";
+            this.pianoB.Size = new System.Drawing.Size(180, 23);
+            this.pianoB.TabIndex = 1;
+            this.pianoB.Text = "Pianino";
+            this.pianoB.UseVisualStyleBackColor = true;
+            this.pianoB.Click += new System.EventHandler(this.pianoSound);
+            // 
             // soundGeneratorB
             // 
             this.soundGeneratorB.Location = new System.Drawing.Point(12, 48);
@@ -122,15 +134,15 @@
             this.globalVolumeSlider.Size = new System.Drawing.Size(198, 45);
             this.globalVolumeSlider.TabIndex = 4;
             // 
-            // pianoB
+            // buttonReverb
             // 
-            this.pianoB.Location = new System.Drawing.Point(12, 19);
-            this.pianoB.Name = "pianoB";
-            this.pianoB.Size = new System.Drawing.Size(180, 23);
-            this.pianoB.TabIndex = 1;
-            this.pianoB.Text = "Pianino";
-            this.pianoB.UseVisualStyleBackColor = true;
-            this.pianoB.Click += new System.EventHandler(this.pianoSound);
+            this.buttonReverb.Location = new System.Drawing.Point(102, 51);
+            this.buttonReverb.Name = "buttonReverb";
+            this.buttonReverb.Size = new System.Drawing.Size(90, 23);
+            this.buttonReverb.TabIndex = 3;
+            this.buttonReverb.Text = "Pogłos";
+            this.buttonReverb.UseVisualStyleBackColor = true;
+            this.buttonReverb.Click += new System.EventHandler(this.buttonReverb_Click);
             // 
             // MainForm
             // 
@@ -164,6 +176,7 @@
         private System.Windows.Forms.Button buttonChorus;
         private System.Windows.Forms.Button buttonGargle;
         private System.Windows.Forms.Button pianoB;
+        private System.Windows.Forms.Button buttonReverb;
     }
 }
 

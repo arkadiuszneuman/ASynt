@@ -20,6 +20,7 @@ namespace ASynt
         Echo echo;
         Chorus chorus;
         Gargle gargle;
+        Reverb reverb;
 
         public MainForm()
         {
@@ -28,6 +29,7 @@ namespace ASynt
             echo = new Echo(keyboard);
             chorus = new Chorus(keyboard);
             gargle = new Gargle(keyboard);
+            reverb = new Reverb(keyboard);
         }
 
         private void soundGenerator(object sender, EventArgs e)
@@ -50,6 +52,11 @@ namespace ASynt
         private void buttonGargle_Click(object sender, EventArgs e)
         {
             new GargleDialog(gargle).Show();
+        }
+
+        private void buttonReverb_Click(object sender, EventArgs e)
+        {
+            new ReverbDialog(reverb).Show();
         }
 
         private void pianoSound(object sender, EventArgs e)

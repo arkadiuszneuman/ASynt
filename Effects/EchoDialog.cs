@@ -37,8 +37,6 @@ namespace ASynt.Effects
             this.effect = effect;
             InitializeComponent();
             Init();
-
-            Text = "Echo";
         }
 
         protected override string ProportiesName

@@ -63,7 +63,11 @@
     <Compile Include="Effects\Effect\Echo.cs" />
     <Compile Include="Effects\Effect\Effect.cs" />
     <Compile Include="Effects\Effect\Gargle.cs" />
+    <Compile Include="Effects\Effect\Reverb.cs" />
     <Compile Include="Effects\GargleDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Effects\ReverbDialog.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Keyboard\Key.cs" />
@@ -98,6 +102,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Effects\GargleDialog.resx">
       <DependentUpon>GargleDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Effects\ReverbDialog.resx">
+      <DependentUpon>ReverbDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="main-window.resx">
       <DependentUpon>main-window.cs</DependentUpon>
