@@ -120,5 +120,10 @@ namespace ASynt
                 keyboard.smallKeys[4].SetFrequency = (44100 * 466) / 440;
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            keyboard.SaveSequence();
+        }
     }
 }

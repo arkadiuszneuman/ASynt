@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using ASynt.Player;
 using Un4seen.Bass;
+using System.IO;
 
 namespace ASynt.Keyboard
 {
@@ -31,6 +32,8 @@ namespace ASynt.Keyboard
         private List<BASS_DX8_ECHO> echo = new List<BASS_DX8_ECHO>();
         private List<int> echoHandles = new List<int>();
         public List<BASS_DX8_ECHO> Echo { get { return echo; } }
+
+        public List<KeySequence> keySequence = new List<KeySequence>();
 
         /// <summary>
         /// Tworzy nowy keyboard
@@ -117,6 +120,7 @@ namespace ASynt.Keyboard
                         }
                         
                         player.Play(keys[i].KeySound);
+                        keySequence.Add(new KeySequence(1, Convert.ToByte(i)));
                     }
                 }
             }
@@ -271,6 +275,39 @@ namespace ASynt.Keyboard
 
             echo.RemoveAt(which);
             echoHandles.RemoveRange(which * 12, 11);
+        }
+
+        public void SaveSequence()
+        {
+            StreamWriter sw = new StreamWriter("test.txt");
+
+            foreach (KeySequence keyS in keySequence)
+            {
+                sw.WriteLine(keyS.ToString());                
+            }
+
+            sw.Close();
+        }
+
+        public void ReadSequence()
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.Filter = "TXT files (*.txt)|*.txt";
+            fileDialog.FilterIndex = 2;
+            fileDialog.RestoreDirectory = true;
+
+            if (fileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string[] line;
+                StreamReader sr = new StreamReader(fileDialog.FileName);
+                while (!sr.EndOfStream)
+                {
+                    line = sr.ReadLine().Split(';');
+                    keySequence.Add(new KeySequence(long.Parse(line[0]), byte.Parse(line[1])));
+                }
+
+                sr.Close();
+            }
         }
     }
 }
