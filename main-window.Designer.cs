@@ -36,11 +36,10 @@
             this.soundTypeGB = new System.Windows.Forms.GroupBox();
             this.pianoB = new System.Windows.Forms.Button();
             this.soundGeneratorB = new System.Windows.Forms.Button();
-            this.globalMuteCB = new System.Windows.Forms.CheckBox();
-            this.globalVolumeSlider = new System.Windows.Forms.TrackBar();
+            this.readFileB = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.effectsGB.SuspendLayout();
             this.soundTypeGB.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.globalVolumeSlider)).BeginInit();
             this.SuspendLayout();
             // 
             // effectsGB
@@ -98,11 +97,12 @@
             // 
             // soundTypeGB
             // 
+            this.soundTypeGB.Controls.Add(this.readFileB);
             this.soundTypeGB.Controls.Add(this.pianoB);
             this.soundTypeGB.Controls.Add(this.soundGeneratorB);
             this.soundTypeGB.Location = new System.Drawing.Point(369, 132);
             this.soundTypeGB.Name = "soundTypeGB";
-            this.soundTypeGB.Size = new System.Drawing.Size(200, 100);
+            this.soundTypeGB.Size = new System.Drawing.Size(200, 111);
             this.soundTypeGB.TabIndex = 2;
             this.soundTypeGB.TabStop = false;
             this.soundTypeGB.Text = "Rodzaj dźwięku";
@@ -119,7 +119,7 @@
             // 
             // soundGeneratorB
             // 
-            this.soundGeneratorB.Location = new System.Drawing.Point(12, 48);
+            this.soundGeneratorB.Location = new System.Drawing.Point(12, 77);
             this.soundGeneratorB.Name = "soundGeneratorB";
             this.soundGeneratorB.Size = new System.Drawing.Size(180, 23);
             this.soundGeneratorB.TabIndex = 0;
@@ -127,31 +127,33 @@
             this.soundGeneratorB.UseVisualStyleBackColor = true;
             this.soundGeneratorB.Click += new System.EventHandler(this.soundGenerator);
             // 
-            // globalMuteCB
+            // readFileB
             // 
-            this.globalMuteCB.AutoSize = true;
-            this.globalMuteCB.Location = new System.Drawing.Point(442, 267);
-            this.globalMuteCB.Name = "globalMuteCB";
-            this.globalMuteCB.Size = new System.Drawing.Size(60, 17);
-            this.globalMuteCB.TabIndex = 3;
-            this.globalMuteCB.Text = "Wycisz";
-            this.globalMuteCB.UseVisualStyleBackColor = true;
+            this.readFileB.Location = new System.Drawing.Point(12, 48);
+            this.readFileB.Name = "readFileB";
+            this.readFileB.Size = new System.Drawing.Size(180, 23);
+            this.readFileB.TabIndex = 2;
+            this.readFileB.Text = "Wczytaj plik ...";
+            this.readFileB.UseVisualStyleBackColor = true;
+            this.readFileB.Click += new System.EventHandler(this.ReadFile);
             // 
-            // globalVolumeSlider
+            // button1
             // 
-            this.globalVolumeSlider.Location = new System.Drawing.Point(369, 239);
-            this.globalVolumeSlider.Name = "globalVolumeSlider";
-            this.globalVolumeSlider.Size = new System.Drawing.Size(198, 45);
-            this.globalVolumeSlider.TabIndex = 4;
+            this.button1.Location = new System.Drawing.Point(381, 240);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(180, 23);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Wczytaj plik ...";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(577, 277);
-            this.Controls.Add(this.globalVolumeSlider);
-            this.Controls.Add(this.globalMuteCB);
+            this.ClientSize = new System.Drawing.Size(579, 275);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.soundTypeGB);
             this.Controls.Add(this.effectsGB);
             this.KeyPreview = true;
@@ -159,9 +161,7 @@
             this.Text = "ASynt - Awesome Syntezator";
             this.effectsGB.ResumeLayout(false);
             this.soundTypeGB.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.globalVolumeSlider)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -169,14 +169,14 @@
 
         private System.Windows.Forms.GroupBox effectsGB;
         private System.Windows.Forms.GroupBox soundTypeGB;
-        private System.Windows.Forms.CheckBox globalMuteCB;
-        private System.Windows.Forms.TrackBar globalVolumeSlider;
         private System.Windows.Forms.Button soundGeneratorB;
         private System.Windows.Forms.Button buttonEcho;
         private System.Windows.Forms.Button buttonChorus;
         private System.Windows.Forms.Button buttonGargle;
         private System.Windows.Forms.Button pianoB;
         private System.Windows.Forms.Button buttonReverb;
+        private System.Windows.Forms.Button readFileB;
+        private System.Windows.Forms.Button button1;
     }
 }
 

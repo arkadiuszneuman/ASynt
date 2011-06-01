@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using ASynt.Player;
 using Un4seen.Bass;
+using System.IO;
 
 namespace ASynt.Keyboard
 {
@@ -32,6 +33,8 @@ namespace ASynt.Keyboard
         private List<int> echoHandles = new List<int>();
         public List<BASS_DX8_ECHO> Echo { get { return echo; } }
 
+        public List<KeySequence> keySequence = new List<KeySequence>();
+
         /// <summary>
         /// Tworzy nowy keyboard
         /// </summary>
@@ -49,14 +52,14 @@ namespace ASynt.Keyboard
                 int l = i; //dodawanie do literki
                 if ('c' + l > 'g')
                     l -= 7;
-                keys[i] = new Key(mainForm, new Point(keyWidth * i + position.X, position.Y), (Keys)keyLettersBig[i], @"piano3\" + (char)('c' + l));
+                keys[i] = new Key(mainForm, new Point(keyWidth * i + position.X, position.Y), (Keys)keyLettersBig[i], @"Piano\" + (char)('c' + l));
             }
 
-            smallKeys[0] = new Key(mainForm, new Point(keyWidth * 1 + position.X, position.Y), (Keys)keyLettersSmall[0], @"piano3\c#", true);
-            smallKeys[1] = new Key(mainForm, new Point(keyWidth * 2 + position.X, position.Y), (Keys)keyLettersSmall[1], @"piano3\d#", true);
-            smallKeys[2] = new Key(mainForm, new Point(keyWidth * 4 + position.X, position.Y), (Keys)keyLettersSmall[2], @"piano3\f#", true);
-            smallKeys[3] = new Key(mainForm, new Point(keyWidth * 5 + position.X, position.Y), (Keys)keyLettersSmall[3], @"piano3\g#", true);
-            smallKeys[4] = new Key(mainForm, new Point(keyWidth * 6 + position.X, position.Y), (Keys)keyLettersSmall[4], @"piano3\a#", true);
+            smallKeys[0] = new Key(mainForm, new Point(keyWidth * 1 + position.X, position.Y), (Keys)keyLettersSmall[0], @"Piano\c#", true);
+            smallKeys[1] = new Key(mainForm, new Point(keyWidth * 2 + position.X, position.Y), (Keys)keyLettersSmall[1], @"Piano\d#", true);
+            smallKeys[2] = new Key(mainForm, new Point(keyWidth * 4 + position.X, position.Y), (Keys)keyLettersSmall[2], @"Piano\f#", true);
+            smallKeys[3] = new Key(mainForm, new Point(keyWidth * 5 + position.X, position.Y), (Keys)keyLettersSmall[3], @"Piano\g#", true);
+            smallKeys[4] = new Key(mainForm, new Point(keyWidth * 6 + position.X, position.Y), (Keys)keyLettersSmall[4], @"Piano\a#", true);
 
             mainForm.MouseDown += new MouseEventHandler(OnMouseDown);
             mainForm.MouseUp += new MouseEventHandler(OnMouseUp);
@@ -117,6 +120,7 @@ namespace ASynt.Keyboard
                         }
                         
                         player.Play(keys[i].KeySound);
+                        keySequence.Add(new KeySequence(1, Convert.ToByte(i)));
                     }
                 }
             }
@@ -271,6 +275,39 @@ namespace ASynt.Keyboard
 
             echo.RemoveAt(which);
             echoHandles.RemoveRange(which * 12, 11);
+        }
+
+        public void SaveSequence()
+        {
+            StreamWriter sw = new StreamWriter("test.txt");
+
+            foreach (KeySequence keyS in keySequence)
+            {
+                sw.WriteLine(keyS.ToString());                
+            }
+
+            sw.Close();
+        }
+
+        public void ReadSequence()
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.Filter = "TXT files (*.txt)|*.txt";
+            fileDialog.FilterIndex = 2;
+            fileDialog.RestoreDirectory = true;
+
+            if (fileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string[] line;
+                StreamReader sr = new StreamReader(fileDialog.FileName);
+                while (!sr.EndOfStream)
+                {
+                    line = sr.ReadLine().Split(';');
+                    keySequence.Add(new KeySequence(long.Parse(line[0]), byte.Parse(line[1])));
+                }
+
+                sr.Close();
+            }
         }
     }
 }

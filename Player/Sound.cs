@@ -36,19 +36,31 @@ namespace ASynt.Player
         /// Konstruktor dźwięku
         /// </summary>
         /// <param name="name">Nazwa pliku z dźwiękiem (z lub bez rozszerzenia)</param>
-        public Sound(string name)
+        public Sound(string name, bool extend)
         {
-            if (name.Substring(name.Length - 4).ToLower() == ".wav")
+            if (extend == false)
             {
-                name = name.Substring(0, name.Length - 4);
+                if (name.Substring(name.Length - 4).ToLower() == ".wav")
+                {
+                    name = name.Substring(0, name.Length - 4);
+                }
+
+                String plik = Environment.CurrentDirectory + @"\samples\" + name + ".wav";
+                Stream = Bass.BASS_StreamCreateFile(plik, 0, 0, BASSFlag.BASS_DEFAULT);
+
+                if (Stream == 0)
+                {
+                    throw new Exception("Nie można znaleźć pliku: " + plik);
+                }
             }
-
-            String plik = Environment.CurrentDirectory + @"\samples\" + name + ".wav";
-            Stream = Bass.BASS_StreamCreateFile(plik, 0, 0, BASSFlag.BASS_DEFAULT);
-
-            if (Stream == 0)
+            else
             {
-                throw new Exception("Nie można znaleźć pliku: " + plik);
+                Stream = Bass.BASS_StreamCreateFile(name, 0, 0, BASSFlag.BASS_DEFAULT);
+
+                if (Stream == 0)
+                {
+                    throw new Exception("Nie można znaleźć pliku: " + name);
+                }
             }
         }
 

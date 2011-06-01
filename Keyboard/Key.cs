@@ -55,7 +55,7 @@ namespace ASynt.Keyboard
         {
             this.position = position;
             this.mainForm = mainForm;
-            KeySound = new Sound(file);
+            KeySound = new Sound(file, false);
             color = Color.White;
             colorClicked = Color.FromArgb(200, 200, 200);
             this.KeyboardKey = keyboardKey;

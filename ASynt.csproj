@@ -81,6 +81,7 @@
     </Compile>
     <Compile Include="Keyboard\Key.cs" />
     <Compile Include="Keyboard\Keyboard.cs" />
+    <Compile Include="KeySequence.cs" />
     <Compile Include="main-window.cs">
       <SubType>Form</SubType>
     </Compile>
