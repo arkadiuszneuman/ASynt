@@ -220,63 +220,6 @@ namespace ASynt.Keyboard
             }
         }
 
-        /// <summary>
-        /// Dodaje echo do streama
-        /// </summary>
-        /// <param name="wetDryMix"></param>
-        /// <param name="feedback"></param>
-        /// <param name="leftDelay"></param>
-        /// <param name="rightDelay"></param>
-        /// <param name="panDelay"></param>
-        public void AddEcho(float wetDryMix, float feedback, float leftDelay, float rightDelay, bool panDelay)
-        {
-            echo.Add(new BASS_DX8_ECHO(wetDryMix, feedback, leftDelay, rightDelay, panDelay));
-            foreach (Key key in keys)
-            {
-                echoHandles.Add(Bass.BASS_ChannelSetFX(key.KeySound.Stream, BASSFXType.BASS_FX_DX8_ECHO, 1));
-                if (echoHandles.Last() == 0)
-                {
-                    throw new Exception("Błąd ustawienia echa: " + Bass.BASS_ErrorGetCode());
-                }
-
-                Bass.BASS_FXSetParameters(echoHandles.Last(), echo.Last());
-            }
-
-            foreach (Key key in smallKeys)
-            {
-                echoHandles.Add(Bass.BASS_ChannelSetFX(key.KeySound.Stream, BASSFXType.BASS_FX_DX8_ECHO, 1));
-                if (echoHandles.Last() == 0)
-                {
-                    throw new Exception("Błąd ustawienia echa: " + Bass.BASS_ErrorGetCode());
-                }
-
-                Bass.BASS_FXSetParameters(echoHandles.Last(), echo.Last());
-            }
-        }
-
-        public void EditEcho(int which, float wetDryMix, float feedback, float leftDelay, float rightDelay, bool panDelay)
-        {
-            echo[which].fWetDryMix = wetDryMix;
-            echo[which].fFeedback = feedback;
-            echo[which].fLeftDelay = leftDelay;
-            echo[which].fRightDelay = rightDelay;
-            echo[which].lPanDelay = panDelay;
-
-            for (int i = which * 12; i < which * 12 + 12; ++i)
-                Bass.BASS_FXSetParameters(echoHandles[i], echo[which]);
-        }
-
-        public void DeleteEcho(int which)
-        {
-            for (int i = 0; i < AllKeys.Length; ++i)
-            {
-                Bass.BASS_ChannelRemoveFX(AllKeys[i].KeySound.Stream, echoHandles[i + which * 12]);
-            }
-
-            echo.RemoveAt(which);
-            echoHandles.RemoveRange(which * 12, 11);
-        }
-
         public void SaveSequence()
         {
             StreamWriter sw = new StreamWriter("test.txt");
