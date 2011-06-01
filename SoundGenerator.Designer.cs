@@ -65,7 +65,6 @@
             this.firstPageB = new System.Windows.Forms.Button();
             this.soundGraphB = new System.Windows.Forms.Button();
             this.infoFreqL = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.bKeyFreq1 = new System.Windows.Forms.NumericUpDown();
             this.sKeyFreq1 = new System.Windows.Forms.NumericUpDown();
             this.bKeyFreq2 = new System.Windows.Forms.NumericUpDown();
@@ -83,7 +82,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.toTB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fromTB)).BeginInit();
             this.signalPrevGB.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bKeyFreq1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sKeyFreq1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bKeyFreq2)).BeginInit();
@@ -509,13 +507,6 @@
             this.infoFreqL.TabIndex = 29;
             this.infoFreqL.Text = resources.GetString("infoFreqL.Text");
             // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Location = new System.Drawing.Point(0, 0);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDown1.TabIndex = 30;
-            // 
             // bKeyFreq1
             // 
             this.bKeyFreq1.Location = new System.Drawing.Point(121, 357);
@@ -797,7 +788,6 @@
             this.Controls.Add(this.bKeyFreq2);
             this.Controls.Add(this.sKeyFreq1);
             this.Controls.Add(this.bKeyFreq1);
-            this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.infoFreqL);
             this.Controls.Add(this.soundGraphB);
             this.Controls.Add(this.firstPageB);
@@ -822,7 +812,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.fromTB)).EndInit();
             this.signalPrevGB.ResumeLayout(false);
             this.signalPrevGB.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bKeyFreq1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sKeyFreq1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bKeyFreq2)).EndInit();
@@ -878,7 +867,6 @@
         private System.Windows.Forms.NumericUpDown toTB;
         private System.Windows.Forms.NumericUpDown fromTB;
         private System.Windows.Forms.Label infoFreqL;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.NumericUpDown bKeyFreq1;
         private System.Windows.Forms.NumericUpDown sKeyFreq1;
         private System.Windows.Forms.NumericUpDown bKeyFreq2;
