@@ -233,7 +233,13 @@ namespace ASynt
         /// </summary>
         private void DeleteSignalFromList(object sender, EventArgs e)
         {
+            int signal = signalsList.ElementAt(currentSignalInfo).signal;
+            int from = signalsList.ElementAt(currentSignalInfo).from;
+            int to = signalsList.ElementAt(currentSignalInfo).to;
+
             signalsList.RemoveAt(currentSignalInfo);
+            bufferSample.DeleteWave(signal, from, to);
+            
             if (signalsList.Count == 0)
             {
                 infoAL1.Text = "-";

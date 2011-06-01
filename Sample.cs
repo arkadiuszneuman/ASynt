@@ -60,7 +60,7 @@ namespace ASynt
             double amplitude = ampl / 100.0;
 
             if (signal == (int)Signals.Sinus)
-            {                
+            {
                 buffer = SyntMath.Sinus(amplitude, freq, samplesCount);
             }
 
@@ -102,6 +102,64 @@ namespace ASynt
             for (int i = from; i < to; ++i)
             {
                 data[i] += buffer[i - from];
+            }
+        }
+
+        /// <summary>
+        /// Usuwa z tablicy kolejną falę dźwiękową.
+        /// </summary>
+        /// <param name="signal">Typ fali dźwiękowej.</param>
+        /// <param name="from">Początek (w tablicy z danymi) nowej fali dźwiękowej.</param>
+        /// <param name="to">Koniec fali dźwiękowej.</param>
+        public void DeleteWave(int signal, int from, int to)
+        {
+            int samplesCount = to - from;
+            short[] buffer = new short[samplesCount];
+            double amplitude = ampl / 100.0;
+
+            if (signal == (int)Signals.Sinus)
+            {
+                buffer = SyntMath.Sinus(amplitude, freq, samplesCount);
+            }
+
+            if (signal == (int)Signals.AbsSinus)
+            {
+                buffer = SyntMath.AbsSinus(amplitude, freq, samplesCount);
+            }
+
+            if (signal == (int)Signals.Cosinus)
+            {
+                buffer = SyntMath.Cosinus(amplitude, freq, samplesCount);
+            }
+
+            if (signal == (int)Signals.AbsCosinus)
+            {
+                buffer = SyntMath.AbsCosinus(amplitude, freq, samplesCount);
+            }
+
+            if (signal == (int)Signals.Tangens)
+            {
+                buffer = SyntMath.Tangens(amplitude, freq, samplesCount);
+            }
+
+            if (signal == (int)Signals.AbsTangens)
+            {
+                buffer = SyntMath.AbsTangens(amplitude, freq, samplesCount);
+            }
+
+            if (signal == (int)Signals.Square)
+            {
+                buffer = SyntMath.Square(amplitude, freq, samplesCount);
+            }
+
+            if (signal == (int)Signals.WhiteNoise)
+            {
+                buffer = SyntMath.WhiteNoise(amplitude, freq, samplesCount);
+            }
+
+            for (int i = from; i < to; ++i)
+            {
+                data[i] -= buffer[i - from];
             }
         }
 
