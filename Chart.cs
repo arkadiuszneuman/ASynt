@@ -118,7 +118,9 @@ namespace ASynt
 
                     if (i % precision == 0)
                     {
-                        p[sample] = new Point((int)(sectorX * i) + 8, heightY - (int)(sectorY * points[i]));
+                        int x = (int)(sectorX * i) + 8;
+                        int y = heightY - (int)(sectorY * points[i]);
+                        p[sample] = new Point(x, y);
                         ++sample;
                     }
                 }

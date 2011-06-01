@@ -14,8 +14,7 @@ namespace ASynt
         public ChartDialog(int[] pointsToChart)
         {
             InitializeComponent();
-            chart.Points = pointsToChart;
-            chart.Invalidate();
+            chart.Points = pointsToChart; 
         }
     }
 }

@@ -33,8 +33,9 @@
             // 
             // chart
             // 
+            this.chart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)));
             this.chart.AxisColor = System.Drawing.Color.Black;
-            this.chart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chart.LinesColor = System.Drawing.Color.DarkBlue;
             this.chart.Location = new System.Drawing.Point(0, 0);
             this.chart.Name = "chart";
@@ -43,18 +44,20 @@
         1,
         2,
         -1};
-            this.chart.Precision = ((uint)(120u));
-            this.chart.Size = new System.Drawing.Size(284, 262);
+            this.chart.Precision = ((uint)(5u));
+            this.chart.Size = new System.Drawing.Size(65535, 245);
             this.chart.TabIndex = 0;
             // 
             // ChartDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(284, 262);
             this.Controls.Add(this.chart);
             this.Name = "ChartDialog";
-            this.Text = "ChartDialog";
+            this.ShowIcon = false;
+            this.Text = "Wykres";
             this.ResumeLayout(false);
 
         }
