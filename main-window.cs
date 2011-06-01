@@ -125,9 +125,19 @@ namespace ASynt
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void SaveSequence(object sender, EventArgs e)
         {
             keyboard.SaveSequence();
+        }
+
+        private void ReadSequence(object sender, EventArgs e)
+        {
+            keyboard.ReadSequence();
+        }
+
+        private void PlaySequence(object sender, EventArgs e)
+        {
+            keyboard.PlaySequence();
         }
     }
 }

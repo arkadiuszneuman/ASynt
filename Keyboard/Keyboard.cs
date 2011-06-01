@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using ASynt.Player;
 using Un4seen.Bass;
 using System.IO;
+using System.Threading;
 
 namespace ASynt.Keyboard
 {
@@ -250,6 +251,15 @@ namespace ASynt.Keyboard
                 }
 
                 sr.Close();
+            }
+        }
+
+        public void PlaySequence()
+        {
+            foreach (KeySequence keyS in keySequence)
+            {
+                player.Play(AllKeys[Convert.ToInt16(keyS.key)].KeySound);
+                Thread.Sleep(500);
             }
         }
     }

@@ -34,10 +34,12 @@
             this.buttonChorus = new System.Windows.Forms.Button();
             this.buttonEcho = new System.Windows.Forms.Button();
             this.soundTypeGB = new System.Windows.Forms.GroupBox();
+            this.readFileB = new System.Windows.Forms.Button();
             this.pianoB = new System.Windows.Forms.Button();
             this.soundGeneratorB = new System.Windows.Forms.Button();
-            this.readFileB = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.saveSequenceB = new System.Windows.Forms.Button();
+            this.readSequenceB = new System.Windows.Forms.Button();
+            this.playSequenceB = new System.Windows.Forms.Button();
             this.effectsGB.SuspendLayout();
             this.soundTypeGB.SuspendLayout();
             this.SuspendLayout();
@@ -107,6 +109,16 @@
             this.soundTypeGB.TabStop = false;
             this.soundTypeGB.Text = "Rodzaj dźwięku";
             // 
+            // readFileB
+            // 
+            this.readFileB.Location = new System.Drawing.Point(12, 48);
+            this.readFileB.Name = "readFileB";
+            this.readFileB.Size = new System.Drawing.Size(180, 23);
+            this.readFileB.TabIndex = 2;
+            this.readFileB.Text = "Wczytaj plik ...";
+            this.readFileB.UseVisualStyleBackColor = true;
+            this.readFileB.Click += new System.EventHandler(this.ReadFile);
+            // 
             // pianoB
             // 
             this.pianoB.Location = new System.Drawing.Point(12, 19);
@@ -127,25 +139,35 @@
             this.soundGeneratorB.UseVisualStyleBackColor = true;
             this.soundGeneratorB.Click += new System.EventHandler(this.soundGenerator);
             // 
-            // readFileB
+            // saveSequenceB
             // 
-            this.readFileB.Location = new System.Drawing.Point(12, 48);
-            this.readFileB.Name = "readFileB";
-            this.readFileB.Size = new System.Drawing.Size(180, 23);
-            this.readFileB.TabIndex = 2;
-            this.readFileB.Text = "Wczytaj plik ...";
-            this.readFileB.UseVisualStyleBackColor = true;
-            this.readFileB.Click += new System.EventHandler(this.ReadFile);
+            this.saveSequenceB.Location = new System.Drawing.Point(1, 249);
+            this.saveSequenceB.Name = "saveSequenceB";
+            this.saveSequenceB.Size = new System.Drawing.Size(116, 23);
+            this.saveSequenceB.TabIndex = 3;
+            this.saveSequenceB.Text = "Zapisz sekwencję";
+            this.saveSequenceB.UseVisualStyleBackColor = true;
+            this.saveSequenceB.Click += new System.EventHandler(this.SaveSequence);
             // 
-            // button1
+            // readSequenceB
             // 
-            this.button1.Location = new System.Drawing.Point(381, 240);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(180, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Wczytaj plik ...";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.readSequenceB.Location = new System.Drawing.Point(123, 249);
+            this.readSequenceB.Name = "readSequenceB";
+            this.readSequenceB.Size = new System.Drawing.Size(116, 23);
+            this.readSequenceB.TabIndex = 4;
+            this.readSequenceB.Text = "Zapisz sekwencję";
+            this.readSequenceB.UseVisualStyleBackColor = true;
+            this.readSequenceB.Click += new System.EventHandler(this.ReadSequence);
+            // 
+            // playSequenceB
+            // 
+            this.playSequenceB.Location = new System.Drawing.Point(245, 249);
+            this.playSequenceB.Name = "playSequenceB";
+            this.playSequenceB.Size = new System.Drawing.Size(116, 23);
+            this.playSequenceB.TabIndex = 5;
+            this.playSequenceB.Text = "Odtwórz sekwencję";
+            this.playSequenceB.UseVisualStyleBackColor = true;
+            this.playSequenceB.Click += new System.EventHandler(this.PlaySequence);
             // 
             // MainForm
             // 
@@ -153,7 +175,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(579, 275);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.playSequenceB);
+            this.Controls.Add(this.readSequenceB);
+            this.Controls.Add(this.saveSequenceB);
             this.Controls.Add(this.soundTypeGB);
             this.Controls.Add(this.effectsGB);
             this.KeyPreview = true;
@@ -176,7 +200,9 @@
         private System.Windows.Forms.Button pianoB;
         private System.Windows.Forms.Button buttonReverb;
         private System.Windows.Forms.Button readFileB;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button saveSequenceB;
+        private System.Windows.Forms.Button readSequenceB;
+        private System.Windows.Forms.Button playSequenceB;
     }
 }
 
