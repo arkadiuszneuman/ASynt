@@ -302,6 +302,7 @@
             this.absSinWave.Tag = "1";
             this.absSinWave.Text = "|Sinus|";
             this.absSinWave.UseVisualStyleBackColor = true;
+            this.absSinWave.Visible = false;
             this.absSinWave.CheckedChanged += new System.EventHandler(this.SignalChanged);
             // 
             // sinWave
@@ -384,6 +385,7 @@
             this.signalPreviewB.TabIndex = 6;
             this.signalPreviewB.Text = "Podgląd";
             this.signalPreviewB.UseVisualStyleBackColor = true;
+            this.signalPreviewB.Click += new System.EventHandler(this.ShowWaveChart);
             // 
             // infoAL3
             // 
@@ -497,7 +499,7 @@
             this.soundGraphB.TabIndex = 28;
             this.soundGraphB.Text = "Podgląd dźwięku";
             this.soundGraphB.UseVisualStyleBackColor = true;
-            this.soundGraphB.Click += new System.EventHandler(this.soundGraphB_Click);
+            this.soundGraphB.Click += new System.EventHandler(this.ShowSoundChart);
             // 
             // infoFreqL
             // 

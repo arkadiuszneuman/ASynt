@@ -276,12 +276,29 @@ namespace ASynt
             }
         }
 
-        private void soundGraphB_Click(object sender, EventArgs e)
+        private void ShowSoundChart(object sender, EventArgs e)
         {
             int[] tab = new int[bufferSample.data.Length];
             for(int i = 0; i < tab.Length; ++i)
             {
                 tab[i] = bufferSample.data[i];
+            }
+            new ChartDialog(tab).ShowDialog();
+        }
+
+        private void ShowWaveChart(object sender, EventArgs e)
+        {
+            int signal = signalsList.ElementAt(currentSignalInfo).signal;
+            int from = signalsList.ElementAt(currentSignalInfo).from;
+            int to = signalsList.ElementAt(currentSignalInfo).to;
+            Sample bufferSample2 = new Sample(ampl, 440);
+            bufferSample2.data = new short[176000];
+            bufferSample2.AddWave(signal, from, to);
+
+            int[] tab = new int[bufferSample2.data.Length];
+            for (int i = 0; i < tab.Length; ++i)
+            {
+                tab[i] = bufferSample2.data[i];
             }
             new ChartDialog(tab).ShowDialog();
         }
