@@ -497,6 +497,7 @@
             this.soundGraphB.TabIndex = 28;
             this.soundGraphB.Text = "Podgląd dźwięku";
             this.soundGraphB.UseVisualStyleBackColor = true;
+            this.soundGraphB.Click += new System.EventHandler(this.soundGraphB_Click);
             // 
             // infoFreqL
             // 

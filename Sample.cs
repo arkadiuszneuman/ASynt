@@ -30,7 +30,7 @@ namespace ASynt
     {
         public int sampleHandle { get; private set; }
         public int channelHandle { get; private set; }
-        private short[] data = new short[176000]; 
+        public short[] data = new short[176000]; 
         private int freq;
         private int ampl;
 

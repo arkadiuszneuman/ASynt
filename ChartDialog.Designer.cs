@@ -43,7 +43,7 @@
         1,
         2,
         -1};
-            this.chart.Precision = ((uint)(3u));
+            this.chart.Precision = ((uint)(120u));
             this.chart.Size = new System.Drawing.Size(284, 262);
             this.chart.TabIndex = 0;
             // 

@@ -111,7 +111,7 @@ namespace ASynt
                 Pen linesPen = new Pen(linesColor);
                 sectorX = (float)((Size.Width) * 1.0 / (points.Length + 2));
 
-                Point[] p = new Point[points.Length/precision];
+                Point[] p = new Point[points.Length/precision + 1];
                 int sample = 0;
                 for (int i = 0; i < points.Length; ++i)
                 {

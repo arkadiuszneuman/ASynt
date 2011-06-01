@@ -15,6 +15,7 @@ namespace ASynt
         {
             InitializeComponent();
             chart.Points = pointsToChart;
+            chart.Invalidate();
         }
     }
 }

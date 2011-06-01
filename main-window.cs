@@ -34,8 +34,6 @@ namespace ASynt
             List<int> l = new List<int>();
             for (int i = 0; i < 360; ++i)
                 l.Add((int)(Math.Sin(Math.PI * i / 180.0) * 10000));
-
-            new ChartDialog(l.ToArray()).Show();
         }
 
         private void soundGenerator(object sender, EventArgs e)

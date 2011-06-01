@@ -275,5 +275,15 @@ namespace ASynt
                fromTB.Value = toTB.Value - 1;
             }
         }
+
+        private void soundGraphB_Click(object sender, EventArgs e)
+        {
+            int[] tab = new int[bufferSample.data.Length];
+            for(int i = 0; i < tab.Length; ++i)
+            {
+                tab[i] = bufferSample.data[i];
+            }
+            new ChartDialog(tab).ShowDialog();
+        }
     }
 }
