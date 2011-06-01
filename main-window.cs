@@ -30,6 +30,13 @@ namespace ASynt
             chorus = new Chorus(keyboard);
             gargle = new Gargle(keyboard);
             reverb = new Reverb(keyboard);
+
+            List<int> l = new List<int>();
+            Random r = new Random();
+            for (int i = 0; i < 360; ++i)
+                l.Add((int)(Math.Sin(Math.PI * i / 180.0) * 10000));
+
+            new ChartDialog(l.ToArray()).Show();
         }
 
         private void soundGenerator(object sender, EventArgs e)

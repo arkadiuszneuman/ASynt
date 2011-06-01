@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.effectsGB = new System.Windows.Forms.GroupBox();
+            this.buttonReverb = new System.Windows.Forms.Button();
             this.buttonGargle = new System.Windows.Forms.Button();
             this.buttonChorus = new System.Windows.Forms.Button();
             this.buttonEcho = new System.Windows.Forms.Button();
@@ -37,7 +38,6 @@
             this.soundGeneratorB = new System.Windows.Forms.Button();
             this.globalMuteCB = new System.Windows.Forms.CheckBox();
             this.globalVolumeSlider = new System.Windows.Forms.TrackBar();
-            this.buttonReverb = new System.Windows.Forms.Button();
             this.effectsGB.SuspendLayout();
             this.soundTypeGB.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.globalVolumeSlider)).BeginInit();
@@ -55,6 +55,16 @@
             this.effectsGB.TabIndex = 1;
             this.effectsGB.TabStop = false;
             this.effectsGB.Text = "Efekty";
+            // 
+            // buttonReverb
+            // 
+            this.buttonReverb.Location = new System.Drawing.Point(102, 51);
+            this.buttonReverb.Name = "buttonReverb";
+            this.buttonReverb.Size = new System.Drawing.Size(90, 23);
+            this.buttonReverb.TabIndex = 3;
+            this.buttonReverb.Text = "Pogłos";
+            this.buttonReverb.UseVisualStyleBackColor = true;
+            this.buttonReverb.Click += new System.EventHandler(this.buttonReverb_Click);
             // 
             // buttonGargle
             // 
@@ -134,22 +144,12 @@
             this.globalVolumeSlider.Size = new System.Drawing.Size(198, 45);
             this.globalVolumeSlider.TabIndex = 4;
             // 
-            // buttonReverb
-            // 
-            this.buttonReverb.Location = new System.Drawing.Point(102, 51);
-            this.buttonReverb.Name = "buttonReverb";
-            this.buttonReverb.Size = new System.Drawing.Size(90, 23);
-            this.buttonReverb.TabIndex = 3;
-            this.buttonReverb.Text = "Pogłos";
-            this.buttonReverb.UseVisualStyleBackColor = true;
-            this.buttonReverb.Click += new System.EventHandler(this.buttonReverb_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(579, 275);
+            this.ClientSize = new System.Drawing.Size(577, 277);
             this.Controls.Add(this.globalVolumeSlider);
             this.Controls.Add(this.globalMuteCB);
             this.Controls.Add(this.soundTypeGB);

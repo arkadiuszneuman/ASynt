@@ -47,6 +47,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Chart.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ChartDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChartDialog.Designer.cs">
+      <DependentUpon>ChartDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Effects\AbstractDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,6 +100,9 @@
     </Compile>
     <Compile Include="SyntMath.cs" />
     <Compile Include="SyntWave.cs" />
+    <EmbeddedResource Include="ChartDialog.resx">
+      <DependentUpon>ChartDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Effects\AbstractDialog.resx">
       <DependentUpon>AbstractDialog.cs</DependentUpon>
     </EmbeddedResource>
