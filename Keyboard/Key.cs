@@ -2,6 +2,7 @@
 using System.Drawing.Drawing2D;
 using ASynt.Player;
 using System.Windows.Forms;
+using System;
 
 namespace ASynt.Keyboard
 {
@@ -15,6 +16,7 @@ namespace ASynt.Keyboard
         public Keys KeyboardKey { get; private set; }
         public Sound KeySound {get; set;}
         public Point Position { get { return position; } }
+        public bool IsNotSavedToTimer { get; set; }
 
         public Size Size { get {return size; } }
         private bool isPushed;
@@ -26,7 +28,15 @@ namespace ASynt.Keyboard
                 //if (value && isPushed)
                 {
                     isPushed = value;
+                    TimeSpan t = new TimeSpan(0);
+                    
                     //isPushed = false;
+                    if (IsPushed)
+                    {
+                        IsNotSavedToTimer = true;
+                        
+                        Keyboard.SaveKey(DateTime.Now, KeyboardKey);
+                    }
                     Draw();
                 }
             }

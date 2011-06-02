@@ -18,7 +18,7 @@ namespace ASynt
         /// <summary>
         /// Określenie precyzji malowania - co którą próbkę malować
         /// </summary>
-        private uint precision = 1;
+        private uint precision = 3;
         [Browsable(true), Category("Chart")]
         public uint Precision
         {
@@ -70,12 +70,28 @@ namespace ASynt
             }
         }
 
+        private System.Drawing.Drawing2D.SmoothingMode smoothing = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+        /// <summary>
+        /// Setter i getter jakości wykresu
+        /// </summary>
+        [Browsable(true), Category("Chart"),
+        DefaultValue(System.Drawing.Drawing2D.SmoothingMode.HighQuality)]
+        public System.Drawing.Drawing2D.SmoothingMode Smoothing
+        {
+            get { return smoothing; }
+            set
+            {
+                smoothing = value;
+                Invalidate();
+            }
+        }
+
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
 
             Graphics g = e.Graphics;
-            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            g.SmoothingMode = smoothing;
             
             Pen axisPen = new Pen(axisColor, 1);
             
@@ -111,7 +127,7 @@ namespace ASynt
                 Pen linesPen = new Pen(linesColor);
                 sectorX = (float)((Size.Width) * 1.0 / (points.Length + 2));
 
-                Point[] p = new Point[points.Length/precision + 1];
+                Point[] p = new Point[points.Length/precision];
                 int sample = 0;
                 for (int i = 0; i < points.Length; ++i)
                 {

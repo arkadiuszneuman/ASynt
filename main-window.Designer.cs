@@ -40,6 +40,8 @@
             this.saveSequenceB = new System.Windows.Forms.Button();
             this.readSequenceB = new System.Windows.Forms.Button();
             this.playSequenceB = new System.Windows.Forms.Button();
+            this.checkBoxRecord = new System.Windows.Forms.CheckBox();
+            this.buttonStop = new System.Windows.Forms.Button();
             this.effectsGB.SuspendLayout();
             this.soundTypeGB.SuspendLayout();
             this.SuspendLayout();
@@ -155,7 +157,7 @@
             this.readSequenceB.Name = "readSequenceB";
             this.readSequenceB.Size = new System.Drawing.Size(116, 23);
             this.readSequenceB.TabIndex = 4;
-            this.readSequenceB.Text = "Zapisz sekwencję";
+            this.readSequenceB.Text = "Wczytaj sekwencję";
             this.readSequenceB.UseVisualStyleBackColor = true;
             this.readSequenceB.Click += new System.EventHandler(this.ReadSequence);
             // 
@@ -169,12 +171,37 @@
             this.playSequenceB.UseVisualStyleBackColor = true;
             this.playSequenceB.Click += new System.EventHandler(this.PlaySequence);
             // 
+            // checkBoxRecord
+            // 
+            this.checkBoxRecord.Appearance = System.Windows.Forms.Appearance.Button;
+            this.checkBoxRecord.AutoSize = true;
+            this.checkBoxRecord.Location = new System.Drawing.Point(367, 249);
+            this.checkBoxRecord.Name = "checkBoxRecord";
+            this.checkBoxRecord.Size = new System.Drawing.Size(25, 23);
+            this.checkBoxRecord.TabIndex = 6;
+            this.checkBoxRecord.Text = "O";
+            this.checkBoxRecord.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.checkBoxRecord.UseVisualStyleBackColor = true;
+            this.checkBoxRecord.CheckedChanged += new System.EventHandler(this.checkBoxRecord_CheckedChanged);
+            // 
+            // buttonStop
+            // 
+            this.buttonStop.Location = new System.Drawing.Point(398, 249);
+            this.buttonStop.Name = "buttonStop";
+            this.buttonStop.Size = new System.Drawing.Size(43, 23);
+            this.buttonStop.TabIndex = 7;
+            this.buttonStop.Text = "Stop";
+            this.buttonStop.UseVisualStyleBackColor = true;
+            this.buttonStop.Click += new System.EventHandler(this.buttonStop_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(579, 275);
+            this.Controls.Add(this.buttonStop);
+            this.Controls.Add(this.checkBoxRecord);
             this.Controls.Add(this.playSequenceB);
             this.Controls.Add(this.readSequenceB);
             this.Controls.Add(this.saveSequenceB);
@@ -186,6 +213,7 @@
             this.effectsGB.ResumeLayout(false);
             this.soundTypeGB.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -203,6 +231,8 @@
         private System.Windows.Forms.Button saveSequenceB;
         private System.Windows.Forms.Button readSequenceB;
         private System.Windows.Forms.Button playSequenceB;
+        private System.Windows.Forms.CheckBox checkBoxRecord;
+        private System.Windows.Forms.Button buttonStop;
     }
 }
 

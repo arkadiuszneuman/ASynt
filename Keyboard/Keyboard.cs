@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Drawing;
-using System.Windows.Forms;
 using ASynt.Player;
 using Un4seen.Bass;
 using System.IO;
-using System.Threading;
+using System.Timers;
+using System.Windows.Forms;
 
 namespace ASynt.Keyboard
 {
@@ -34,7 +34,11 @@ namespace ASynt.Keyboard
         private List<int> echoHandles = new List<int>();
         public List<BASS_DX8_ECHO> Echo { get { return echo; } }
 
-        public List<KeySequence> keySequence = new List<KeySequence>();
+        private static List<KeySequence> keySequence = new List<KeySequence>();
+        private System.Timers.Timer timer = new System.Timers.Timer();
+        private static bool isRecording = false;
+        private static DateTime startRecordingTime = new DateTime();
+        private ulong timeCounter = 0;
 
         /// <summary>
         /// Tworzy nowy keyboard
@@ -68,6 +72,9 @@ namespace ASynt.Keyboard
             mainForm.Paint += new PaintEventHandler(Draw);
             mainForm.KeyDown += new KeyEventHandler(KeyDown);
             mainForm.KeyUp += new KeyEventHandler(KeyUp);
+
+            timer.Interval = 10;
+            timer.Elapsed += new ElapsedEventHandler(timer_Tick);
         }
 
         #region Eventy myszy
@@ -121,7 +128,7 @@ namespace ASynt.Keyboard
                         }
                         
                         player.Play(keys[i].KeySound);
-                        keySequence.Add(new KeySequence(1, Convert.ToByte(i)));
+                        //keySequence.Add(new KeySequence(1, Convert.ToByte(i)));
                     }
                 }
             }
@@ -171,7 +178,6 @@ namespace ASynt.Keyboard
                 if (keyEvent.KeyCode == key.KeyboardKey && !key.IsPushed)
                 {
                     key.IsPushed = true;
-
                     player.Play(key.KeySound);
                 }
 
@@ -247,7 +253,7 @@ namespace ASynt.Keyboard
                 while (!sr.EndOfStream)
                 {
                     line = sr.ReadLine().Split(';');
-                    keySequence.Add(new KeySequence(long.Parse(line[0]), byte.Parse(line[1])));
+                    //keySequence.Add(new KeySequence(ulong.Parse(line[0]), byte.Parse(line[1])));
                 }
 
                 sr.Close();
@@ -258,8 +264,51 @@ namespace ASynt.Keyboard
         {
             foreach (KeySequence keyS in keySequence)
             {
-                player.Play(AllKeys[Convert.ToInt16(keyS.key)].KeySound);
-                Thread.Sleep(500);
+                //player.Play(AllKeys[Convert.ToInt16(keyS.key)].KeySound);
+                //Thread.Sleep(500);
+            }
+        }
+
+        public void Record()
+        {
+            timer.Start();
+            isRecording = true;
+            startRecordingTime = DateTime.Now;
+            
+        }
+
+        public void Stop()
+        {
+            timer.Stop();
+            if (isRecording)
+            {
+                timeCounter = 0;
+                isRecording = false;
+            }
+        }
+
+        public static void SaveKey(DateTime dateTime, Keys key)
+        {
+            if (isRecording)
+            {
+                keySequence.Add(new KeySequence(startRecordingTime - dateTime, key));
+            }
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            if (isRecording)
+            {
+                /*for (int i = 0; i < keys.Length; ++i)
+                {
+                    if (keys[1].IsNotSavedToTimer)
+                    {
+                        keys[1].IsNotSavedToTimer = false;
+                        keySequence.Add(new KeySequence(timeCounter, (byte)keys[1].KeyboardKey));
+                    }
+                }*/
+
+                ++timeCounter;
             }
         }
     }

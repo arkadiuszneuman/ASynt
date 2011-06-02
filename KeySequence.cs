@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace ASynt
 {
     public struct KeySequence
     {
-        public long time;
-        public byte key;
+        private TimeSpan time;
+        private Keys key;
 
-        public KeySequence(long Time, byte Key)
+        public KeySequence(TimeSpan Time, Keys Key)
         {
             time = Time;
             key = Key;
