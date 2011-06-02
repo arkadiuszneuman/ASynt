@@ -39,16 +39,25 @@ namespace ASynt.Effects
             Init();
         }
 
+        /// <summary>
+        /// Nazwa właściwości.
+        /// </summary>
         protected override string ProportiesName
         {
             get { return "Właściwości echa"; }
         }
 
+        /// <summary>
+        /// Nazwa efektu.
+        /// </summary>
         protected override string EffectName
         {
             get { return "Echo"; }
         }
 
+        /// <summary>
+        /// Opis efektu.
+        /// </summary>
         protected override string Description
         {
             get
@@ -254,6 +263,9 @@ namespace ASynt.Effects
 
         }
 
+        /// <summary>
+        /// Edycja efektu.
+        /// </summary>
         protected override void EditEffect()
         {
             Dictionary<string, float> d = new Dictionary<string, float>() {
@@ -268,6 +280,9 @@ namespace ASynt.Effects
             effect.Edit(d);
         }
 
+        /// <summary>
+        /// Dodanie efektu.
+        /// </summary>
         protected override void  AddEffect()
         {
             Dictionary<string, float> d = new Dictionary<string, float>() {
@@ -280,7 +295,10 @@ namespace ASynt.Effects
 
             effect.Add(d);
         }
-
+        
+        /// <summary>
+        /// Aktualizacja kontrolek.
+        /// </summary>
         protected override void UpdateControls()
         {
             List<BASS_DX8_ECHO> echo = ((Echo)effect).List;
@@ -296,6 +314,9 @@ namespace ASynt.Effects
             checkBoxPan.Checked = check;
         }
 
+        /// <summary>
+        /// Zresetowanie wartości kontrolek.
+        /// </summary>
         protected override void ResetControls()
         {
             trackBarWetDryFx.Value = 0;
@@ -305,11 +326,17 @@ namespace ASynt.Effects
             checkBoxPan.Checked = false;
         }
 
+        /// <summary>
+        /// Reakcja na zmianę wartości suwaka trackBar.
+        /// </summary>
         private void trackBar_ValueChanged(object sender, EventArgs e)
         {
             trackBarValueChanged(sender, e);
         }
 
+        /// <summary>
+        /// Reakcja na zmianę zaznaczenia checkBoxPan.
+        /// </summary>
         private void checkBoxPan_CheckedChanged(object sender, EventArgs e)
         {
             EditEffect();

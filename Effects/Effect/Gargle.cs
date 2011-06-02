@@ -13,16 +13,28 @@ namespace ASynt.Effects.Effect
         private List<int> handles = new List<int>();
         public List<BASS_DX8_GARGLE> List { get { return gargle; } }
 
+        /// <summary>
+        /// Konstruktor klasy Gargle.
+        /// </summary>
+        /// <param name="keyboard">Obiekt klawiatury Keyboard.</param>
         public Gargle(Keyboard.Keyboard keyboard)
             : base(keyboard)
         {
         }
 
+        /// <summary>
+        /// Zwraca liczbę nałożonych efektów Gargle.
+        /// </summary>
         public override int EffectsCount
         {
             get { return gargle.Count; }
         }
 
+        /// <summary>
+        /// Edycja efektu Gargle w słowniku.
+        /// </summary>
+        /// <param name="chor">Obiekt BASS_DX8_GARGLE.</param>
+        /// <param name="d">Obiekt słownika.</param>
         private void EditGargle(BASS_DX8_GARGLE chor, Dictionary<string, float> d)
         {
             if (!d.ContainsKey("rateHz") || !d.ContainsKey("waveShape"))
@@ -34,6 +46,10 @@ namespace ASynt.Effects.Effect
             chor.dwWaveShape = (int)d["waveShape"];
         }
 
+        /// <summary>
+        /// Dodanie efektu Gargle do słownika.
+        /// </summary>
+        /// <param name="d">Obiekt słownika.</param>
         public override void Add(Dictionary<string, float> d)
         {
             gargle.Add(new BASS_DX8_GARGLE());
@@ -51,6 +67,10 @@ namespace ASynt.Effects.Effect
             }
         }
 
+        /// <summary>
+        /// Edycja efektu Gargle.
+        /// </summary>
+        /// <param name="d">Obiekt słownika.</param>
         public override void Edit(Dictionary<string, float> d)
         {
             if (!d.ContainsKey("which"))
@@ -66,6 +86,10 @@ namespace ASynt.Effects.Effect
                 Bass.BASS_FXSetParameters(handles[i], gargle[which]);
         }
 
+        /// <summary>
+        /// Usunięcie efektu Gargle z kanału.
+        /// </summary>
+        /// <param name="which">Numer efektu do usunięcia.</param>
         public override void Delete(int which)
         {
             for (int i = 0; i < keys.Length; ++i)

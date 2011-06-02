@@ -13,16 +13,28 @@ namespace ASynt.Effects.Effect
         private List<int> handles = new List<int>();
         public List<BASS_DX8_CHORUS> List { get { return chorus; } }
 
+        /// <summary>
+        /// Konstruktor klasy Chorus.
+        /// </summary>
+        /// <param name="keyboard">Obiekt klawiatury Keyboard.</param>
         public Chorus(Keyboard.Keyboard keyboard)
             : base(keyboard)
         {
         }
 
+        /// <summary>
+        /// Zwraca liczbę nałożonych efektów Chorus.
+        /// </summary>
         public override int EffectsCount
         {
             get { return chorus.Count; }
         }
 
+        /// <summary>
+        /// Edycja efektu Chorus w słowniku.
+        /// </summary>
+        /// <param name="chor">Obiekt BASS_DX8_CHORUS.</param>
+        /// <param name="d">Obiekt słownika.</param>
         private void EditChorus(BASS_DX8_CHORUS chor, Dictionary<string, float> d)
         {
             if (!d.ContainsKey("wetDryMix") || !d.ContainsKey("feedback") || !d.ContainsKey("delay")
@@ -41,6 +53,10 @@ namespace ASynt.Effects.Effect
             chor.lWaveform = (int)d["waveform"];
         }
 
+        /// <summary>
+        /// Dodanie efektu Chorus do słownika.
+        /// </summary>
+        /// <param name="d">Obiekt słownika.</param>
         public override void Add(Dictionary<string, float> d)
         {
             chorus.Add(new BASS_DX8_CHORUS());
@@ -58,6 +74,10 @@ namespace ASynt.Effects.Effect
             }
         }
 
+        /// <summary>
+        /// Edycja efektu Chorus.
+        /// </summary>
+        /// <param name="d">Obiekt słownika.</param>
         public override void Edit(Dictionary<string, float> d)
         {
             if (!d.ContainsKey("which"))
@@ -73,6 +93,10 @@ namespace ASynt.Effects.Effect
                 Bass.BASS_FXSetParameters(handles[i], chorus[which]);
         }
 
+        /// <summary>
+        /// Usunięcie efektu Chorus z kanału.
+        /// </summary>
+        /// <param name="which">Numer efektu do usunięcia.</param>
         public override void Delete(int which)
         {
             for (int i = 0; i < keys.Length; ++i)

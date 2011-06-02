@@ -27,10 +27,10 @@ namespace ASynt.Player
         // DATA size in bytes for sound data + 44 for WAV header
         private byte[] soundData = new byte[352044];
         // Only sound - need to modify amplitude
-        private short[] soundBuffer = new short[176000];
         private int freq;
         private int ampl;
         private List<SyntWave> signalsList;
+        private Sample sampleBuffer;
         
         /// <summary>
         /// Konstruktor dźwięku
@@ -79,8 +79,8 @@ namespace ASynt.Player
             CreateSound();
             WavHeader().CopyTo(soundData, 0);
             for (int i = 0; i < 176000; ++i)
-            {
-                BitConverter.GetBytes(soundBuffer[i]).CopyTo(soundData, 44 + (i * 2));
+            {               
+                BitConverter.GetBytes(sampleBuffer.data[i]).CopyTo(soundData, 44 + (i * 2));
             }
             soundHandle = GCHandle.Alloc(soundData, GCHandleType.Pinned);
             Stream = Bass.BASS_StreamCreateFile(soundHandle.AddrOfPinnedObject(), 0L, soundData.Length, BASSFlag.BASS_DEFAULT);
@@ -111,87 +111,11 @@ namespace ASynt.Player
         /// </summary>
         public void CreateSound()
         {
-            AddWave((int)Signals.Sinus, 0, 176000);
+            sampleBuffer = new Sample(ampl, freq);
 
             foreach (SyntWave sw in signalsList)
             {
-                AddWave(sw.signal, sw.from, sw.to);
-            }
-        }
-
-        /// <summary>
-        /// Dodaje do tablicy kolejną falę dźwiękową.
-        /// </summary>
-        /// <param name="signal">Typ fali dźwiękowej.</param>
-        /// <param name="from">Początek (w tablicy z danymi) nowej fali dźwiękowej (jako numer próbki).</param>
-        /// <param name="to">Koniec fali dźwiękowej (jako numer próbki).</param>
-        public void AddWave(int signal, int from, int to)
-        {
-            int samplesCount = to - from;
-            short[] buffer = new short[samplesCount];
-            double amplitude = ampl / 100.0;
-
-            if (signal == (int)Signals.Sinus)
-            {
-                buffer = SyntMath.Sinus(amplitude, freq, samplesCount);
-            }
-
-            if (signal == (int)Signals.AbsSinus)
-            {
-                buffer = SyntMath.AbsSinus(amplitude, freq, samplesCount);
-            }
-
-            if (signal == (int)Signals.Cosinus)
-            {
-                buffer = SyntMath.Cosinus(amplitude, freq, samplesCount);
-            }
-
-            if (signal == (int)Signals.AbsCosinus)
-            {
-                buffer = SyntMath.AbsCosinus(amplitude, freq, samplesCount);
-            }
-
-            if (signal == (int)Signals.Tangens)
-            {
-                buffer = SyntMath.Tangens(amplitude, freq, samplesCount);
-            }
-
-            if (signal == (int)Signals.AbsTangens)
-            {
-                buffer = SyntMath.AbsTangens(amplitude, freq, samplesCount);
-            }
-
-            if (signal == (int)Signals.Square)
-            {
-                buffer = SyntMath.Square(amplitude, freq, samplesCount);
-            }
-
-            if (signal == (int)Signals.WhiteNoise)
-            {
-                buffer = SyntMath.WhiteNoise(amplitude, freq, samplesCount);
-            }
-
-            for (int i = from; i < to; ++i)
-            {
-                soundBuffer[i] += buffer[i - from];
-            }
-        }
-
-        /// <summary>
-        /// Zmienia amplitudę wygenerowanego sygnału.
-        /// </summary>
-        /// <param name="oldAmpl">Stara wartość amplitudy.</param>
-        /// <param name="newAmpl">Nowa wartość amplitudy.</param>
-        public void ChangeAmpl(int oldAmpl, int newAmpl)
-        {
-            ampl = newAmpl;
-
-            double bOldAmpl = oldAmpl / 100.0;
-            double bNewAmpl = newAmpl / 100.0;
-
-            for (int i = 0; i < 176000; ++i)
-            {
-                soundBuffer[i] = (short)((bNewAmpl * soundBuffer[i]) / bOldAmpl);
+                sampleBuffer.AddWave(sw.signal, sw.from, sw.to);
             }
         }
 

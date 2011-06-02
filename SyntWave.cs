@@ -22,9 +22,9 @@ namespace ASynt
         /// <param name="To">Koniec sygnału (jako numer próbki).</param>
         public SyntWave(int Signal, int From, int To)
         {
-            this.signal = Signal;
-            this.from = From;
-            this.to = To;            
+            signal = Signal;
+            from = From;
+            to = To;            
         }
     }
 }

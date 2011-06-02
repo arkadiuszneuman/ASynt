@@ -6,6 +6,9 @@ using System.Windows.Forms;
 
 namespace ASynt
 {
+    /// <summary>
+    /// Struktura przetrzymująca czas oraz wciśnięty klawisz.
+    /// </summary>
     public struct KeySequence
     {
         private TimeSpan time;
