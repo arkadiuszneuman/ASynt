@@ -10,18 +10,6 @@ using Un4seen.Bass;
 
 namespace ASynt 
 {
-    enum Signals
-    {
-        Sinus,
-        AbsSinus,
-        Cosinus,
-        AbsCosinus,
-        Tangens,
-        AbsTangens,
-        Square,
-        WhiteNoise
-    };
-
     /// <summary>
     /// Klasa tworząca próbkę dźwięku SAMPLE. Użyta jest jedynie w SoundGenerator - reszta jest oparta o STREAMy.
     /// Powodem użycia jest szybkość tworzenia - nie trzeba tworzyć nagłowka WAV oraz przeliczać tablicy INT16 na BYTE.
@@ -30,7 +18,7 @@ namespace ASynt
     {
         public int sampleHandle { get; private set; }
         public int channelHandle { get; private set; }
-        public short[] data = new short[176000]; 
+        public short[] data = new short[176000];
         private int freq;
         private int ampl;
 
@@ -59,45 +47,7 @@ namespace ASynt
             short[] buffer = new short[samplesCount];
             double amplitude = ampl / 100.0;
 
-            if (signal == (int)Signals.Sinus)
-            {
-                buffer = SyntMath.Sinus(amplitude, freq, samplesCount);
-            }
-
-            if (signal == (int)Signals.AbsSinus)
-            {
-                buffer = SyntMath.AbsSinus(amplitude, freq, samplesCount);
-            }
-
-            if (signal == (int)Signals.Cosinus)
-            {
-                buffer = SyntMath.Cosinus(amplitude, freq, samplesCount);
-            }
-
-            if (signal == (int)Signals.AbsCosinus)
-            {
-                buffer = SyntMath.AbsCosinus(amplitude, freq, samplesCount);
-            }
-
-            if (signal == (int)Signals.Tangens)
-            {
-                buffer = SyntMath.Tangens(amplitude, freq, samplesCount);
-            }
-
-            if (signal == (int)Signals.AbsTangens)
-            {
-                buffer = SyntMath.AbsTangens(amplitude, freq, samplesCount);
-            }
-
-            if (signal == (int)Signals.Square)
-            {
-                buffer = SyntMath.Square(amplitude, freq, samplesCount);
-            }
-
-            if (signal == (int)Signals.WhiteNoise)
-            {
-                buffer = SyntMath.WhiteNoise(amplitude, freq, samplesCount);
-            }
+            buffer = SyntMath.Wave(signal, amplitude, freq, samplesCount);
 
             for (int i = from; i < to; ++i)
             {
@@ -117,45 +67,7 @@ namespace ASynt
             short[] buffer = new short[samplesCount];
             double amplitude = ampl / 100.0;
 
-            if (signal == (int)Signals.Sinus)
-            {
-                buffer = SyntMath.Sinus(amplitude, freq, samplesCount);
-            }
-
-            if (signal == (int)Signals.AbsSinus)
-            {
-                buffer = SyntMath.AbsSinus(amplitude, freq, samplesCount);
-            }
-
-            if (signal == (int)Signals.Cosinus)
-            {
-                buffer = SyntMath.Cosinus(amplitude, freq, samplesCount);
-            }
-
-            if (signal == (int)Signals.AbsCosinus)
-            {
-                buffer = SyntMath.AbsCosinus(amplitude, freq, samplesCount);
-            }
-
-            if (signal == (int)Signals.Tangens)
-            {
-                buffer = SyntMath.Tangens(amplitude, freq, samplesCount);
-            }
-
-            if (signal == (int)Signals.AbsTangens)
-            {
-                buffer = SyntMath.AbsTangens(amplitude, freq, samplesCount);
-            }
-
-            if (signal == (int)Signals.Square)
-            {
-                buffer = SyntMath.Square(amplitude, freq, samplesCount);
-            }
-
-            if (signal == (int)Signals.WhiteNoise)
-            {
-                buffer = SyntMath.WhiteNoise(amplitude, freq, samplesCount);
-            }
+            buffer = SyntMath.Wave(signal, amplitude, freq, samplesCount);
 
             for (int i = from; i < to; ++i)
             {

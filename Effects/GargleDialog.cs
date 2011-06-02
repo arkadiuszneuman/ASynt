@@ -14,22 +14,35 @@ namespace ASynt.Effects
         private System.Windows.Forms.TrackBar trackBarRate;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
-    
+
+        /// <summary>
+        /// Nazwa właściwości.
+        /// </summary>
         protected override string ProportiesName
         {
             get { return "Właściwości gargle"; }
         }
 
+        /// <summary>
+        /// Nazwa efektu.
+        /// </summary>
         protected override string EffectName
         {
             get { return "Gargle"; }
         }
 
+        /// <summary>
+        /// Opis efektu.
+        /// </summary>
         protected override string Description
         {
             get { return "Powoduje przemnożenie sygnału z podanym kształtem.\nW efekcie dźwięk jest naprzemiennie zciszany i zgłaśniany o daną szybkość modulacji."; }
         }
 
+        /// <summary>
+        /// Konstruktor okna.
+        /// </summary>
+        /// <param name="chorus">Obiekt efektu Gargle.</param>
         public GargleDialog(Gargle gargle)
             : base()
         {
@@ -41,6 +54,9 @@ namespace ASynt.Effects
             Init();
         }
 
+        /// <summary>
+        /// Aktualizacja kontrolek.
+        /// </summary>
         protected override void UpdateControls()
         {
             List<BASS_DX8_GARGLE> chorus = ((Gargle)effect).List;
@@ -51,6 +67,9 @@ namespace ASynt.Effects
             comboBoxWaveShape.SelectedIndex = wave;
         }
 
+        /// <summary>
+        /// Edycja efektu.
+        /// </summary>
         protected override void EditEffect()
         {
             Dictionary<string, float> d = new Dictionary<string, float>() {
@@ -62,6 +81,9 @@ namespace ASynt.Effects
             effect.Edit(d);
         }
 
+        /// <summary>
+        /// Dodanie efektu.
+        /// </summary>
         protected override void AddEffect()
         {
             Dictionary<string, float> d = new Dictionary<string, float>() {
@@ -72,6 +94,9 @@ namespace ASynt.Effects
             effect.Add(d);
         }
 
+        /// <summary>
+        /// Zresetowanie wartości kontrolek.
+        /// </summary>
         protected override void ResetControls()
         {
             trackBarRate.Value = 1;
@@ -165,11 +190,17 @@ namespace ASynt.Effects
 
         }
 
+        /// <summary>
+        /// Reakcja na zmianę wartości suwaka trackBarRate
+        /// </summary>
         private void trackBarRate_ValueChanged(object sender, EventArgs e)
         {
             trackBarValueChanged(sender, e);
         }
 
+        /// <summary>
+        /// Reakcja na zmianę wyboru na liście comboBox.
+        /// </summary>
         private void comboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (page != 0) //zapobiega błędowi przy włączeniu okienka

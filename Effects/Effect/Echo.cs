@@ -13,11 +13,19 @@ namespace ASynt.Effects.Effect
         private List<int> handles = new List<int>();
         public List<BASS_DX8_ECHO> List { get { return echo; } }
 
+        /// <summary>
+        /// Konstrukor klasy Echo.
+        /// </summary>
+        /// <param name="keyboard">Obiekt klawiatury Keyboard.</param>
         public Echo(Keyboard.Keyboard keyboard)
             : base(keyboard)
         {
         }
 
+        /// <summary>
+        /// Usunięcie efektu Echo z kanału.
+        /// </summary>
+        /// <param name="which">Numer efektu do usunięcia.</param>
         public override void Delete(int which)
         {
             for (int i = 0; i < keys.Length; ++i)
@@ -29,11 +37,18 @@ namespace ASynt.Effects.Effect
             handles.RemoveRange(which * 12, 11);
         }
 
+        /// <summary>
+        /// Zwraca liczbę nałożonych efektów Echo.
+        /// </summary>
         public override int EffectsCount
         {
             get { return echo.Count; }
         }
 
+        /// <summary>
+        /// Dodaje kolejne Echo do słownika.
+        /// </summary>
+        /// <param name="d">Obiekt słownika.</param>
         public override void Add(Dictionary<string, float> d)
         {
             if (!d.ContainsKey("wetDryMix") || !d.ContainsKey("feedback") || !d.ContainsKey("leftDelay") 
@@ -55,6 +70,10 @@ namespace ASynt.Effects.Effect
             }
         }
 
+        /// <summary>
+        /// Edytuje echo w słowniku.
+        /// </summary>
+        /// <param name="d">Obiekt słownika.</param>
         public override void Edit(Dictionary<string, float> d)
         {
             if (!d.ContainsKey("wetDryMix") || !d.ContainsKey("feedback") || !d.ContainsKey("leftDelay")

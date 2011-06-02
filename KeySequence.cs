@@ -5,6 +5,9 @@ using System.Text;
 
 namespace ASynt
 {
+    /// <summary>
+    /// Struktura przetrzymująca czas oraz wciśnięty klawisz.
+    /// </summary>
     public struct KeySequence
     {
         public long time;

@@ -13,16 +13,28 @@ namespace ASynt.Effects.Effect
         private List<int> handles = new List<int>();
         public List<BASS_DX8_REVERB> List { get { return reverbs; } }
 
+        /// <summary>
+        /// Konstruktor klasy Reverb.
+        /// </summary>
+        /// <param name="keyboard">Obiekt klawiatury Keyboard.</param>
         public Reverb(Keyboard.Keyboard keyboard)
             : base(keyboard)
         {
         }
 
+        /// <summary>
+        /// Zwraca liczbę nałożonych efektów Reverb.
+        /// </summary>
         public override int EffectsCount
         {
             get { return reverbs.Count; }
         }
 
+        /// <summary>
+        /// Edycja efektu Reverb w słowniku.
+        /// </summary>
+        /// <param name="chor">Obiekt BASS_DX8_REVERB.</param>
+        /// <param name="d">Obiekt słownika.</param>
         private void EditReverb(BASS_DX8_REVERB reverb, Dictionary<string, float> d)
         {
             if (!d.ContainsKey("ratio") || !d.ContainsKey("gain") || !d.ContainsKey("mix") || !d.ContainsKey("time"))
@@ -36,6 +48,10 @@ namespace ASynt.Effects.Effect
             reverb.fReverbTime = d["time"];
         }
 
+        /// <summary>
+        /// Dodanie efektu Reverb do słownika.
+        /// </summary>
+        /// <param name="d">Obiekt słownika.</param>
         public override void Add(Dictionary<string, float> d)
         {
             reverbs.Add(new BASS_DX8_REVERB());
@@ -53,6 +69,10 @@ namespace ASynt.Effects.Effect
             }
         }
 
+        /// <summary>
+        /// Edycja efektu Reverb.
+        /// </summary>
+        /// <param name="d">Obiekt słownika.</param>
         public override void Edit(Dictionary<string, float> d)
         {
             if (!d.ContainsKey("which"))
@@ -68,6 +88,10 @@ namespace ASynt.Effects.Effect
                 Bass.BASS_FXSetParameters(handles[i], reverbs[which]);
         }
 
+        /// <summary>
+        /// Usunięcie efektu Reverb z kanału.
+        /// </summary>
+        /// <param name="which">Numer efektu do usunięcia.</param>
         public override void Delete(int which)
         {
             for (int i = 0; i < keys.Length; ++i)

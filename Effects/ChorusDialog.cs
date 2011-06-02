@@ -29,16 +29,25 @@ namespace ASynt.Effects
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label8;
     
+        /// <summary>
+        /// Nazwa właściwości.
+        /// </summary>
         protected override string ProportiesName
         {
             get { return "Właściwości chorusu"; }
         }
 
+        /// <summary>
+        /// Nazwa efektu.
+        /// </summary>
         protected override string EffectName
         {
             get { return "Chorus"; }
         }
 
+        /// <summary>
+        /// Opis efektu.
+        /// </summary>
         protected override string Description
         {
             get 
@@ -49,6 +58,10 @@ namespace ASynt.Effects
             }
         }
 
+        /// <summary>
+        /// Konstruktor okna.
+        /// </summary>
+        /// <param name="chorus">Obiekt efektu chorus.</param>
         public ChorusDialog(Chorus chorus)
             : base()
         {
@@ -61,6 +74,9 @@ namespace ASynt.Effects
             Init();
         }
 
+        /// <summary>
+        /// Aktualizacja kontrolek.
+        /// </summary>
         protected override void UpdateControls()
         {
             List<BASS_DX8_CHORUS> chorus = ((Chorus)effect).List;
@@ -103,6 +119,9 @@ namespace ASynt.Effects
             comboBoxWaveform.SelectedIndex = wave;
         }
 
+        /// <summary>
+        /// Edycja efektu.
+        /// </summary>
         protected override void EditEffect()
         {
             BASSFXPhase ph = BASSFXPhase.BASS_FX_PHASE_ZERO;
@@ -142,6 +161,9 @@ namespace ASynt.Effects
             effect.Edit(d);
         }
 
+        /// <summary>
+        /// Dodanie efektu.
+        /// </summary>
         protected override void AddEffect()
         {
             BASSFXPhase ph = BASSFXPhase.BASS_FX_PHASE_ZERO;
@@ -178,6 +200,9 @@ namespace ASynt.Effects
             effect.Add(d);
         }
 
+        /// <summary>
+        /// Zresetowanie wartości kontrolek.
+        /// </summary>
         protected override void ResetControls()
         {
             trackBarWetDryFx.Value = 0;
@@ -189,6 +214,9 @@ namespace ASynt.Effects
             comboBoxWaveform.SelectedIndex = 0; //domyślnie trójkąt
         }
 
+        /// <summary>
+        /// Reakcja na zmianę wartości, któregoś z suwaków.
+        /// </summary>
         private void trackBar_ValueChanged(object sender, EventArgs e)
         {
             trackBarValueChanged(sender, e);
@@ -467,6 +495,9 @@ namespace ASynt.Effects
 
         }
 
+        /// <summary>
+        /// Reakcja na wybranie innej właściwości z listy.
+        /// </summary>
         private void comboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (page != 0) //zapobiega błędowi przy włączeniu okienka
