@@ -806,6 +806,7 @@
             this.Controls.Add(this.amplUD);
             this.Controls.Add(this.signalsGB);
             this.Controls.Add(this.previewB);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SoundGenerator";
             this.Text = "SoundGenerator";
             ((System.ComponentModel.ISupportInitialize)(this.amplUD)).EndInit();
