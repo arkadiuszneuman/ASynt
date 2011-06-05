@@ -38,11 +38,6 @@
             this.readFileB = new System.Windows.Forms.Button();
             this.pianoB = new System.Windows.Forms.Button();
             this.soundGeneratorB = new System.Windows.Forms.Button();
-            this.saveSequenceB = new System.Windows.Forms.Button();
-            this.readSequenceB = new System.Windows.Forms.Button();
-            this.playSequenceB = new System.Windows.Forms.Button();
-            this.checkBoxRecord = new System.Windows.Forms.CheckBox();
-            this.buttonStop = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.effectsGB.SuspendLayout();
             this.soundTypeGB.SuspendLayout();
@@ -144,59 +139,6 @@
             this.soundGeneratorB.UseVisualStyleBackColor = true;
             this.soundGeneratorB.Click += new System.EventHandler(this.soundGenerator);
             // 
-            // saveSequenceB
-            // 
-            this.saveSequenceB.Location = new System.Drawing.Point(70, 291);
-            this.saveSequenceB.Name = "saveSequenceB";
-            this.saveSequenceB.Size = new System.Drawing.Size(116, 23);
-            this.saveSequenceB.TabIndex = 3;
-            this.saveSequenceB.Text = "Zapisz sekwencję";
-            this.saveSequenceB.UseVisualStyleBackColor = true;
-            this.saveSequenceB.Click += new System.EventHandler(this.SaveSequence);
-            // 
-            // readSequenceB
-            // 
-            this.readSequenceB.Location = new System.Drawing.Point(192, 291);
-            this.readSequenceB.Name = "readSequenceB";
-            this.readSequenceB.Size = new System.Drawing.Size(116, 23);
-            this.readSequenceB.TabIndex = 4;
-            this.readSequenceB.Text = "Wczytaj sekwencję";
-            this.readSequenceB.UseVisualStyleBackColor = true;
-            this.readSequenceB.Click += new System.EventHandler(this.ReadSequence);
-            // 
-            // playSequenceB
-            // 
-            this.playSequenceB.Location = new System.Drawing.Point(314, 291);
-            this.playSequenceB.Name = "playSequenceB";
-            this.playSequenceB.Size = new System.Drawing.Size(116, 23);
-            this.playSequenceB.TabIndex = 5;
-            this.playSequenceB.Text = "Odtwórz sekwencję";
-            this.playSequenceB.UseVisualStyleBackColor = true;
-            this.playSequenceB.Click += new System.EventHandler(this.PlaySequence);
-            // 
-            // checkBoxRecord
-            // 
-            this.checkBoxRecord.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkBoxRecord.AutoSize = true;
-            this.checkBoxRecord.Location = new System.Drawing.Point(436, 291);
-            this.checkBoxRecord.Name = "checkBoxRecord";
-            this.checkBoxRecord.Size = new System.Drawing.Size(25, 23);
-            this.checkBoxRecord.TabIndex = 6;
-            this.checkBoxRecord.Text = "O";
-            this.checkBoxRecord.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkBoxRecord.UseVisualStyleBackColor = true;
-            this.checkBoxRecord.CheckedChanged += new System.EventHandler(this.checkBoxRecord_CheckedChanged);
-            // 
-            // buttonStop
-            // 
-            this.buttonStop.Location = new System.Drawing.Point(467, 291);
-            this.buttonStop.Name = "buttonStop";
-            this.buttonStop.Size = new System.Drawing.Size(43, 23);
-            this.buttonStop.TabIndex = 7;
-            this.buttonStop.Text = "Stop";
-            this.buttonStop.UseVisualStyleBackColor = true;
-            this.buttonStop.Click += new System.EventHandler(this.buttonStop_Click);
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
@@ -211,24 +153,20 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(579, 320);
+            this.ClientSize = new System.Drawing.Size(579, 290);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.buttonStop);
-            this.Controls.Add(this.checkBoxRecord);
-            this.Controls.Add(this.playSequenceB);
-            this.Controls.Add(this.readSequenceB);
-            this.Controls.Add(this.saveSequenceB);
             this.Controls.Add(this.soundTypeGB);
             this.Controls.Add(this.effectsGB);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
+            this.MaximumSize = new System.Drawing.Size(595, 328);
+            this.MinimumSize = new System.Drawing.Size(595, 328);
             this.Name = "MainForm";
             this.Text = "ASynt - Awesome Syntezator";
             this.effectsGB.ResumeLayout(false);
             this.soundTypeGB.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -243,11 +181,6 @@
         private System.Windows.Forms.Button pianoB;
         private System.Windows.Forms.Button buttonReverb;
         private System.Windows.Forms.Button readFileB;
-        private System.Windows.Forms.Button saveSequenceB;
-        private System.Windows.Forms.Button readSequenceB;
-        private System.Windows.Forms.Button playSequenceB;
-        private System.Windows.Forms.CheckBox checkBoxRecord;
-        private System.Windows.Forms.Button buttonStop;
         private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

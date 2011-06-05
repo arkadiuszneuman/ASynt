@@ -124,32 +124,5 @@ namespace ASynt
                 keyboard.smallKeys[4].SetFrequency = (44100 * 466) / 440;
             }
         }
-
-        private void SaveSequence(object sender, EventArgs e)
-        {
-            keyboard.SaveSequence();
-        }
-
-        private void ReadSequence(object sender, EventArgs e)
-        {
-            keyboard.ReadSequence();
-        }
-
-        private void PlaySequence(object sender, EventArgs e)
-        {
-            keyboard.PlaySequence();
-        }
-
-        private void checkBoxRecord_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkBoxRecord.Checked)
-                keyboard.Record();
-        }
-
-        private void buttonStop_Click(object sender, EventArgs e)
-        {
-            keyboard.Stop();
-            checkBoxRecord.Checked = false;
-        }
     }
 }
